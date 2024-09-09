@@ -1,0 +1,21 @@
+{
+    "repoUrl": "https://github.com/feit-comp30019/2024s2-project-2-momo-games",
+    "teamName": "Momo Games",
+    "teamMembers": [
+      {
+        "name": "Kate Griffiths",
+        "github": "Kate-Griffiths",
+        "email": "Kate.Griffiths@student.unimelb.edu.au"
+      },
+      {
+        "name": "Jeongwoo Seo",
+        "github": "jwoo2023",
+        "email": "jeongwoo@student.unimelb.edu.au"
+      },
+      {
+        "name": "Deyulin Chen",
+        "github": "chendeyulin",
+        "email": "deyulinc@student.unimelb.edu.au"
+      }
+    ]
+  }
