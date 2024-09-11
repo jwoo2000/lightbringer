@@ -10,7 +10,7 @@ public class Stamina : MonoBehaviour
     private float stamina;
     public Transform height;
 
-    public Image StaminaBar;
+    public Transform StaminaBar;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,8 @@ public class Stamina : MonoBehaviour
         if (stamina < 0) {
             stamina = 0;
         }
-        height.position = new Vector3 (0.0f, stamina, 0.0f);
-        StaminaBar.fillAmount = stamina / maxStamina;
+        height.position = new Vector3(0.0f, stamina, 0.0f);
+        StaminaBar.localScale = new Vector3(0.2f, stamina / maxStamina, 0.2f);
+        StaminaBar.position = new Vector3(StaminaBar.position.x, 1 + (stamina / maxStamina) / 2, StaminaBar.position.z);
     }
 }
