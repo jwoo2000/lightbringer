@@ -82,7 +82,13 @@ public class MovementController : MonoBehaviour
         Vector3 dir = forward * vertical + right * horizontal;
         dir = dir.normalized;
 
-        player.position = player.position + (dir * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            player.position = player.position + (dir * speed * Time.deltaTime * 3);
+        } else {
+            player.position = player.position + (dir * speed * Time.deltaTime);
+        }
+
+        
         
     }
 
