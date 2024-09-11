@@ -6,6 +6,7 @@ public class AnimationController : MonoBehaviour
 {
 
     public Animator characterAnimator;
+    public Transform stamina;
     
     // Start is called before the first frame update
     void Start()
@@ -61,11 +62,11 @@ public class AnimationController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            characterAnimator.SetBool("Shift", true);
+            characterAnimator.SetBool("Sprint", true);
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || stamina.position.y <= 0)
         {
-            characterAnimator.SetBool("Shift", false);
+            characterAnimator.SetBool("Sprint", false);
         }
         if (Input.GetMouseButtonDown(1))
         {

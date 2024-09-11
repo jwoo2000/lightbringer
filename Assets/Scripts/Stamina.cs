@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Stamina : MonoBehaviour
+{
+    public float maxStamina;
+    public float regenerationRate;
+    private float stamina;
+    public Transform height;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        stamina = maxStamina;
+        height.position = new Vector3 (0.0f, stamina, 0.0f);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0) {
+            stamina -= Time.deltaTime;
+        } else if ((Input.GetKey(KeyCode.LeftShift) && stamina <= 0)) {
+            // Stamina will not regerate
+        }else {
+            if (stamina < maxStamina) {
+                stamina += (Time.deltaTime * regenerationRate);
+            }
+        }
+        height.position = new Vector3 (0.0f, stamina, 0.0f);
+    }
+}
