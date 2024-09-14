@@ -1,16 +1,18 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 Shader "_Shaders/FogShader"
 {
     Properties
     {
+        _MainTex ("Main Texture", 2D) = "black" {}
     }
     SubShader
     {
-        Tags { "Queue" = "Geometry" }
+        Tags { "Queue" = "Transparent+1" }
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
+            Cull Off
             CGPROGRAM
             #pragma exclude_renderers ps4 ps5 xboxone xboxseries switch
             #pragma vertex vert
@@ -18,10 +20,14 @@ Shader "_Shaders/FogShader"
 
             #include "UnityCG.cginc"
 
+            // uniforms
+            uniform sampler2D _MainTex;
+            uniform float4 _MainTex_ST;
+
             struct vertexInput
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float4 texcoord : TEXCOORD0;
             };
 
             struct fragmentInput
@@ -33,16 +39,18 @@ Shader "_Shaders/FogShader"
             fragmentInput vert (vertexInput v)
             {
                 fragmentInput o;
+                float4 texColor = tex2Dlod(_MainTex, v.texcoord);
+                v.vertex.y += texColor.a;
+
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 
                 return o;
             }
 
-            half4 frag (fragmentInput i) : COLOR
+            float4 frag (fragmentInput i) : COLOR
             {
-
-                return float4(0.0f, 0.0f, 0.0f, 0.0f);
+                return tex2D(_MainTex, i.uv);
             }
             ENDCG
         } // End Pass
