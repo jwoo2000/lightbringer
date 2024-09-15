@@ -10,6 +10,7 @@ Shader "_Shaders/BasicSolidColourShader"
         Pass
         {
             CGPROGRAM
+            #pragma exclude_renderers ps4 ps5 xboxone xboxseries switch
             #pragma vertex vert
             #pragma fragment frag
 

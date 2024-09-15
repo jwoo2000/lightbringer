@@ -1,12 +1,13 @@
-Shader "_Shaders/FogShader"
+Shader "_Shaders/UnexploredFogShader"
 {
     Properties
     {
         _MainTex ("Main Texture", 2D) = "black" {}
+        _Color ("Fog Colour", Color) = (0,0,0,0)
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent+1" }
+        Tags { "Queue"="Transparent+150" }
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
 
@@ -22,39 +23,35 @@ Shader "_Shaders/FogShader"
 
             // uniforms
             uniform sampler2D _MainTex;
-            uniform float4 _MainTex_ST;
+            uniform fixed4 _Color;
 
             struct vertexInput
             {
                 float4 vertex : POSITION;
-                float4 texcoord : TEXCOORD0;
+                float4 uv : TEXCOORD0;
             };
 
             struct fragmentInput
             {
-                float4 pos : SV_POSITION;
+                float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
+
 
             fragmentInput vert (vertexInput v)
             {
                 fragmentInput o;
-                float4 texColor = tex2Dlod(_MainTex, v.texcoord);
-                v.vertex.y += texColor.a;
-
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
-
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
                 return o;
             }
 
-            float4 frag (fragmentInput i) : SV_Target
+            fixed4 frag (fragmentInput i) : SV_Target
             {
-                return tex2D(_MainTex, i.uv);
+                _Color.a = max(0, _Color.a - tex2D(_MainTex, i.uv).a);
+                return _Color;
             }
             ENDCG
-        } // End Pass
-    } // End SubShader
-
-    FallBack "Diffuse"
+        }
+    }
 }
