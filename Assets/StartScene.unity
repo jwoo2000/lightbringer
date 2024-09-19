@@ -1345,6 +1345,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6162115194065706948, guid: e0891f74b5c956b46bdb1d94d1bd17e0, type: 3}
   isSpawning: 1
+  spawnDistanceToPlayer: 20
 --- !u!4 &787847189
 Transform:
   m_ObjectHideFlags: 0
@@ -1354,11 +1355,11 @@ Transform:
   m_GameObject: {fileID: 787847187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.32, y: 1.03, z: 4.667}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1024315731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862409511
 GameObject:
@@ -2031,6 +2032,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400120, guid: cea7b4908e889df4ea1487e9f97c3c67, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1949112771}
+    - targetCorrespondingSourceObject: {fileID: 400120, guid: cea7b4908e889df4ea1487e9f97c3c67, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 787847189}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100120, guid: cea7b4908e889df4ea1487e9f97c3c67, type: 3}
       insertIndex: -1
@@ -2045,6 +2049,32 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1024315740}
   m_SourcePrefab: {fileID: 100100000, guid: cea7b4908e889df4ea1487e9f97c3c67, type: 3}
+--- !u!1 &1214248415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7181770375234153734, guid: 33f7d9f7918ba85459bfc0640f246d16, type: 3}
+  m_PrefabInstance: {fileID: 5777777925859352816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1214248420
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214248415}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 11.360289, z: 2}
+  m_Center: {x: 0, y: 5.6801443, z: 0}
 --- !u!1 &1238305881
 GameObject:
   m_ObjectHideFlags: 0
@@ -4268,7 +4298,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7181770375234153734, guid: 33f7d9f7918ba85459bfc0640f246d16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214248420}
   m_SourcePrefab: {fileID: 100100000, guid: 33f7d9f7918ba85459bfc0640f246d16, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -4291,4 +4324,3 @@ SceneRoots:
   - {fileID: 862409514}
   - {fileID: 692930301}
   - {fileID: 1107627494}
-  - {fileID: 787847189}

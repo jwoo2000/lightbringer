@@ -64,7 +64,6 @@ public class MovementController : MonoBehaviour
         {
             Vector3 dirToAimLookAt = aimLookAt.position - new Vector3(aimCamera.position.x, aimLookAt.position.y, aimCamera.position.z);
             player.forward = dirToAimLookAt.normalized;
-            print("here");
         }
 
         else if (currentStyle == CameraStyle.Basic) 
