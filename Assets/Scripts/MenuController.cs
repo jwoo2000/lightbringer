@@ -24,14 +24,18 @@ public class MenuController : MonoBehaviour
     public void ResumeGame()
     {
         menuCanvas.SetActive(false);
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;  // Resume game time
+        Cursor.lockState = CursorLockMode.Locked;  // Lock cursor back for game mode
+        Cursor.visible = false;  // Hide cursor
         isPaused = false;
     }
 
     void PauseGame()
     {
         menuCanvas.SetActive(true);
-        Time.timeScale = 0f;  
+        Time.timeScale = 0f;  // Pause game time
+        Cursor.lockState = CursorLockMode.None;  // Unlock cursor
+        Cursor.visible = true;  // Show cursor
         isPaused = true;
     }
 
