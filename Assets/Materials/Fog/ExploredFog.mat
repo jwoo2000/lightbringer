@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ExploredFog
-  m_Shader: {fileID: 4800000, guid: 9656eda19402dca4badbb47671d4ab8b, type: 3}
+  m_Shader: {fileID: 4800000, guid: af00a6675008e0944a53d5d258cc56ba, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,14 +23,21 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CurrTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 8400000, guid: daf691ae9dfd6f74d93de6a0b06c9473, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OldTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FogWallDistance: 20
-    - _FogWallHeight: 2
+    - _FogWallHeight: 30
     m_Colors:
-    - _Color: {r: 0.3509434, g: 0.3509434, b: 0.3509434, a: 0.15294118}
+    - _Color: {r: 0.348, g: 0.348, b: 0.348, a: 0.29803923}
   m_BuildTextureStacks: []

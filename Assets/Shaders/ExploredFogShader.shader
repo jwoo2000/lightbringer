@@ -3,7 +3,7 @@ Shader "_Shaders/ExploredFogShader"
     Properties
     {
         _MainTex ("Main Texture", 2D) = "black" {}
-        _Color ("Fog Colour", Color) = (0,0,0,0)
+        _Color ("Fog Colour", Color) = (0,0,0,0.3)
     }
     SubShader
     {
@@ -48,7 +48,7 @@ Shader "_Shaders/ExploredFogShader"
 
             fixed4 frag (fragmentInput i) : SV_Target
             {
-                _Color.a = max(0, _Color.a - tex2D(_MainTex, i.uv).a);
+                _Color.a = max(0,_Color.a-tex2D(_MainTex, i.uv).r);
                 return _Color;
             }
             ENDCG

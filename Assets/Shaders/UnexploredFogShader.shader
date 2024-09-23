@@ -48,7 +48,7 @@ Shader "_Shaders/UnexploredFogShader"
 
             fixed4 frag (fragmentInput i) : SV_Target
             {
-                _Color.a = max(0, _Color.a - tex2D(_MainTex, i.uv).a);
+                _Color.a = max(0,_Color.a-tex2D(_MainTex, i.uv).r);
                 return _Color;
             }
             ENDCG
