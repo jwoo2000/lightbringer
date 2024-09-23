@@ -3,7 +3,7 @@ Shader "_Shaders/UnexploredFogShader"
     Properties
     {
         _MainTex ("Main Texture", 2D) = "black" {}
-        _Color ("Fog Colour", Color) = (0,0,0,0)
+        _Color ("Fog Colour", Color) = (0,0,0,1)
     }
     SubShader
     {
