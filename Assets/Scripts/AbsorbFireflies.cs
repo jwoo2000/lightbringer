@@ -14,9 +14,9 @@ public class AbsorbFireflies : MonoBehaviour
     private Vector3 absorbDir;
 
     [SerializeField]
-    private float absorbSpeed = 2.0f;
+    private float absorbSpeed = 3.0f;
     [SerializeField]
-    private float absorbSpeedMulti = 1.1f;
+    private float absorbSpeedMulti = 1.03f;
 
     [SerializeField]
     private bool isDying = false;
