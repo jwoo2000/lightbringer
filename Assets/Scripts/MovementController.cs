@@ -9,14 +9,16 @@ public class MovementController : MonoBehaviour
     public Transform player;
     public Transform camera;
     public Transform aimCamera;
+    public Transform aimLookAt;
 
     public GameObject thirdPersonCam;
     public GameObject aimCam;
     public GameObject flashLight;
 
-    public Transform aimLookAt;
+    public Transform stamina;
 
     public CameraStyle currentStyle;
+
 
 
     public enum CameraStyle
@@ -62,7 +64,6 @@ public class MovementController : MonoBehaviour
         {
             Vector3 dirToAimLookAt = aimLookAt.position - new Vector3(aimCamera.position.x, aimLookAt.position.y, aimCamera.position.z);
             player.forward = dirToAimLookAt.normalized;
-            print("here");
         }
 
         else if (currentStyle == CameraStyle.Basic) 
@@ -82,8 +83,12 @@ public class MovementController : MonoBehaviour
         Vector3 dir = forward * vertical + right * horizontal;
         dir = dir.normalized;
 
-        player.position = player.position + (dir * speed * Time.deltaTime);
-        
+        if (Input.GetKey(KeyCode.LeftShift) && stamina.position.y > 0) {
+            player.position = player.position + (dir * speed * Time.deltaTime * 3);
+        }else {
+            player.position = player.position + (dir * speed * Time.deltaTime);
+        }
+
     }
 
     private void SwitchCameraStyle(CameraStyle newStyle) 

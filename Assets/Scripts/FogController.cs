@@ -5,6 +5,9 @@ public class FogController : MonoBehaviour
     [SerializeField]
     private GameObject fogPrefab; // The fog particle system prefab to spawn
 
+    //[SerializeField]
+    //private GameObject destructionPrefab; // fog destruction particle system prefab
+
     [SerializeField]
     private Transform player; // Player pos
 
@@ -71,6 +74,7 @@ public class FogController : MonoBehaviour
 
                 fogInstance = Instantiate(fogPrefab, fogPosition, Quaternion.identity);
                 fogInstance.GetComponent<FogInstanceScript>().player = player;
+                //fogInstance.GetComponent<FogInstanceScript>().destructionPrefab = destructionPrefab;
 
             }
             numberOfFogInstancesPerRing += fogIncreasePerRing;

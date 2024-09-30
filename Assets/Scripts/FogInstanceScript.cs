@@ -5,10 +5,20 @@ using UnityEngine;
 public class FogInstanceScript : MonoBehaviour
 {
     [SerializeField]
-    public Transform player; // maintain relative pos from player
+    public Transform player; // maintain relative pos from player, assigned by FogController
+
+    //[SerializeField]
+    //public GameObject destructionPrefab; // fog destruction particle system prefab, assigned by FogController
 
     [SerializeField]
     private float creepSpeed = 0.1f; // units per second, speed at which fog moves towards player
+
+    private ParticleSystem particleSystem;
+
+    private void Start()
+    {
+        particleSystem = GetComponent<ParticleSystem>();
+    }
 
     private void Update()
     {
@@ -22,7 +32,8 @@ public class FogInstanceScript : MonoBehaviour
         if (other.tag == "FogDestroyer")
         {
             Debug.Log("Destroying fog!");
-            Destroy(gameObject);
+            //Instantiate(destructionPrefab, transform.position, Quaternion.identity);
+            particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
     }
 
