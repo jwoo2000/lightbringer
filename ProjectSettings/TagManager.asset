@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FogInstance
   - FogDestroyer
+  - POIAnchor
   layers:
   - Default
   - TransparentFX
