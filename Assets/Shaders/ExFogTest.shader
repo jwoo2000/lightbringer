@@ -1,9 +1,11 @@
-Shader "_Shaders/ExploredFogShader"
+Shader "_Shaders/ExFogTest"
 {
     Properties
     {
-        _MainTex ("Main Texture", 2D) = "black" {}
+        _OldTex ("Blend From Texture", 2D) = "black" {}
+        _CurrTex ("Blend To Texture", 2D) = "black" {}
         _Color ("Fog Colour", Color) = (0,0,0,0.3)
+        _FogWallHeight ("Fog Wall Height", Float) = 0.0
     }
     SubShader
     {
@@ -22,18 +24,21 @@ Shader "_Shaders/ExploredFogShader"
             #include "UnityCG.cginc"
 
             // uniforms
-            uniform sampler2D _MainTex;
+            uniform sampler2D _OldTex;
+            uniform sampler2D _CurrTex;
             uniform fixed4 _Color;
+            uniform float _FogWallHeight;
+            uniform float _Blend;
 
             struct vertexInput
             {
                 float4 vertex : POSITION;
-                float4 uv : TEXCOORD0;
+                float4 texcoord : TEXCOORD0;
             };
 
             struct fragmentInput
             {
-                float4 vertex : SV_POSITION;
+                float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
 
@@ -41,14 +46,24 @@ Shader "_Shaders/ExploredFogShader"
             fragmentInput vert (vertexInput v)
             {
                 fragmentInput o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+
+                float texColorAlpha = tex2Dlod(_OldTex, v.texcoord).a;
+                // if r > 0.5, translate vertex down in y axis by fogwallheight
+                v.vertex.y -= step(0.5, texColorAlpha)*_FogWallHeight;
+                
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.uv = v.texcoord;
                 return o;
             }
 
             fixed4 frag (fragmentInput i) : SV_Target
             {
-                _Color.a = max(0,_Color.a-tex2D(_MainTex, i.uv).r);
+                float rOld = tex2D(_OldTex, i.uv).a;
+                float rCurr = tex2D(_CurrTex, i.uv).a;
+
+                fixed a = lerp(rOld, rCurr, _Blend);
+
+                _Color.a = max(0, _Color.a - a);
                 return _Color;
             }
             ENDCG

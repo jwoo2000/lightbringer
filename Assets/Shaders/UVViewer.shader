@@ -1,45 +1,45 @@
-Shader "_Shaders/BasicSolidColourShader"
+Shader "_Shaders/UVViewer"
 {
     Properties
     {
-        _Color ("Colour", Color) = (1.0,0.6,0.8,1.0)
     }
     SubShader
     {
-        Tags { "Queue"="Overlay" }
+        Tags { "RenderType"="Opaque" }
 
         Pass
         {
             CGPROGRAM
-            #pragma exclude_renderers ps4 ps5 xboxone xboxseries switch
             #pragma vertex vert
             #pragma fragment frag
 
             #include "UnityCG.cginc"
 
-            uniform float4 _Color;
-
-            struct vertexInput
+            struct appdata
             {
                 float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
             };
 
-            struct fragmentInput
+            struct v2f
             {
+                float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
 
 
-            fragmentInput vert (vertexInput v)
+            v2f vert (appdata v)
             {
-                fragmentInput o;
+                v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
                 return o;
             }
 
-            fixed4 frag (fragmentInput i) : SV_Target
+            fixed4 frag (v2f i) : SV_Target
             {
-                return _Color;
+                float4 col = float4(i.uv.x, i.uv.y, 0, 1);
+                return col;
             }
             ENDCG
         }

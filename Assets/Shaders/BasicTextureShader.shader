@@ -1,19 +1,16 @@
-Shader "_Shaders/ExploredFogShader"
+Shader "_Shaders/BasicTextureShader"
 {
     Properties
     {
-        _MainTex ("Main Texture", 2D) = "black" {}
-        _Color ("Fog Colour", Color) = (0,0,0,0.3)
+        _MainTex ("Main Texture", 2D) = "red" {}
     }
     SubShader
     {
-        Tags { "Queue"="Transparent+100" }
-        ZWrite Off
+        Tags { "Queue"="Overlay" }
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
-            Cull Off
             CGPROGRAM
             #pragma exclude_renderers ps4 ps5 xboxone xboxseries switch
             #pragma vertex vert
@@ -21,14 +18,13 @@ Shader "_Shaders/ExploredFogShader"
 
             #include "UnityCG.cginc"
 
-            // uniforms
             uniform sampler2D _MainTex;
-            uniform fixed4 _Color;
+            uniform float4 _MainTex_ST;
 
             struct vertexInput
             {
                 float4 vertex : POSITION;
-                float4 uv : TEXCOORD0;
+                float4 texcoord : TEXCOORD0;
             };
 
             struct fragmentInput
@@ -42,14 +38,13 @@ Shader "_Shaders/ExploredFogShader"
             {
                 fragmentInput o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
                 return o;
             }
 
             fixed4 frag (fragmentInput i) : SV_Target
             {
-                _Color.a = max(0,_Color.a-tex2D(_MainTex, i.uv).r);
-                return _Color;
+                return tex2D(_MainTex, i.uv);
             }
             ENDCG
         }

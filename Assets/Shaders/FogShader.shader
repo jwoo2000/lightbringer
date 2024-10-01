@@ -3,6 +3,7 @@ Shader "_Shaders/FogShader"
     Properties
     {
         _MainTex ("Main Texture", 2D) = "black" {}
+        _YOffset ("Fog Height", Float) = 0.0
     }
     SubShader
     {
@@ -23,6 +24,7 @@ Shader "_Shaders/FogShader"
             // uniforms
             uniform sampler2D _MainTex;
             uniform float4 _MainTex_ST;
+            uniform float _YOffset;
 
             struct vertexInput
             {
@@ -40,7 +42,7 @@ Shader "_Shaders/FogShader"
             {
                 fragmentInput o;
                 float4 texColor = tex2Dlod(_MainTex, v.texcoord);
-                v.vertex.y += texColor.a;
+                v.vertex.y += texColor.a + _YOffset;
 
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);

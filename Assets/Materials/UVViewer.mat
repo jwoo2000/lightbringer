@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VisibilityPainterMaterial
-  m_Shader: {fileID: 4800000, guid: 66ddfb03dc102404cb1d333538d202bf, type: 3}
+  m_Name: UVViewer
+  m_Shader: {fileID: 4800000, guid: 31099d3ba95274d4185c6e9da39a0688, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
