@@ -14,13 +14,13 @@ public class POIManagerScript : MonoBehaviour
     private GameObject highTierPOIGenerator;
 
     [SerializeField]
-    private int numLowTierPOIs = 5;
+    private int numLowTierPOI = 10;
 
     [SerializeField]
-    private int numMidTierPOIs = 5;
+    private int numMidTierPOI = 6;
 
     [SerializeField]
-    private int numHighTierPOIs = 5;
+    private int numHighTierPOI = 3;
 
     [SerializeField]
     private float lowTierSpawnRadius = 130.0f;
@@ -32,17 +32,107 @@ public class POIManagerScript : MonoBehaviour
     private float highTierSpawnRadius = 50.0f;
 
     [SerializeField]
-    private float spawnLocationVariance = 10.0f;
+    private float tierBorderBufferDist = 20.0f;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private float spawnLocationAngleVariance = 10.0f; // in degrees e.g. default is [-10 to 10] degrees
+
+    [SerializeField]
+    private Vector3 spawnCenter = Vector3.zero;
+
+
     void Start()
     {
-        
+        InstantiatePOIs();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InstantiatePOIs()
     {
-        
+        if (lowTierPOIGenerator == null)
+        {
+            Debug.LogError("Low Tier POI Generator is not assigned.");
+            return;
+        }
+        if (midTierPOIGenerator == null)
+        {
+            Debug.LogError("Mid Tier POI Generator is not assigned.");
+            return;
+        }
+        if (highTierPOIGenerator == null)
+        {
+            Debug.LogError("High Tier POI Generator is not assigned.");
+            return;
+        }
+
+        float angle;
+        float distance;
+        Vector3 POIPos;
+        GameObject POIGeneratorInstance;
+
+        // instantiate low tier POIs ===========================
+        for (int currPOI = 0; currPOI < numLowTierPOI; currPOI++)
+        {
+            // random distance between low and mid range
+            distance = Random.Range(midTierSpawnRadius + tierBorderBufferDist, lowTierSpawnRadius);
+
+            // evenly space POIs around spawning ring
+            angle = currPOI * Mathf.PI * 2 / numLowTierPOI;
+            // add angle random variance
+            angle += Random.Range(-spawnLocationAngleVariance, spawnLocationAngleVariance) * Mathf.PI / 180.0f;
+
+
+            POIPos = new Vector3(
+                spawnCenter.x + Mathf.Cos(angle) * distance,
+                spawnCenter.y,
+                spawnCenter.z + Mathf.Sin(angle) * distance
+            );
+
+            POIGeneratorInstance = Instantiate(lowTierPOIGenerator, POIPos, Quaternion.identity);
+            //POIGeneratorInstance.GetComponent<Script>().player = player;
+        }
+
+        // instantiate mid tier POIs ===========================
+        for (int currPOI = 0; currPOI < numMidTierPOI; currPOI++)
+        {
+            // random distance between mid and high range
+            distance = Random.Range(highTierSpawnRadius + tierBorderBufferDist, midTierSpawnRadius);
+
+            // evenly space POIs around spawning ring
+            angle = currPOI * Mathf.PI * 2 / numMidTierPOI;
+            // add angle random variance
+            angle += Random.Range(-spawnLocationAngleVariance, spawnLocationAngleVariance) * Mathf.PI / 180.0f;
+
+
+            POIPos = new Vector3(
+                spawnCenter.x + Mathf.Cos(angle) * distance,
+                spawnCenter.y,
+                spawnCenter.z + Mathf.Sin(angle) * distance
+            );
+
+            POIGeneratorInstance = Instantiate(midTierPOIGenerator, POIPos, Quaternion.identity);
+            //POIGeneratorInstance.GetComponent<Script>().player = player;
+        }
+
+        // instantiate high tier POIs ===========================
+        for (int currPOI = 0; currPOI < numHighTierPOI; currPOI++)
+        {
+            // random distance between center and high range
+            distance = Random.Range(tierBorderBufferDist, highTierSpawnRadius);
+
+            // evenly space POIs around spawning ring
+            angle = currPOI * Mathf.PI * 2 / numHighTierPOI;
+            // add angle random variance
+            angle += Random.Range(-spawnLocationAngleVariance, spawnLocationAngleVariance) * Mathf.PI / 180.0f;
+
+
+            POIPos = new Vector3(
+                spawnCenter.x + Mathf.Cos(angle) * distance,
+                spawnCenter.y,
+                spawnCenter.z + Mathf.Sin(angle) * distance
+            );
+
+            POIGeneratorInstance = Instantiate(highTierPOIGenerator, POIPos, Quaternion.identity);
+            //POIGeneratorInstance.GetComponent<Script>().player = player;
+        }
     }
 }
