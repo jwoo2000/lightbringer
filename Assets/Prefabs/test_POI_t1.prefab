@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7365980903443804642}
   - component: {fileID: 5949034529896901132}
   m_Layer: 0
-  m_Name: test_POI
+  m_Name: test_POI_t1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 517e9d2cdf3b96140b98d0ee6c17ecf5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
