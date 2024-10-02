@@ -40,6 +40,18 @@ public class POIManagerScript : MonoBehaviour
     [SerializeField]
     private Vector3 spawnCenter = Vector3.zero;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(spawnCenter, lowTierSpawnRadius);
+        Gizmos.DrawWireSphere(spawnCenter, midTierSpawnRadius + tierBorderBufferDist);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(spawnCenter, midTierSpawnRadius);
+        Gizmos.DrawWireSphere(spawnCenter, highTierSpawnRadius + tierBorderBufferDist);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spawnCenter, highTierSpawnRadius);
+        Gizmos.DrawWireSphere(spawnCenter, tierBorderBufferDist);
+    }
 
     void Start()
     {
