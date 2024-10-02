@@ -5405,6 +5405,8 @@ MonoBehaviour:
   FireflyPrefab: {fileID: 8346320037420065825, guid: ca49e3fd5f7b8b04397b67d2ff96ab48, type: 3}
   fireflyAttractor: {fileID: 1024315731}
   trailDensity: 10
+  POIManager: {fileID: 803131673}
+  connectingTrailRatio: 0.4
 --- !u!4 &1401404265
 Transform:
   m_ObjectHideFlags: 0

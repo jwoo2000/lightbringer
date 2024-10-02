@@ -14,13 +14,13 @@ public class POIManagerScript : MonoBehaviour
     private GameObject highTierPOIGenerator;
 
     [SerializeField]
-    private int numLowTierPOI = 10;
+    public int numLowTierPOI = 10;
 
     [SerializeField]
-    private int numMidTierPOI = 6;
+    public int numMidTierPOI = 6;
 
     [SerializeField]
-    private int numHighTierPOI = 3;
+    public int numHighTierPOI = 3;
 
     [SerializeField]
     private float lowTierSpawnRadius = 130.0f;
