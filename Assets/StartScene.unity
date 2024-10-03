@@ -5407,6 +5407,7 @@ MonoBehaviour:
   trailDensity: 10
   POIManager: {fileID: 803131673}
   connectingTrailRatio: 0.4
+  playerSpawnNoFireflyRadius: 3
 --- !u!4 &1401404265
 Transform:
   m_ObjectHideFlags: 0

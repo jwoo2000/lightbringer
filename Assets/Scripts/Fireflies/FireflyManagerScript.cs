@@ -25,6 +25,9 @@ public class FireflyManagerScript : MonoBehaviour
     [SerializeField]
     private float connectingTrailRatio = 0.4f; // proportion of POIs that have trails to the next tier
 
+    [SerializeField]
+    private float playerSpawnNoFireflyRadius = 3f; // radius in which no fireflies are placed around the plaeyr when spawning (min: 2.3f)
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,7 @@ public class FireflyManagerScript : MonoBehaviour
         // instantiate trails between poi anchors
         GenerateTrails();
         GenerateConnectingTrails();
+        GeneratePlayerToFirstLowTrail();
     }
 
     private void GenerateTrails()
@@ -212,4 +216,38 @@ public class FireflyManagerScript : MonoBehaviour
         }
     }
 
+    private void GeneratePlayerToFirstLowTrail()
+    {
+        // store all possible trail connections with distances
+        List<(Vector3 lowTierPOI, float distance)> distToLow = new List<(Vector3,  float)>();
+
+        // calculate dist between all low tier and mid tier POIs
+        for (int lowIndex = 0; lowIndex < numLowTierPOI; lowIndex++)
+        {
+            Vector3 lowTierPOI = POIAnchorPositions[lowIndex];
+            float distance = Vector3.Distance(lowTierPOI, fireflyAttractor.position);
+
+            distToLow.Add((lowTierPOI, distance));
+        }
+
+        // sort by trail length
+        distToLow.Sort((a, b) => a.distance.CompareTo(b.distance));
+
+        // generate trails for the shortest distances up to numConnectingTrails
+        Vector3 startPoint = distToLow[0].lowTierPOI;
+        Vector3 dir = (fireflyAttractor.position - startPoint).normalized;
+        Vector3 endPoint = fireflyAttractor.position - (dir*playerSpawnNoFireflyRadius);
+
+        float trailDistance = distToLow[0].distance;
+
+        int numFireflies = Mathf.FloorToInt(trailDistance * trailDensity / 10.0f);
+
+        for (int i = 0; i <= numFireflies; i++)
+        {
+            Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
+            GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
+            firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+        }
+        
+    }
 }
