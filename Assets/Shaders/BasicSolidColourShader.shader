@@ -2,6 +2,7 @@ Shader "_Shaders/BasicSolidColourShader"
 {
     Properties
     {
+        _Color ("Colour", Color) = (1.0,0.6,0.8,1.0)
     }
     SubShader
     {
@@ -15,6 +16,8 @@ Shader "_Shaders/BasicSolidColourShader"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+
+            uniform float4 _Color;
 
             struct vertexInput
             {
@@ -36,7 +39,7 @@ Shader "_Shaders/BasicSolidColourShader"
 
             fixed4 frag (fragmentInput i) : SV_Target
             {
-                return fixed4(1.0f,0.6f,0.8f,1.0f);
+                return _Color;
             }
             ENDCG
         }
