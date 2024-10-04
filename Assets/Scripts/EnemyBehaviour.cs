@@ -2,18 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollow : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
     private Transform target; 
-    public float speed;
+    public float speed = 1.0f;
     private float distanceToTarget;
-    public float AttackWaitTime;
+    public float AttackWaitTime = 0.5f;
     private float AttackWindUp;
-    public float LungeSpeed;
+    public float LungeSpeed = 7.0f;
     private Vector3 AttackTarget;
     private Rigidbody rb;
-    private float AttackWindDown; 
+    private float AttackCoolDown; 
+    private bool DamageCoolDown;
     public float AttackTriggerRange = 3.0f;
+
+    public int damageAmount = 20;
+
+    private string tagToDamage = "Player";
+
+    public UnitHealth _enemyHealth = new UnitHealth(100, 100);
 
 
     // Start is called before the first frame update
@@ -21,17 +28,22 @@ public class EnemyFollow : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         AttackWindUp = 0.0f;
-        AttackWindDown = 0.0f;
+        AttackCoolDown = 0.0f;
+        DamageCoolDown = false;
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (this._enemyHealth.Health <= 0) {
+            Destroy(gameObject);
+            // Spawn an effect to be played when enemy dies
+        }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        if (AttackWindDown > 0) {
-            AttackWindDown -= Time.deltaTime;
+        if (AttackCoolDown > 0) {
+            AttackCoolDown -= Time.deltaTime;
             AttackTarget = target.position;
         } else if (distanceToTarget < AttackTriggerRange || AttackWindUp > 0) {
             rb.velocity = -1.0f * speed * transform.forward;
@@ -40,8 +52,7 @@ public class EnemyFollow : MonoBehaviour
             
             if (AttackWindUp > AttackWaitTime) {
                 Attack();
-                AttackWindUp = 0.0f;
-                AttackWindDown = 0.5f;
+                
             }
         } else {
             AttackTarget = target.position;
@@ -52,9 +63,27 @@ public class EnemyFollow : MonoBehaviour
 
     }
 
+    public void TakeDamage (int dmg) 
+    {
+        _enemyHealth.DmgUnit(dmg);
+    }
+
     private void Attack() {
         AttackTarget.y = 1;
         rb.velocity = LungeSpeed * transform.forward;
-        //transform.position = Vector3.MoveTowards(transform.position, AttackTarget, LungeDistance);
+        AttackWindUp = 0.0f;
+        AttackCoolDown = 0.5f;
+        DamageCoolDown = false;
+        //  Replace this with collision detection with player
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == this.tagToDamage && DamageCoolDown == false) 
+        {
+            GameManager.gameManager._playerHealth.DmgUnit(damageAmount);
+            Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
+            DamageCoolDown = true;
+        }
     }
 }
