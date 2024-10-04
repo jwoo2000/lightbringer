@@ -10,7 +10,7 @@ public class SpawnLocationScript : MonoBehaviour
     [SerializeField]
     private Vector3 spawnRingCenter = Vector3.zero;
 
-    void Start()
+    void Awake()
     {
         float angle = Random.Range(0, Mathf.PI * 2);
         transform.position = new Vector3(

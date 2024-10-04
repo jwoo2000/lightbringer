@@ -218,6 +218,7 @@ public class FireflyManagerScript : MonoBehaviour
 
     private void GeneratePlayerToFirstLowTrail()
     {
+        Debug.Log("generating player to first poi trail");
         // store all possible trail connections with distances
         List<(Vector3 lowTierPOI, float distance)> distToLow = new List<(Vector3,  float)>();
 
