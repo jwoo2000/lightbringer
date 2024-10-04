@@ -4856,7 +4856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
   absorbSpeed: 3
-  absorbSpeedMulti: 1.03
+  absorbSpeedMulti: 1.15
   isDying: 0
 --- !u!135 &3455073793264798541
 SphereCollider:
