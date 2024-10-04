@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6155040526535158398}
   - component: {fileID: 3455073793264798541}
   m_Layer: 0
-  m_Name: FirefliesSucc
+  m_Name: FirefliesLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

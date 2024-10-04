@@ -8601,9 +8601,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
+      propertyPath: MidFireflyPrefab
+      value: 
+      objectReference: {fileID: 8346320037420065825, guid: 1f5f8b95dd3995446ae2866eb104411d, type: 3}
+    - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
       propertyPath: fireflyAttractor
       value: 
       objectReference: {fileID: 1024315731}
+    - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
+      propertyPath: HighFireflyPrefab
+      value: 
+      objectReference: {fileID: 8346320037420065825, guid: cbbc0e1046566e348a8b7ad88dc80c01, type: 3}
     - target: {fileID: 8667347576380022254, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
       propertyPath: m_Name
       value: FireflyManager

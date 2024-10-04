@@ -8,6 +8,13 @@ public class FireflyManagerScript : MonoBehaviour
     private GameObject FireflyPrefab;
 
     [SerializeField]
+    private GameObject MidFireflyPrefab;
+
+    [SerializeField]
+    private GameObject HighFireflyPrefab;
+
+
+    [SerializeField]
     private Transform fireflyAttractor;
 
     [SerializeField]
@@ -101,7 +108,7 @@ public class FireflyManagerScript : MonoBehaviour
                 Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
 
                 // instantiate and set firefly attractor
-                GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
+                GameObject firefly = Instantiate(MidFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
             }
         }
@@ -129,7 +136,7 @@ public class FireflyManagerScript : MonoBehaviour
                 Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
 
                 // instantiate and set firefly attractor
-                GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
+                GameObject firefly = Instantiate(HighFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
             }
         }
@@ -171,7 +178,7 @@ public class FireflyManagerScript : MonoBehaviour
             for (int j = 0; j <= numFireflies; j++)
             {
                 Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)j / (float)numFireflies);
-                GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
+                GameObject firefly = Instantiate(MidFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
             }
         }
@@ -210,7 +217,7 @@ public class FireflyManagerScript : MonoBehaviour
             for (int j = 0; j <= numFireflies; j++)
             {
                 Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)j / (float)numFireflies);
-                GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
+                GameObject firefly = Instantiate(HighFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
             }
         }
