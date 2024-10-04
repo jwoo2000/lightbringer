@@ -16,11 +16,11 @@ public class EnemyBehaviour : MonoBehaviour
     private bool DamageCoolDown;
     public float AttackTriggerRange = 3.0f;
 
-    public int damageAmount = 20;
+    public float damageAmount = 20.0f;
 
     private string tagToDamage = "Player";
 
-    public UnitHealth _enemyHealth = new UnitHealth(100, 100);
+    public UnitHealth _enemyHealth = new UnitHealth(100.0f, 100.0f);
 
 
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this._enemyHealth.Health <= 0) {
+        if (this._enemyHealth.Health <= 0.0f) {
             Destroy(gameObject);
             // Spawn an effect to be played when enemy dies
         }
@@ -63,7 +63,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    public void TakeDamage (int dmg) 
+    public void TakeDamage (float dmg) 
     {
         _enemyHealth.DmgUnit(dmg);
     }
