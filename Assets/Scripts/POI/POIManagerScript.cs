@@ -53,7 +53,7 @@ public class POIManagerScript : MonoBehaviour
         Gizmos.DrawWireSphere(spawnCenter, tierBorderBufferDist);
     }
 
-    void Start()
+    void Awake()
     {
         InstantiatePOIs();
     }
