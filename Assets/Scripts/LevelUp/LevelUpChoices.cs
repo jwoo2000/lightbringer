@@ -13,6 +13,10 @@ public class LevelUpChoices : MonoBehaviour
     [SerializeField] private GameObject middleChoice;
     [SerializeField] private GameObject rightChoice;
 
+    [SerializeField] private int leftChoiceType;
+    [SerializeField] private int middleChoiceType;
+    [SerializeField] private int rightChoiceType;
+
     [SerializeField] private RectTransform leftAnchor;
     [SerializeField] private RectTransform middleAnchor;
     [SerializeField] private RectTransform rightAnchor;
@@ -35,7 +39,7 @@ public class LevelUpChoices : MonoBehaviour
         {
             leftInstance = Instantiate(leftChoice, leftAnchor);
             leftInstance.GetComponent<Button>().onClick.AddListener(() => {
-                //Debug.Log("left");
+                Debug.Log(menuController.choiceTypes[leftChoiceType]);
                 choiceSelected(); 
             });
         } else {
@@ -45,7 +49,7 @@ public class LevelUpChoices : MonoBehaviour
         {
             middleInstance = Instantiate(middleChoice, middleAnchor);
             middleInstance.GetComponent<Button>().onClick.AddListener(() => {
-                //Debug.Log("mid");
+                Debug.Log(menuController.choiceTypes[middleChoiceType]);
                 choiceSelected(); 
             });
         } else
@@ -56,7 +60,7 @@ public class LevelUpChoices : MonoBehaviour
         {
             rightInstance = Instantiate(rightChoice, rightAnchor);
             rightInstance.GetComponent<Button>().onClick.AddListener(() => {
-                //Debug.Log("right");
+                Debug.Log(menuController.choiceTypes[rightChoiceType]);
                 choiceSelected(); 
             });
         } else
@@ -73,26 +77,32 @@ public class LevelUpChoices : MonoBehaviour
             leftInstance.GetComponent<Button>().onClick.RemoveAllListeners();
             Destroy(leftInstance);
             leftChoice = null;
+            leftChoiceType = -1;
         }
         if (middleInstance != null)
         {
             middleInstance.GetComponent<Button>().onClick.RemoveAllListeners();
             Destroy(middleInstance);
             middleChoice = null;
+            middleChoiceType = -1;
         }
         if (rightInstance != null)
         {
             rightInstance.GetComponent<Button>().onClick.RemoveAllListeners();
             Destroy(rightInstance);
             rightChoice = null;
+            rightChoiceType = -1;
         }
     }
 
-    public void SetChoices(GameObject left, GameObject middle, GameObject right)
+    public void SetChoices(GameObject left, int leftType, GameObject middle, int midType, GameObject right, int rightType)
     {
         //Debug.Log("levelupchoices: setting choices");
         leftChoice = left;
+        leftChoiceType = leftType;
         middleChoice = middle;
+        middleChoiceType = midType;
         rightChoice = right;
+        rightChoiceType = rightType;
     }
 }
