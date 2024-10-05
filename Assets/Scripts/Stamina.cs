@@ -58,7 +58,7 @@ public class Stamina : MonoBehaviour
         StaminaBar.fillAmount = stamina / maxStamina;
         HealthBar.fillAmount = health / maxHealth;
         ExpBar.fillAmount = exp / maxExp;
-        Debug.Log(exp/maxExp);
+        //Debug.Log(exp/maxExp);
 
 
         /*StaminaBar.localScale = new Vector3(0.2f, stamina / maxStamina, 0.2f);

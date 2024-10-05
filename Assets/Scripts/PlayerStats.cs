@@ -120,6 +120,7 @@ public class PlayerStats : MonoBehaviour
     private void levelUp()
     {
         Debug.Log("Level Up!");
+        gameManager.GetComponent<MenuController>().levelUp();
     }
 
     private void initPlayerHP()
