@@ -14,7 +14,7 @@ public class MenuController : MonoBehaviour
     // 0: movespeed
     // 1: light radius
     // 2: light regen
-    // 3: light integrity
+    // 3: dmg reduction (light integrity)
 
     public string[] choiceTypes =
     {
