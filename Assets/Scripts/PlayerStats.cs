@@ -43,6 +43,23 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     public int level = 0;
 
+    public int Exp
+    {
+        get
+        {
+            return exp;
+        }
+    }
+
+    public int MaxExp
+    {
+        get
+        {
+            return maxExp;
+        }
+    }
+
+
     private void Awake()
     {
         // initialise all player stats
