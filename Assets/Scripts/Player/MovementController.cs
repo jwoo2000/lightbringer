@@ -8,7 +8,7 @@ public class MovementController : MonoBehaviour
     public float speed;
     public float sprintMulti;
     public Transform player;
-    public Transform camera;
+    public new Transform camera;
     public Transform aimCamera;
     public Transform aimLookAt;
 

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
-using UnityEngine.Rendering.VirtualTexturing;
 
 public class AbsorbFireflies : MonoBehaviour
 {

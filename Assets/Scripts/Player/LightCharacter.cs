@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightCharacter : MonoBehaviour
 {
-    public Transform light;
+    public new Transform light;
     public Transform player;
 
     // Start is called before the first frame update
