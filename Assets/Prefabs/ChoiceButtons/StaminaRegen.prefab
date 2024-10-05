@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7194312944651196546}
   - component: {fileID: 5008733068405409954}
   m_Layer: 5
-  m_Name: ChoiceTemplate
+  m_Name: StaminaRegen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Flavour.
+  m_text: Relentless recovery.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: Increases stamina recovery rate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Title
+  m_text: Stamina Regen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}

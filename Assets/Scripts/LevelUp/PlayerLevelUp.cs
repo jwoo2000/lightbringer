@@ -11,10 +11,14 @@ public class PlayerLevelUp : MonoBehaviour
     // 1: light radius
     // 2: light regen
     // 3: dmg reduction (light integrity)
+    // 4: max stamina
+    // 5: stamina regen
     public const int movespeedType = 0;
     public const int lightRadiusType = 1;
     public const int lightRegenType = 2;
     public const int dmgReducType = 3;
+    public const int maxStaminaType = 4;
+    public const int staminaRegenType = 5;
 
     [SerializeField]
     PlayerStats stats;
@@ -37,10 +41,18 @@ public class PlayerLevelUp : MonoBehaviour
     [SerializeField]
     int dmgReductionLvl = 0;
 
+    [SerializeField]
+    int maxStaminaLvl = 0;
+
+    [SerializeField]
+    int staminaRegenLvl = 0;
+
     private float initMS;
     private float initMaxHP;
     private float initRegen;
     private float initDmgRed;
+    private float initMaxStam;
+    private float initStamRegen;
 
     private void getInitStats()
     {
@@ -48,6 +60,8 @@ public class PlayerLevelUp : MonoBehaviour
         initMaxHP = stats.currMaxHP;
         initRegen = stats.lightRadiusRegen;
         initDmgRed = stats.dmgReduction;
+        initMaxStam = staminaController.maxStamina;
+        initStamRegen = staminaController.regenerationRate;
     }
 
     private void Start()
@@ -71,6 +85,12 @@ public class PlayerLevelUp : MonoBehaviour
             case dmgReducType:
                 dmgReduction();
                 break;
+            case maxStaminaType:
+                maxStamina();
+                break;
+            case staminaRegenType:
+                staminaRegen();
+                break;
             default:
                 Debug.Log("Attempted to upgrade unknown stat type: " + type);
                 return;
@@ -82,7 +102,6 @@ public class PlayerLevelUp : MonoBehaviour
         movespeedLvl++;
         stats.movespeed = initMS + (movespeedLvl * 1.0f);
         movementController.setMovespeed(stats.movespeed);
-        staminaController.stamina = staminaController.maxStamina;
     }
 
     private void lightRadius()
@@ -102,5 +121,18 @@ public class PlayerLevelUp : MonoBehaviour
     {
         dmgReductionLvl++;
         stats.dmgReduction = initDmgRed + (dmgReductionLvl * 0.1f);
+    }
+
+    private void maxStamina()
+    {
+        maxStaminaLvl++;
+        staminaController.maxStamina = initMaxStam + (maxStaminaLvl*20.0f);
+        staminaController.stamina = staminaController.maxStamina;
+    }
+
+    private void staminaRegen()
+    {
+        staminaRegenLvl++;
+        staminaController.regenerationRate = initStamRegen + (staminaRegenLvl * 5.0f);
     }
 }

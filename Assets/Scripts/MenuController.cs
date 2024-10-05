@@ -10,18 +10,22 @@ public class MenuController : MonoBehaviour
     private bool isPaused = false;
 
     [SerializeField]
-    private GameObject[] levelUpChoicePool = new GameObject[4];
+    private GameObject[] levelUpChoicePool = new GameObject[6];
     // 0: movespeed
     // 1: light radius
     // 2: light regen
     // 3: dmg reduction (light integrity)
+    // 4: max stamina
+    // 5: stamina regen
 
     public string[] choiceTypes =
     {
         "movespeed",
         "light radius",
         "light regen",
-        "light integrity"
+        "light integrity",
+        "max stamina",
+        "stamina regen"
     };
 
     void Awake()

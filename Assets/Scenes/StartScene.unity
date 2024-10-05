@@ -2386,11 +2386,15 @@ MonoBehaviour:
   - {fileID: 281668882846750227, guid: 9f373f19b11263e4fbc607c6bd383bf0, type: 3}
   - {fileID: 281668882846750227, guid: 0ac568a7ccc506a4da1282e4d009ffb0, type: 3}
   - {fileID: 281668882846750227, guid: d6e9ab71b56696345abb96032a8112bf, type: 3}
+  - {fileID: 281668882846750227, guid: 3a55e21247a89bd468e23243dfdaf8ce, type: 3}
+  - {fileID: 281668882846750227, guid: f4d27ae9fd06a274b9414c8ee32f37f6, type: 3}
   choiceTypes:
   - movespeed
   - light radius
   - light regen
   - light integrity
+  - max stamina
+  - stamina regen
 --- !u!1 &862409511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,6 +2787,8 @@ MonoBehaviour:
   lightRadiusLvl: 0
   lightRegenLvl: 0
   dmgReductionLvl: 0
+  maxStaminaLvl: 0
+  staminaRegenLvl: 0
 --- !u!114 &1024315747
 MonoBehaviour:
   m_ObjectHideFlags: 0
