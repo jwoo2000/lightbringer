@@ -1,10 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
     public GameObject menuCanvas;
 
     private bool isPaused = false;
+
+    void Awake()
+    {
+        menuCanvas.SetActive(false);
+    }
 
     void Update()
     {
@@ -42,6 +48,12 @@ public class MenuController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void OpenOptions()
