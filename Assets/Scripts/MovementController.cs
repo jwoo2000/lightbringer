@@ -5,7 +5,8 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
 
-    public float speed = 1f;
+    public float speed;
+    public float sprintMulti;
     public Transform player;
     public Transform camera;
     public Transform aimCamera;
@@ -15,11 +16,19 @@ public class MovementController : MonoBehaviour
     public GameObject aimCam;
     public GameObject flashLight;
 
-    public Transform stamina;
+    public Stamina staminaController;
 
     public CameraStyle currentStyle;
 
+    public void setMovespeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
 
+    public void setSprintMulti(float newMulti)
+    {
+        sprintMulti = newMulti;
+    }
 
     public enum CameraStyle
     {
@@ -83,8 +92,8 @@ public class MovementController : MonoBehaviour
         Vector3 dir = forward * vertical + right * horizontal;
         dir = dir.normalized;
 
-        if (Input.GetKey(KeyCode.LeftShift) && stamina.position.y > 0) {
-            player.position = player.position + (dir * speed * Time.deltaTime * 3);
+        if (Input.GetKey(KeyCode.LeftShift) && (staminaController.stamina > 0.0f)) {
+            player.position = player.position + (dir * speed * Time.deltaTime * sprintMulti);
         }else {
             player.position = player.position + (dir * speed * Time.deltaTime);
         }

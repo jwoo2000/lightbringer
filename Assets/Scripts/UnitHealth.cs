@@ -5,11 +5,11 @@ using UnityEngine;
 public class UnitHealth
 {
     // Fields
-    private int _currentHealth;
-    private int _currentMaxHealth;
+    private float _currentHealth;
+    private float _currentMaxHealth;
 
     // Properties
-    public int Health 
+    public float Health 
     {
         get 
         {
@@ -21,7 +21,7 @@ public class UnitHealth
         }
     }
 
-    public int MaxHealth 
+    public float MaxHealth 
     {
         get 
         {
@@ -34,22 +34,24 @@ public class UnitHealth
     }
 
     // Constructor
-    public UnitHealth(int health, int maxHealth) 
+    public UnitHealth(float health, float maxHealth) 
     {
         _currentHealth = health;
         _currentMaxHealth = maxHealth;
     }
 
     // Methods
-    public void DmgUnit(int dmgAmount) 
+    public void DmgUnit(float dmgAmount, float dmgReduction) 
     {
-        if (_currentHealth > 0) 
+        if (_currentHealth > 0.0f) 
         {
-            _currentHealth -= dmgAmount;
+            float damageDealt = dmgAmount * (1.0f - dmgReduction);
+            _currentHealth -= damageDealt;
+            Debug.Log("Damage dealt: "+ damageDealt);
         }
     }
 
-    public void HealUnit(int healAmount) 
+    public void HealUnit(float healAmount) 
     {
         if (_currentHealth < _currentMaxHealth) 
         {

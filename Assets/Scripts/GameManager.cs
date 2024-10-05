@@ -7,16 +7,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager { get; private set; }
 
-    public UnitHealth _playerHealth = new UnitHealth(100, 100);
+    public UnitHealth _playerHealth;
+
+    [SerializeField]
+    public PlayerStats _playerStats;
 
     void Update()
     {
-        if (_playerHealth.Health <= 0) 
+        if (_playerHealth.Health <= 0.0f) 
         {
             SceneManager.LoadScene("GameOver");
         }
     }
-
 
     void Awake()
     {

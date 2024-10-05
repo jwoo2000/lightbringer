@@ -9,7 +9,7 @@ public class AbsorbFireflies : MonoBehaviour
     [SerializeField]
     public Transform attractor;
 
-    private ParticleSystem particleSystem;
+    private new ParticleSystem particleSystem;
     private ParticleSystem.Particle[] particles;
     private Vector3 absorbDir;
 
@@ -20,6 +20,9 @@ public class AbsorbFireflies : MonoBehaviour
 
     [SerializeField]
     private bool isDying = false;
+
+    [SerializeField]
+    private int exp = 1;
 
     private Collider trigger;
 
@@ -34,7 +37,7 @@ public class AbsorbFireflies : MonoBehaviour
     {
         InitIfNeeded();
 
-        if (isDying)
+        if (isDying && (Time.timeScale != 0f))
         {
             int numParticlesAlive = particleSystem.GetParticles(particles);
             for (int i = 0; i < numParticlesAlive; i++)
@@ -60,6 +63,7 @@ public class AbsorbFireflies : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            other.gameObject.GetComponent<PlayerStats>().addExp(exp);
             isDying = true;
             Destroy(GetComponent<Collider>());
             particleSystem.Stop();

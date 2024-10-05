@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRate; 
     [SerializeField] private GameObject[] enemyPrefabs; 
     [SerializeField] private bool isSpawning = true; 
-    [SerializeField] private float spawnDistanceToPlayer;
+    [SerializeField] private float spawnDistance;
     [SerializeField] private int maxEnemies = 0;
     private int numEnemies;
 
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
         int deg = Random.Range(0, 360);
         float rad = deg * Mathf.Deg2Rad;
 
-        return (new Vector3(spawnDistanceToPlayer * Mathf.Sin(rad), transform.position.y, spawnDistanceToPlayer * Mathf.Cos(rad)) + transform.position);
+        return (new Vector3(spawnDistance * Mathf.Sin(rad), 1, spawnDistance * Mathf.Cos(rad)) + transform.position);
     }
 
 }

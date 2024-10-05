@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3913662940179446875}
   - component: {fileID: 7365980903443804642}
   - component: {fileID: 5949034529896901132}
+  - component: {fileID: 345333795059688144}
   m_Layer: 0
   m_Name: test_POI_t1
   m_TagString: Untagged
@@ -106,6 +107,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &345333795059688144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606741709784074782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36f8a879001a86498e84e26ba481787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 5
+  enemyPrefabs:
+  - {fileID: 63767002397184257, guid: 0eaba585f17d9364e8a0b5b7921e5a88, type: 3}
+  isSpawning: 1
+  spawnDistance: 10
+  maxEnemies: 3
 --- !u!1001 &5290536586610045996
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 252778050854252820}
   - component: {fileID: 6198534626363376522}
   - component: {fileID: 8815192640520422380}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FogClearer
   m_TagString: FogDestroyer
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6127297878488860979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0.82, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -752,7 +752,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 4
+      value: 7.5
       mode: 0
       spread: 0
       speed:
@@ -871,7 +871,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3813,13 +3813,13 @@ ParticleSystem:
     - {fileID: 7753303499635216186, guid: d4c76548fa40a44a8835c7d9a7538321, type: 3}
   SubModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
       type: 0
       properties: 0
-      emitProbability: 1
+      emitProbability: 0.4
   LightsModule:
     enabled: 1
     ratio: 0.5
@@ -3993,12 +3993,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minVertexDistance: 0.2
-    textureMode: 0
-    textureScale: {x: 44.14, y: 2}
+    textureMode: 4
+    textureScale: {x: 10, y: 10}
     ribbonCount: 1
     shadowBias: 0.5
-    worldSpace: 0
-    dieWithParticles: 1
+    worldSpace: 1
+    dieWithParticles: 0
     sizeAffectsWidth: 0
     sizeAffectsLifetime: 0
     inheritParticleColor: 1
