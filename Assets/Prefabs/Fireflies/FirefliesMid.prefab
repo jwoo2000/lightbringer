@@ -4858,6 +4858,7 @@ MonoBehaviour:
   absorbSpeed: 3
   absorbSpeedMulti: 1.15
   isDying: 0
+  exp: 2
 --- !u!135 &3455073793264798541
 SphereCollider:
   m_ObjectHideFlags: 0
