@@ -41,11 +41,13 @@ public class UnitHealth
     }
 
     // Methods
-    public void DmgUnit(float dmgAmount) 
+    public void DmgUnit(float dmgAmount, float dmgReduction) 
     {
         if (_currentHealth > 0.0f) 
         {
-            _currentHealth -= dmgAmount;
+            float damageDealt = dmgAmount * (1.0f - dmgReduction);
+            _currentHealth -= damageDealt;
+            Debug.Log("Damage dealt: "+ damageDealt);
         }
     }
 

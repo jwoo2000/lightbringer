@@ -10,6 +10,10 @@ public class MenuController : MonoBehaviour
 
     [SerializeField]
     private GameObject[] levelUpChoicePool;
+    // 0: movespeed
+    // 1: light radius
+    // 2: light regen
+    // 3: light integrity
 
     void Awake()
     {
@@ -36,18 +40,21 @@ public class MenuController : MonoBehaviour
     {
         stopTimeShowCursor();
         (GameObject, GameObject, GameObject) choices = genLevelUpChoices();
+        //Debug.Log("menucontroller: sending choices to levelupchoices");
         levelUpCanvas.GetComponent<LevelUpChoices>().SetChoices(choices.Item1, choices.Item2, choices.Item3);
         levelUpCanvas.SetActive(true);
     }
 
     public void levelUpChoiceSelected()
     {
-        startTimeHideCursor();
+        //Debug.Log("choice selected, menu controller closing level up ui");
         levelUpCanvas.SetActive(false);
+        startTimeHideCursor();
     }
 
     private (GameObject, GameObject, GameObject) genLevelUpChoices()
     {
+        //Debug.Log("generating choices");
         GameObject left = levelUpChoicePool[0];
         GameObject middle = levelUpChoicePool[1];
         GameObject right = levelUpChoicePool[2];
@@ -56,6 +63,7 @@ public class MenuController : MonoBehaviour
 
     private void stopTimeShowCursor()
     {
+        //Debug.Log("stopping time");
         Time.timeScale = 0f;  // Pause game time
         Cursor.lockState = CursorLockMode.None;  // Unlock cursor
         Cursor.visible = true;  // Show cursor
@@ -64,6 +72,7 @@ public class MenuController : MonoBehaviour
 
     private void startTimeHideCursor()
     {
+        //Debug.Log("resuming time");
         Time.timeScale = 1f;  // Resume game time
         Cursor.lockState = CursorLockMode.Locked;  // Lock cursor back for game mode
         Cursor.visible = false;  // Hide cursor

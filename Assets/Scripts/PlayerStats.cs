@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameManager;
+    private GameManager gameManager;
+
+    [SerializeField]
+    private MenuController menuController;
 
     [SerializeField]
     private MovementController movementController;
@@ -30,6 +33,9 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     public float lightRadiusRegen = 1f; // % max hp per second
+
+    [SerializeField]
+    public float dmgReduction = 0.0f; // % dmg taken reduced
 
     [SerializeField]
     private float initMaxHP = 100.0f;
@@ -120,18 +126,18 @@ public class PlayerStats : MonoBehaviour
     private void levelUp()
     {
         Debug.Log("Level Up!");
-        gameManager.GetComponent<MenuController>().levelUp();
+        menuController.levelUp();
     }
 
     private void initPlayerHP()
     {
-        gameManager.GetComponent<GameManager>()._playerHealth = new UnitHealth(initMaxHP, initMaxHP);
+        gameManager._playerHealth = new UnitHealth(initMaxHP, initMaxHP);
     }
 
     private void updateLightRadFromHP()
     {
-        maxLightRadius = gameManager.GetComponent<GameManager>()._playerHealth.MaxHealth / initMaxHP;
-        lightRadius = calcHpToLightRadius(gameManager.GetComponent<GameManager>()._playerHealth);
+        maxLightRadius = gameManager._playerHealth.MaxHealth / initMaxHP;
+        lightRadius = calcHpToLightRadius(gameManager._playerHealth);
     }
 
     private float calcHpToLightRadius(UnitHealth unitHealth)
@@ -143,11 +149,11 @@ public class PlayerStats : MonoBehaviour
 
     private void regenHP()
     {
-        float maxHP = gameManager.GetComponent<GameManager>()._playerHealth.MaxHealth;
-        float currHP = gameManager.GetComponent<GameManager>()._playerHealth.Health;
+        float maxHP = gameManager._playerHealth.MaxHealth;
+        float currHP = gameManager._playerHealth.Health;
         if (currHP < maxHP)
         {
-            gameManager.GetComponent<GameManager>()._playerHealth.Health = Mathf.Clamp(currHP + (lightRadiusRegen * Time.deltaTime), 0.0f, maxHP);
+            gameManager._playerHealth.Health = Mathf.Clamp(currHP + (lightRadiusRegen * Time.deltaTime), 0.0f, maxHP);
         }
     }
 

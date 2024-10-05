@@ -37,7 +37,7 @@ public class AbsorbFireflies : MonoBehaviour
     {
         InitIfNeeded();
 
-        if (isDying)
+        if (isDying && (Time.timeScale != 0f))
         {
             int numParticlesAlive = particleSystem.GetParticles(particles);
             for (int i = 0; i < numParticlesAlive; i++)

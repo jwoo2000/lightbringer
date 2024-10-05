@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     public UnitHealth _playerHealth;
 
+    [SerializeField]
+    public PlayerStats _playerStats;
+
     void Update()
     {
         if (_playerHealth.Health <= 0.0f) 

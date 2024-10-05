@@ -524,6 +524,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47587488}
   m_CullTransparentMesh: 1
+--- !u!1 &70699566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1550531981713025303, guid: 3efe2ae6f59408340a120f0ca9d062c4, type: 3}
+  m_PrefabInstance: {fileID: 548181932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &77735981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,6 +2516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb2e31cdc189bd47a0937b0031988d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerStats: {fileID: 1024315744}
 --- !u!4 &817419119
 Transform:
   m_ObjectHideFlags: 0
@@ -2544,6 +2550,7 @@ MonoBehaviour:
   - {fileID: 281668882846750227, guid: 6452bd776b3f010408e5232ffde9a608, type: 3}
   - {fileID: 281668882846750227, guid: 9f373f19b11263e4fbc607c6bd383bf0, type: 3}
   - {fileID: 281668882846750227, guid: 0ac568a7ccc506a4da1282e4d009ffb0, type: 3}
+  - {fileID: 281668882846750227, guid: d6e9ab71b56696345abb96032a8112bf, type: 3}
 --- !u!1 &862409511
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,7 +3067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1252e666833c638488eff6edc1136cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 817419117}
+  gameManager: {fileID: 817419118}
+  menuController: {fileID: 817419120}
   movementController: {fileID: 1024315739}
   fogClearer: {fileID: 1545632277}
   visibilityPainter: {fileID: 1135776894}
@@ -3069,6 +3077,7 @@ MonoBehaviour:
   lightRadius: 1
   maxLightRadius: 1
   lightRadiusRegen: 1
+  dmgReduction: 0
   initMaxHP: 100
   exp: 0
   maxExp: 30
@@ -10503,9 +10512,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
+      propertyPath: POIManager
+      value: 
+      objectReference: {fileID: 70699566}
+    - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
       propertyPath: trailDensity
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
+      propertyPath: FireflyPrefab
+      value: 
+      objectReference: {fileID: 8346320037420065825, guid: ca49e3fd5f7b8b04397b67d2ff96ab48, type: 3}
     - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
       propertyPath: MidFireflyPrefab
       value: 

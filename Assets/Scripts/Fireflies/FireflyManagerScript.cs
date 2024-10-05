@@ -18,7 +18,7 @@ public class FireflyManagerScript : MonoBehaviour
     private Transform fireflyAttractor;
 
     [SerializeField]
-    private float trailDensity = 10.0f; // firefly object instances per 10 units
+    private float trailDensity = 6.0f; // firefly object instances per 10 units
 
     private List<Vector3> POIAnchorPositions;
 

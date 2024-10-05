@@ -15,7 +15,8 @@ public class EnemyBehaviour : MonoBehaviour
     public float damageAmount = 20.0f;
     public float startingHealth = 100.0f;
     public EnemyType behaviourType;
-    public UnitHealth _enemyHealth; 
+    public UnitHealth _enemyHealth;
+    public float enemyDmgReduc = 0.0f;
     public float detectionRange = 20.0f;
     public float loseDetectionRange = 40.0f;
 
@@ -99,7 +100,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage (float dmg) 
     {
-        _enemyHealth.DmgUnit(dmg);
+        _enemyHealth.DmgUnit(dmg, enemyDmgReduc);
     }
 
     private void Attack() {
@@ -139,7 +140,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (col.gameObject.tag == this.tagToDamage && damageCoolDown == false) 
         {
-            GameManager.gameManager._playerHealth.DmgUnit(damageAmount);
+            GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
             Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
             damageCoolDown = true;
         }
