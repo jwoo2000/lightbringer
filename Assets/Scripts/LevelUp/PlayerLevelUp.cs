@@ -23,6 +23,9 @@ public class PlayerLevelUp : MonoBehaviour
     Stamina staminaController;
 
     [SerializeField]
+    MovementController movementController;
+
+    [SerializeField]
     int movespeedLvl = 0;
 
     [SerializeField]
@@ -78,6 +81,7 @@ public class PlayerLevelUp : MonoBehaviour
     {
         movespeedLvl++;
         stats.movespeed = initMS + (movespeedLvl * 1.0f);
+        movementController.setMovespeed(stats.movespeed);
         staminaController.stamina = staminaController.maxStamina;
     }
 

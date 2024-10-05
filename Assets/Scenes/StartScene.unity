@@ -2748,7 +2748,7 @@ MonoBehaviour:
   fogClearer: {fileID: 1545632277}
   visibilityPainter: {fileID: 1135776894}
   movespeed: 2
-  sprintMulti: 2
+  sprintMulti: 1.5
   lightRadius: 1
   maxLightRadius: 1
   lightRadiusRegen: 0
@@ -2778,6 +2778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 1024315744}
   staminaController: {fileID: 1024315747}
+  movementController: {fileID: 1024315739}
   movespeedLvl: 0
   lightRadiusLvl: 0
   lightRegenLvl: 0

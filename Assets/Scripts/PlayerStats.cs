@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     public float movespeed = 2.0f;
 
     [SerializeField]
-    private float sprintMulti = 2.0f;
+    private float sprintMulti = 1.5f;
 
     [SerializeField]
     public float lightRadius = 1.0f;
