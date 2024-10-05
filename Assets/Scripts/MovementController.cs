@@ -16,7 +16,7 @@ public class MovementController : MonoBehaviour
     public GameObject aimCam;
     public GameObject flashLight;
 
-    public Transform stamina;
+    public Stamina staminaController;
 
     public CameraStyle currentStyle;
 
@@ -92,7 +92,7 @@ public class MovementController : MonoBehaviour
         Vector3 dir = forward * vertical + right * horizontal;
         dir = dir.normalized;
 
-        if (Input.GetKey(KeyCode.LeftShift) && stamina.position.y > 0) {
+        if (Input.GetKey(KeyCode.LeftShift) && (staminaController.stamina > 0.0f)) {
             player.position = player.position + (dir * speed * Time.deltaTime * sprintMulti);
         }else {
             player.position = player.position + (dir * speed * Time.deltaTime);

@@ -20,10 +20,10 @@ public class PlayerStats : MonoBehaviour
     private GameObject visibilityPainter;
 
     [SerializeField]
-    public float movespeed = 3.0f;
+    public float movespeed = 2.0f;
 
     [SerializeField]
-    private float sprintMulti = 1.5f;
+    private float sprintMulti = 2.0f;
 
     [SerializeField]
     public float lightRadius = 1.0f;
@@ -32,13 +32,19 @@ public class PlayerStats : MonoBehaviour
     public float maxLightRadius = 1.0f;
 
     [SerializeField]
-    public float lightRadiusRegen = 1f; // % max hp per second
+    public float lightRadiusRegen = 0.0f; // % max hp per second
 
     [SerializeField]
     public float dmgReduction = 0.0f; // % dmg taken reduced
 
     [SerializeField]
     private float initMaxHP = 100.0f;
+
+    [SerializeField]
+    public float currHP;
+
+    [SerializeField]
+    public float currMaxHP;
 
     [SerializeField]
     public int exp = 0;
@@ -79,11 +85,13 @@ public class PlayerStats : MonoBehaviour
     {
         // get HP values and update GameManager with new values
         regenHP();
+        updateHPValues();
         // calc light radius based on HP ratios
         updateLightRadFromHP();
         // update visible light radius
         updateLightRadius(lightRadius);
     }
+
 
     public void addExp(int expToAdd)
     {
@@ -132,6 +140,27 @@ public class PlayerStats : MonoBehaviour
     private void initPlayerHP()
     {
         gameManager._playerHealth = new UnitHealth(initMaxHP, initMaxHP);
+        updateHPValues();
+    }
+
+    // updates PlayerStats local HP values with true values in gameManager
+    private void updateHPValues()
+    {
+        // update maxHP readonly value
+        currMaxHP = gameManager._playerHealth.MaxHealth;
+        currHP = gameManager._playerHealth.Health;
+    }
+
+    public void setMaxHP(float newMax)
+    {
+        gameManager._playerHealth.MaxHealth = newMax;
+        updateHPValues();
+    }
+
+    public void setCurrHP(float newCurr)
+    {
+        gameManager._playerHealth.Health = newCurr;
+        updateHPValues();
     }
 
     private void updateLightRadFromHP()

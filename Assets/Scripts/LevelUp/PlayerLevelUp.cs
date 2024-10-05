@@ -20,6 +20,9 @@ public class PlayerLevelUp : MonoBehaviour
     PlayerStats stats;
 
     [SerializeField]
+    Stamina staminaController;
+
+    [SerializeField]
     int movespeedLvl = 0;
 
     [SerializeField]
@@ -30,6 +33,24 @@ public class PlayerLevelUp : MonoBehaviour
 
     [SerializeField]
     int dmgReductionLvl = 0;
+
+    private float initMS;
+    private float initMaxHP;
+    private float initRegen;
+    private float initDmgRed;
+
+    private void getInitStats()
+    {
+        initMS = stats.movespeed;
+        initMaxHP = stats.currMaxHP;
+        initRegen = stats.lightRadiusRegen;
+        initDmgRed = stats.dmgReduction;
+    }
+
+    private void Start()
+    {
+        getInitStats();
+    }
 
     public void upgradeStat(int type)
     {
@@ -56,20 +77,26 @@ public class PlayerLevelUp : MonoBehaviour
     private void movespeed()
     {
         movespeedLvl++;
+        stats.movespeed = initMS + (movespeedLvl * 1.0f);
+        staminaController.stamina = staminaController.maxStamina;
     }
 
     private void lightRadius()
     {
         lightRadiusLvl++;
+        stats.setMaxHP(initMaxHP + (lightRadiusLvl * 10.0f));
+        stats.setCurrHP(stats.currMaxHP);
     }
 
     private void lightRegen()
     {
         lightRegenLvl++;
+        stats.lightRadiusRegen = initRegen + (lightRegenLvl * 5.0f);
     }
 
     private void dmgReduction()
     {
         dmgReductionLvl++;
+        stats.dmgReduction = initDmgRed + (dmgReductionLvl * 0.1f);
     }
 }

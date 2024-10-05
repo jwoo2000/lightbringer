@@ -7,10 +7,10 @@ public class Stamina : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
-    public float maxStamina;
-    public float regenerationRate;
-    private float stamina;
-    public Transform height;
+    public float maxStamina = 100.0f; // default 100
+    public float regenerationRate = 10.0f; // amt per second
+    public float consumptionRate = 20.0f; // amt per second
+    public float stamina; // curr stamina
     private float health;
     private float maxHealth;
     private float exp;
@@ -32,7 +32,6 @@ public class Stamina : MonoBehaviour
     void Start()
     {
         stamina = maxStamina;
-        height.position = new Vector3 (0.0f, stamina, 0.0f);
     }
 
     // Update is called once per frame
@@ -43,7 +42,7 @@ public class Stamina : MonoBehaviour
         exp = stats.Exp;
         maxExp = stats.MaxExp;
         if (Input.GetKey(KeyCode.LeftShift) && stamina > 0) {
-            stamina -= Time.deltaTime;
+            stamina -= consumptionRate*Time.deltaTime;
         } else if ((Input.GetKey(KeyCode.LeftShift) && stamina <= 0)) {
             // Stamina will not regerate
         } else {
@@ -54,7 +53,6 @@ public class Stamina : MonoBehaviour
         if (stamina < 0) {
             stamina = 0;
         }
-        height.position = new Vector3(0.0f, stamina, 0.0f);
         StaminaBar.fillAmount = stamina / maxStamina;
         HealthBar.fillAmount = health / maxHealth;
         ExpBar.fillAmount = exp / maxExp;
