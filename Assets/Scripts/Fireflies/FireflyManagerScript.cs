@@ -35,6 +35,12 @@ public class FireflyManagerScript : MonoBehaviour
     [SerializeField]
     private float playerSpawnNoFireflyRadius = 3f; // radius in which no fireflies are placed around the plaeyr when spawning (min: 2.3f)
 
+    [SerializeField]
+    private float pauseSystemOutsideRadius = 30f; // pause particle systems outside this radius from player (performance)
+
+    [SerializeField]
+    private List<ParticleSystem> fireflyParticleSystems = new List<ParticleSystem>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +59,33 @@ public class FireflyManagerScript : MonoBehaviour
         GenerateTrails();
         GenerateConnectingTrails();
         GeneratePlayerToFirstLowTrail();
+        InvokeRepeating("checkParticleSystems", 0, 1f); // Check every 1 second
+    }
+
+    private void checkParticleSystems()
+    {
+        for (int i = fireflyParticleSystems.Count - 1; i >= 0; i--)
+        {
+            ParticleSystem fireflySystem = fireflyParticleSystems[i];
+            if (fireflySystem != null)
+            {
+                float distToPlayer = Vector3.Distance(fireflyAttractor.position, fireflySystem.transform.position);
+                if ((distToPlayer > pauseSystemOutsideRadius) && fireflySystem.isPlaying)
+                {
+                    fireflySystem.Pause();
+                } 
+                else if ((distToPlayer <= pauseSystemOutsideRadius) && fireflySystem.isPaused)
+                {
+                    fireflySystem.Play();
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(fireflyAttractor.position, pauseSystemOutsideRadius);
     }
 
     private void GenerateTrails()
@@ -82,6 +115,12 @@ public class FireflyManagerScript : MonoBehaviour
                 // instantiate and set firefly attractor
                 GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+
+                ParticleSystem fireflySystem = firefly.GetComponent<ParticleSystem>();
+                if (fireflySystem != null)
+                {
+                    fireflyParticleSystems.Add(fireflySystem);
+                }
             }
         }
 
@@ -110,6 +149,12 @@ public class FireflyManagerScript : MonoBehaviour
                 // instantiate and set firefly attractor
                 GameObject firefly = Instantiate(MidFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+
+                ParticleSystem fireflySystem = firefly.GetComponent<ParticleSystem>();
+                if (fireflySystem != null)
+                {
+                    fireflyParticleSystems.Add(fireflySystem);
+                }
             }
         }
 
@@ -138,6 +183,12 @@ public class FireflyManagerScript : MonoBehaviour
                 // instantiate and set firefly attractor
                 GameObject firefly = Instantiate(HighFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+
+                ParticleSystem fireflySystem = firefly.GetComponent<ParticleSystem>();
+                if (fireflySystem != null)
+                {
+                    fireflyParticleSystems.Add(fireflySystem);
+                }
             }
         }
     }
@@ -180,6 +231,12 @@ public class FireflyManagerScript : MonoBehaviour
                 Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)j / (float)numFireflies);
                 GameObject firefly = Instantiate(MidFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+
+                ParticleSystem fireflySystem = firefly.GetComponent<ParticleSystem>();
+                if (fireflySystem != null)
+                {
+                    fireflyParticleSystems.Add(fireflySystem);
+                }
             }
         }
 
@@ -219,6 +276,12 @@ public class FireflyManagerScript : MonoBehaviour
                 Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)j / (float)numFireflies);
                 GameObject firefly = Instantiate(HighFireflyPrefab, spawnPosition, Quaternion.identity);
                 firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+
+                ParticleSystem fireflySystem = firefly.GetComponent<ParticleSystem>();
+                if (fireflySystem != null)
+                {
+                    fireflyParticleSystems.Add(fireflySystem);
+                }
             }
         }
     }
@@ -255,6 +318,12 @@ public class FireflyManagerScript : MonoBehaviour
             Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
             GameObject firefly = Instantiate(FireflyPrefab, spawnPosition, Quaternion.identity);
             firefly.GetComponent<AbsorbFireflies>().attractor = fireflyAttractor;
+
+            ParticleSystem fireflySystem = firefly.GetComponent<ParticleSystem>();
+            if (fireflySystem != null)
+            {
+                fireflyParticleSystems.Add(fireflySystem);
+            }
         }
         
     }
