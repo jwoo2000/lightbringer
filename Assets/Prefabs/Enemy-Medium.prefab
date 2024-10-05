@@ -190,7 +190,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.56
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -209,10 +209,12 @@ MonoBehaviour:
   speed: 2
   damageAmount: 20
   startingHealth: 200
-  Behaviourtype: 1
-  AttackWaitTime: 0.2
-  LungeSpeed: 8
-  AttackTriggerRange: 3
+  behaviourType: 1
+  detectionRange: 20
+  loseDetectionRange: 40
+  attackWaitTime: 0.2
+  lungeSpeed: 7
+  attackTriggerRange: 3
 --- !u!23 &8497458350173639239
 MeshRenderer:
   m_ObjectHideFlags: 0
