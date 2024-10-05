@@ -34,6 +34,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float initMaxHP = 100.0f;
 
+    [SerializeField]
+    public int exp = 0;
+
+    [SerializeField]
+    private int maxExp = 30;
+
+    [SerializeField]
+    public int level = 0;
+
     private void Awake()
     {
         // initialise all player stats
@@ -51,6 +60,49 @@ public class PlayerStats : MonoBehaviour
         updateLightRadFromHP();
         // update visible light radius
         updateLightRadius(lightRadius);
+    }
+
+    public void addExp(int expToAdd)
+    {
+        exp += expToAdd;
+        checkLevelUp();
+    }
+
+    private void checkLevelUp()
+    {
+        while (exp >= maxExp)
+        {
+            exp -= maxExp;  // carry over extra exp to the next level
+            level++;
+            maxExp = CalculateNextMaxExp(level);
+            levelUp();
+        }
+    }
+
+    private int CalculateNextMaxExp(int level)
+    {
+        if (level <= 1)
+        {
+            return 30;  // starting max exp for level 0, 1
+        }
+        else if (level >= 2 && level <= 5)
+        {
+            return 30 + (level - 1) * 5; // increase by 5 from lv2~5
+        }
+        else if (level >= 6 && level <= 10)
+        {
+            return 50 + (level - 1) * 10; // increase by 10 from 6~10
+        }
+
+        else // level >= 11
+        {
+            return 140 + (level - 1) * 20; // increase by 20 from 11+
+        }
+    }
+
+    private void levelUp()
+    {
+        Debug.Log("Level Up!");
     }
 
     private void initPlayerHP()

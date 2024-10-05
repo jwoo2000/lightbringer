@@ -2093,6 +2093,9 @@ MonoBehaviour:
   maxLightRadius: 1
   lightRadiusRegen: 1
   initMaxHP: 100
+  exp: 0
+  maxExp: 30
+  level: 0
 --- !u!1 &1057127458
 GameObject:
   m_ObjectHideFlags: 0
@@ -8884,7 +8887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
       propertyPath: trailDensity
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5357573120112709333, guid: bcf1a46154ea8ee4ea770710d538a659, type: 3}
       propertyPath: MidFireflyPrefab
