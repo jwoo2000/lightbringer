@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
         int deg = Random.Range(0, 360);
         float rad = deg * Mathf.Deg2Rad;
 
-        return (new Vector3(spawnDistanceToPlayer * Mathf.Sin(rad), transform.position.y, spawnDistanceToPlayer * Mathf.Cos(rad)) + transform.position);
+        return (new Vector3(spawnDistanceToPlayer * Mathf.Sin(rad), 1, spawnDistanceToPlayer * Mathf.Cos(rad)) + transform.position);
     }
 
 }
