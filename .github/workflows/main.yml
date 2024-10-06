@@ -6,8 +6,9 @@
 name: Gradescope Submit
 
 on:
-  repository_dispatch:
-    types: [gradescope-submit]
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
