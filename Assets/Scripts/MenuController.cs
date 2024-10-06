@@ -29,7 +29,7 @@ public class MenuController : MonoBehaviour
     };
 
     [SerializeField]
-    private int pendingLevelUps = 0;
+    public int pendingLevelUps = 0;
 
     void Awake()
     {
@@ -52,9 +52,9 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void QueueLevelUp()
+    public void QueueLevelUps(int pendingLevels)
     {
-        pendingLevelUps++;
+        pendingLevelUps = pendingLevels;
         processNextLevelUp();
     }
 

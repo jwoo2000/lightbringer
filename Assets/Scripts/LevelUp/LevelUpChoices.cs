@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,9 @@ public class LevelUpChoices : MonoBehaviour
 
     private Action choiceSelected;
 
+    [SerializeField]
+    private TextMeshProUGUI levelUpOverflowText;
+
     private void Awake()
     {
         choiceSelected = menuController.levelUpChoiceSelected;
@@ -37,6 +41,13 @@ public class LevelUpChoices : MonoBehaviour
 
     private void OnEnable()
     {
+        if (menuController.pendingLevelUps > 1)
+        {
+            levelUpOverflowText.text = "(+"+menuController.pendingLevelUps.ToString()+")";
+        } else
+        {
+            levelUpOverflowText.text = "";
+        }
         //Debug.Log("enabling level up ui");
         if (leftChoice != null)
         {

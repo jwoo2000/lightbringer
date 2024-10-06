@@ -101,13 +101,15 @@ public class PlayerStats : MonoBehaviour
 
     private void checkLevelUp()
     {
+        int pendingLevels = 0;
         while (exp >= maxExp)
         {
             exp -= maxExp;  // carry over extra exp to the next level
             level++;
             maxExp = CalculateNextMaxExp(level);
-            menuController.QueueLevelUp();
+            pendingLevels++;
         }
+        menuController.QueueLevelUps(pendingLevels);
     }
 
     private int CalculateNextMaxExp(int level)
