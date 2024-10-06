@@ -17,9 +17,15 @@ public class Stamina : MonoBehaviour
     private float maxExp;
     PlayerStats stats;
 
-    public Image StaminaBar;
+    [SerializeField]
+    private Color staminaBarColour = new Color(0.0f,0.6f,0.0f,1.0f);
+
+    public Image StaminaBarLeft;
+    public Image StaminaBarRight;
     public Image HealthBar;
     public Image ExpBar;
+
+    private float staminaRatio;
 
     //public Transform StaminaBar;
 
@@ -53,7 +59,27 @@ public class Stamina : MonoBehaviour
         if (stamina < 0) {
             stamina = 0;
         }
-        StaminaBar.fillAmount = stamina / maxStamina;
+
+        staminaRatio = stamina / maxStamina;
+        float r;
+        float g;
+        if (staminaRatio >= 0.5f)
+        {
+            float greenToYellowRatio = (staminaRatio - 0.5f) / 0.5f;
+            r = 1.0f - greenToYellowRatio;
+            g = 0.6f;
+        }
+        else
+        {
+            float yellowToRedRatio = staminaRatio / 0.5f;
+            r = 1.0f;
+            g = 0.6f*yellowToRedRatio;
+        }
+        staminaBarColour = new Color(r, g, 0.0f, 1.0f);
+        StaminaBarLeft.color = staminaBarColour;
+        StaminaBarRight.color = staminaBarColour;
+        StaminaBarLeft.fillAmount = staminaRatio;
+        StaminaBarRight.fillAmount = staminaRatio;
         HealthBar.fillAmount = health / maxHealth;
         ExpBar.fillAmount = exp / maxExp;
         //Debug.Log(exp/maxExp);
