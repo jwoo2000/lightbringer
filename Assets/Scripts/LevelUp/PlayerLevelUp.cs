@@ -47,6 +47,9 @@ public class PlayerLevelUp : MonoBehaviour
     [SerializeField]
     int staminaRegenLvl = 0;
 
+    [SerializeField]
+    float dmgRedScalingFactor = 8.0f;
+
     private float initMS;
     private float initMaxHP;
     private float initRegen;
@@ -100,7 +103,7 @@ public class PlayerLevelUp : MonoBehaviour
     private void movespeed()
     {
         movespeedLvl++;
-        stats.movespeed = initMS + (movespeedLvl * 1.0f);
+        stats.movespeed *= 1.1f;
         movementController.setMovespeed(stats.movespeed);
     }
 
@@ -120,7 +123,7 @@ public class PlayerLevelUp : MonoBehaviour
     private void dmgReduction()
     {
         dmgReductionLvl++;
-        stats.dmgReduction = initDmgRed + (dmgReductionLvl * 0.1f);
+        stats.dmgReduction = dmgReductionLvl/(dmgReductionLvl+dmgRedScalingFactor);
     }
 
     private void maxStamina()

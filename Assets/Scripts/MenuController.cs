@@ -31,6 +31,9 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     public int pendingLevelUps = 0;
 
+    [SerializeField]
+    private bool levelUIOpen = false;
+
     void Awake()
     {
         menuCanvas.SetActive(false);
@@ -39,7 +42,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen)
         {
             if (isPaused)
             {
@@ -63,6 +66,7 @@ public class MenuController : MonoBehaviour
         if (pendingLevelUps > 0)
         {
             stopTimeShowCursor();
+            levelUIOpen = true;
             (GameObject left, int leftType, GameObject mid, int midType, GameObject right, int rightType) choices = genLevelUpChoices();
             //Debug.Log("menucontroller: sending choices to levelupchoices");
             levelUpCanvas.GetComponent<LevelUpChoices>().SetChoices(
@@ -85,6 +89,7 @@ public class MenuController : MonoBehaviour
         } else
         {
             startTimeHideCursor();
+            levelUIOpen = false;
         }
     }
 
