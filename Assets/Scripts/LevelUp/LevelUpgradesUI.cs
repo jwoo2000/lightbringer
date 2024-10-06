@@ -30,7 +30,7 @@ public class LevelUpgradesUI : MonoBehaviour
     {
         movespeedValue.text = playerLevelUp.movespeedLvl.ToString();
         lightRadValue.text = playerLevelUp.lightRadiusLvl.ToString();
-        lightRadValue.text = playerLevelUp.lightRegenLvl.ToString();
+        lightRegenValue.text = playerLevelUp.lightRegenLvl.ToString();
         dmgReducValue.text = playerLevelUp.dmgReductionLvl.ToString();
         maxStaminaValue.text = playerLevelUp.maxStaminaLvl.ToString();
         staminaRegenValue.text = playerLevelUp.staminaRegenLvl.ToString();
