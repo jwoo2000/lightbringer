@@ -20,6 +20,8 @@ public class MovementController : MonoBehaviour
 
     public CameraStyle currentStyle;
 
+    public float currSpeed;
+
     public void setMovespeed(float newSpeed)
     {
         speed = newSpeed;
@@ -93,9 +95,11 @@ public class MovementController : MonoBehaviour
         dir = dir.normalized;
 
         if (Input.GetKey(KeyCode.LeftShift) && (staminaController.stamina > 0.0f)) {
-            player.position = player.position + (dir * speed * Time.deltaTime * sprintMulti);
+            currSpeed = speed * sprintMulti;
+            player.position = player.position + (dir * currSpeed * Time.deltaTime);
         }else {
-            player.position = player.position + (dir * speed * Time.deltaTime);
+            currSpeed = speed;
+            player.position = player.position + (dir * currSpeed * Time.deltaTime);
         }
 
     }

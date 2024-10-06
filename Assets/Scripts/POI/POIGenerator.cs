@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class POIGenerator : MonoBehaviour
 {
+    public Material cloakMat;
+
+    [SerializeField]
+    public Transform playerTransform;
+
+    [SerializeField]
+    public float discoverDist;
+
     [SerializeField]
     private GameObject[] variants;
 
@@ -24,6 +32,10 @@ public class POIGenerator : MonoBehaviour
         float randomYRotation = Random.Range(0.0f, 360.0f);
         Quaternion randomRotation = Quaternion.Euler(0, randomYRotation, 0);
 
-        Instantiate(variants[chosenVariant], transform.position, randomRotation);
+        GameObject poi = Instantiate(variants[chosenVariant], transform.position, randomRotation);
+        CloakPOI cloakPOI = poi.GetComponent<CloakPOI>();
+        cloakPOI.cloakMat = cloakMat;
+        cloakPOI.playerTransform = playerTransform;
+        cloakPOI.discoverDist = discoverDist;
     }
 }

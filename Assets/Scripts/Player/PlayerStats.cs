@@ -14,6 +14,14 @@ public class PlayerStats : MonoBehaviour
     private MovementController movementController;
 
     [SerializeField]
+    private FogBlend unexploredFogBlend;
+
+    [SerializeField]
+    private FogBlend exploredFogBlend;
+
+    private float initBlendSpeed;
+
+    [SerializeField]
     private GameObject fogClearer;
 
     [SerializeField]
@@ -23,7 +31,7 @@ public class PlayerStats : MonoBehaviour
     public float movespeed = 2.0f;
 
     [SerializeField]
-    private float sprintMulti = 1.5f;
+    private float sprintMulti = 2.0f;
 
     [SerializeField]
     public float lightRadius = 1.0f;
@@ -79,6 +87,7 @@ public class PlayerStats : MonoBehaviour
         movementController.setSprintMulti(sprintMulti);
         updateLightRadius(maxLightRadius);
         initPlayerHP();
+        initBlendSpeed = exploredFogBlend.blendSpeed;
     }
 
     private void Update()
@@ -90,6 +99,15 @@ public class PlayerStats : MonoBehaviour
         updateLightRadFromHP();
         // update visible light radius
         updateLightRadius(lightRadius);
+
+        // update fog blend speed with movespeed
+        updateFogBlendSpeed();
+    }
+
+    private void updateFogBlendSpeed()
+    {
+        unexploredFogBlend.blendSpeed = movementController.currSpeed * 0.7f;
+        exploredFogBlend.blendSpeed = movementController.currSpeed * 0.7f;
     }
 
 

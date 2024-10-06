@@ -8,7 +8,7 @@ public class FogBlend : MonoBehaviour
     private Material material;
 
     [SerializeField]
-    private float blendSpeed = 5;
+    public float blendSpeed = 5;
 
     [SerializeField]
     private RenderTexture fogRenderTexture;

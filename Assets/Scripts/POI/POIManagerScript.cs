@@ -5,6 +5,18 @@ using UnityEngine;
 public class POIManagerScript : MonoBehaviour
 {
     [SerializeField]
+    private FireflyManagerScript fireflyManager;
+
+    [SerializeField]
+    private Transform playerTransform;
+
+    [SerializeField]
+    public Material cloakMat;
+
+    [SerializeField]
+    public float discoverDist = 15.0f;
+
+    [SerializeField]
     private GameObject lowTierPOIGenerator;
 
     [SerializeField]
@@ -40,6 +52,9 @@ public class POIManagerScript : MonoBehaviour
     [SerializeField]
     private Vector3 spawnCenter = Vector3.zero;
 
+    [SerializeField]
+    private List<POIGenerator> poiGenerators = new List<POIGenerator>();
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -53,9 +68,11 @@ public class POIManagerScript : MonoBehaviour
         Gizmos.DrawWireSphere(spawnCenter, tierBorderBufferDist);
     }
 
-    void Awake()
+    private void Start()
     {
         InstantiatePOIs();
+        setCloakParams();
+        fireflyManager.startManager();
     }
 
     private void InstantiatePOIs()
@@ -100,7 +117,7 @@ public class POIManagerScript : MonoBehaviour
             );
 
             POIGeneratorInstance = Instantiate(lowTierPOIGenerator, POIPos, Quaternion.identity);
-            //POIGeneratorInstance.GetComponent<Script>().player = player;
+            poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
         }
 
         // instantiate mid tier POIs ===========================
@@ -122,7 +139,7 @@ public class POIManagerScript : MonoBehaviour
             );
 
             POIGeneratorInstance = Instantiate(midTierPOIGenerator, POIPos, Quaternion.identity);
-            //POIGeneratorInstance.GetComponent<Script>().player = player;
+            //poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
         }
 
         // instantiate high tier POIs ===========================
@@ -144,7 +161,17 @@ public class POIManagerScript : MonoBehaviour
             );
 
             POIGeneratorInstance = Instantiate(highTierPOIGenerator, POIPos, Quaternion.identity);
-            //POIGeneratorInstance.GetComponent<Script>().player = player;
+            //poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
+        }
+    }
+
+    private void setCloakParams()
+    {
+        foreach (POIGenerator poiGen in poiGenerators)
+        {
+            poiGen.playerTransform = playerTransform;
+            poiGen.cloakMat = cloakMat;
+            poiGen.discoverDist = discoverDist;
         }
     }
 }

@@ -6,6 +6,8 @@ Shader "_Shaders/CloakShader"
     }
     SubShader
     {
+        Blend SrcAlpha OneMinusSrcAlpha
+
         Pass
         {
             CGPROGRAM

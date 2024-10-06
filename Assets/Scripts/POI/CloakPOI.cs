@@ -1,63 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CloakPOI : MonoBehaviour
 {
-    public Shader cloakShader;
+    public Material cloakMat;
 
-    private Shader[][] ogShaders;
+    [SerializeField]
+    private GameObject POIObjects;
+
+    [SerializeField]
+    private GameObject visibilityPainter;
+
+    private Material[][] ogMats;
     private Renderer[] renderers;
 
     [SerializeField]
-    private bool cloaked = false;
+    private bool discovered = false;
+
+    [SerializeField]
+    public Transform playerTransform;
+
+    [SerializeField]
+    public float discoverDist;
 
     // Start is called before the first frame update
     void Start()
     {
-        renderers = GetComponentsInChildren<Renderer>();
-        saveOgShaders();
+        renderers = POIObjects.GetComponentsInChildren<Renderer>();
+        saveOgMats();
+        cloak();
+    }
+    private void Update()
+    {
+        float dist = Vector3.Distance(transform.position, playerTransform.position);
+        if ((dist < discoverDist) && !discovered)
+        {
+            uncloak();
+            discovered = true;
+        }
     }
 
-    void saveOgShaders()
+    void saveOgMats()
     {
-        // store array of shaders for every renderer [shaders[],shaders[], etc]
-        ogShaders = new Shader[renderers.Length][];
+        // store array of materials for every renderer [materials[],materials[], etc]
+        ogMats = new Material[renderers.Length][];
 
         for (int i = 0; i < renderers.Length; i++)
         {
-            ogShaders[i] = new Shader[renderers[i].materials.Length];
+            ogMats[i] = new Material[renderers[i].materials.Length];
 
             for (int j = 0; j < renderers[i].materials.Length; j++)
             {
-                ogShaders[i][j] = renderers[i].materials[j].shader;
+                ogMats[i][j] = renderers[i].materials[j];
             }
         }
     }
 
     public void cloak()
     {
-        cloaked = true;
+        //Debug.Log("cloaking poi");
+        visibilityPainter.SetActive(false);
         for (int i = 0; i < renderers.Length; i++)
         {
-            // change all shaders in children to cloakshader
+            Material[] materials = renderers[i].materials;
+            // change all materials in children to cloakmat
             for (int j = 0; j < renderers[i].materials.Length; j++)
             {
-                renderers[i].materials[j].shader = cloakShader;
+                materials[j] = cloakMat;
             }
+            renderers[i].materials = materials;
         }
     }
 
     public void uncloak()
     {
-        cloaked = false;
+        visibilityPainter.SetActive(true);
         for (int i = 0; i < renderers.Length; i++)
         {
-            // revert the shader of all children to original shaders
+            Material[] materials = renderers[i].materials;
+            // revert the materials of all children to original materials
             for (int j = 0; j < renderers[i].materials.Length; j++)
             {
-                renderers[i].materials[j].shader = ogShaders[i][j];
+                materials[j] = ogMats[i][j];
             }
+            renderers[i].materials = materials;
         }
     }
 }
