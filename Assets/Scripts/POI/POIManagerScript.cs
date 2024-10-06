@@ -139,7 +139,7 @@ public class POIManagerScript : MonoBehaviour
             );
 
             POIGeneratorInstance = Instantiate(midTierPOIGenerator, POIPos, Quaternion.identity);
-            //poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
+            poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
         }
 
         // instantiate high tier POIs ===========================
@@ -161,7 +161,7 @@ public class POIManagerScript : MonoBehaviour
             );
 
             POIGeneratorInstance = Instantiate(highTierPOIGenerator, POIPos, Quaternion.identity);
-            //poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
+            poiGenerators.Add(POIGeneratorInstance.GetComponent<POIGenerator>());
         }
     }
 

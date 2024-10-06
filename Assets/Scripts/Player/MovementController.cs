@@ -14,7 +14,6 @@ public class MovementController : MonoBehaviour
 
     public GameObject thirdPersonCam;
     public GameObject aimCam;
-    public GameObject flashLight;
 
     public Stamina staminaController;
 
@@ -44,7 +43,6 @@ public class MovementController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         aimCam.SetActive(false);
-        flashLight.SetActive(false);
     }
 
 
@@ -108,13 +106,11 @@ public class MovementController : MonoBehaviour
     {
         thirdPersonCam.SetActive(false);
         aimCam.SetActive(false);
-        flashLight.SetActive(false);
 
         if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
         if (newStyle == CameraStyle.Aim) 
         {
             aimCam.SetActive(true);
-            flashLight.SetActive(true);
         }
 
         currentStyle = newStyle;
