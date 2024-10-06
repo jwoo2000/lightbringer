@@ -103,7 +103,7 @@ public class PlayerLevelUp : MonoBehaviour
     private void movespeed()
     {
         movespeedLvl++;
-        stats.movespeed *= 1.1f;
+        stats.movespeed = initMS * (1 + (movespeedLvl * 0.1f));
         movementController.setMovespeed(stats.movespeed);
     }
 
