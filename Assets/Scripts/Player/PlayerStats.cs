@@ -106,7 +106,7 @@ public class PlayerStats : MonoBehaviour
             exp -= maxExp;  // carry over extra exp to the next level
             level++;
             maxExp = CalculateNextMaxExp(level);
-            levelUp();
+            menuController.QueueLevelUp();
         }
     }
 
@@ -129,12 +129,6 @@ public class PlayerStats : MonoBehaviour
         {
             return 140 + (level - 1) * 20; // increase by 20 from 11+
         }
-    }
-
-    private void levelUp()
-    {
-        Debug.Log("Level Up!");
-        menuController.levelUp();
     }
 
     private void initPlayerHP()

@@ -28,6 +28,9 @@ public class MenuController : MonoBehaviour
         "stamina regen"
     };
 
+    [SerializeField]
+    private int pendingLevelUps = 0;
+
     void Awake()
     {
         menuCanvas.SetActive(false);
@@ -49,24 +52,40 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void levelUp()
+    public void QueueLevelUp()
     {
-        stopTimeShowCursor();
-        (GameObject left, int leftType, GameObject mid, int midType, GameObject right, int rightType) choices = genLevelUpChoices();
-        //Debug.Log("menucontroller: sending choices to levelupchoices");
-        levelUpCanvas.GetComponent<LevelUpChoices>().SetChoices(
-            choices.left, choices.leftType, 
-            choices.mid, choices.midType, 
-            choices.right, choices.rightType
-            );
-        levelUpCanvas.SetActive(true);
+        pendingLevelUps++;
+        processNextLevelUp();
+    }
+
+    public void processNextLevelUp()
+    {
+        if (pendingLevelUps > 0)
+        {
+            stopTimeShowCursor();
+            (GameObject left, int leftType, GameObject mid, int midType, GameObject right, int rightType) choices = genLevelUpChoices();
+            //Debug.Log("menucontroller: sending choices to levelupchoices");
+            levelUpCanvas.GetComponent<LevelUpChoices>().SetChoices(
+                choices.left, choices.leftType, 
+                choices.mid, choices.midType, 
+                choices.right, choices.rightType
+                );
+            levelUpCanvas.SetActive(true);
+        }
     }
 
     public void levelUpChoiceSelected()
     {
         //Debug.Log("choice selected, menu controller closing level up ui");
+        pendingLevelUps--;
         levelUpCanvas.SetActive(false);
-        startTimeHideCursor();
+        if (pendingLevelUps > 0)
+        {
+            processNextLevelUp();
+        } else
+        {
+            startTimeHideCursor();
+        }
     }
 
     private (GameObject, int, GameObject, int, GameObject, int) genLevelUpChoices()
