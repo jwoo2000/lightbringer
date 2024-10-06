@@ -329,9 +329,10 @@ GameObject:
   - component: {fileID: 5693590998143624200}
   - component: {fileID: 3858683498381990915}
   - component: {fileID: -4826648647124954006}
+  - component: {fileID: -3268718885482662285}
   m_Layer: 0
   m_Name: Enemy-Large
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,7 +436,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4952036158238110365}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -466,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9065c490f9aa24b9bb13791beae211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0.5
   damageAmount: 20
   startingHealth: 500
   behaviourType: 2
@@ -474,6 +475,31 @@ MonoBehaviour:
   detectionRange: 40
   loseDetectionRange: 80
   expOnDeath: 20
-  attackWaitTime: 5
-  lungeSpeed: 0
-  attackTriggerRange: 0
+  attackCD: 5
+  attackWaitTime: 0.5
+  lungeSpeed: 20
+  attackTriggerRange: 2
+  minion: {fileID: 63767002397184257, guid: e517cac1225717a44944e3ee4f7e0201, type: 3}
+--- !u!136 &-3268718885482662285
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952036158238110365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Height: 2.62
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

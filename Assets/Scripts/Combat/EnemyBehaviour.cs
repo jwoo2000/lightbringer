@@ -20,11 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float detectionRange = 20.0f;
     public float loseDetectionRange = 40.0f;
     public int expOnDeath = 5;
-
-    //Medium class specific
-    public float attackWaitTime = 0.5f;
-    public float lungeSpeed = 7.0f;
-    public float attackTriggerRange = 3.0f;
+    public float attackCD = 0.5f;
 
     private Transform target; 
     private float distanceToTarget;
@@ -36,6 +32,15 @@ public class EnemyBehaviour : MonoBehaviour
     private string tagToDamage = "Player";
     private bool playerDetected;
     private int rotationSpeed = 500;
+
+    //Medium class specific
+    public float attackWaitTime = 0.5f;
+    public float lungeSpeed = 7.0f;
+    public float attackTriggerRange = 3.0f;
+
+    // Minion prefab for Large enemy
+    public GameObject minion;
+    private float spawnCooldown = 5.0f;
 
     //wandering variables
     private Vector3 wanderTarget;
@@ -127,11 +132,12 @@ public class EnemyBehaviour : MonoBehaviour
         attackTarget.y = 1;
         rb.velocity = lungeSpeed * transform.forward;
         attackWindUp = 0.0f;
-        attackCoolDown = 0.5f;
+        attackCoolDown = attackCD;
         damageCoolDown = false;
     }
 
-    private void Chase() {
+    private void DetectPlayer()
+    {
         //Detect player 
         if (distanceToTarget < detectionRange)
         {
@@ -143,6 +149,11 @@ public class EnemyBehaviour : MonoBehaviour
         {
             playerDetected = false;
         }
+    }
+
+    private void Chase() 
+    {
+        DetectPlayer();
 
         //Chase Player
         if (playerDetected)
@@ -240,7 +251,46 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void LargeEnemyBehaviour()
     {
+        int keepAwayDistance = 15;
+        int closeInDistance = 25;
+        // Stay between 15 - 30 units away from the player
+        DetectPlayer();
 
+        if (!playerDetected) 
+        {
+            Wander();
+        }
+
+        if (distanceToTarget < keepAwayDistance) 
+        {
+            rb.velocity = -1 * speed * transform.forward;
+        }
+        else if (distanceToTarget > closeInDistance)
+        {
+            rb.velocity = speed * transform.forward;
+        }
+
+        if (spawnCooldown <= 0)
+        {
+            SpawnMinions();
+            spawnCooldown = 10.0f;
+        }
+        else
+        {
+            spawnCooldown -= Time.deltaTime;
+        }
+
+
+    }
+
+    private void SpawnMinions()
+    {
+        Vector3 spawnPos1 = transform.position + transform.forward - (2 * transform.right);
+        spawnPos1.y = .25f;
+        Vector3 spawnPos2 = transform.position + transform.forward + (2 * transform.right);
+        spawnPos2.y = .25f;
+        Instantiate(minion, spawnPos1, Quaternion.identity);
+        Instantiate(minion, spawnPos2, Quaternion.identity);
     }
 
     private void MinionEnemyBehaviour()

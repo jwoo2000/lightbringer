@@ -119,12 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f8a879001a86498e84e26ba481787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 5
+  spawnRate: 0.1
   enemyPrefabs:
   - {fileID: 6162115194065706948, guid: e0891f74b5c956b46bdb1d94d1bd17e0, type: 3}
   isSpawning: 1
   spawnDistance: 15
   maxEnemies: 5
+  startSpawningDistance: 50
 --- !u!1001 &5290536586610045996
 PrefabInstance:
   m_ObjectHideFlags: 0

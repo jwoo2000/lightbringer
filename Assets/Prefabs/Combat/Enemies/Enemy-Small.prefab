@@ -96,7 +96,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63767002397184257}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -178,12 +178,13 @@ MonoBehaviour:
   startingHealth: 100
   behaviourType: 0
   enemyDmgReduc: 0
-  detectionRange: 15
+  detectionRange: 8
   loseDetectionRange: 40
   expOnDeath: 2
   attackWaitTime: 0.5
   lungeSpeed: 7
   attackTriggerRange: 3
+  minion: {fileID: 0}
 --- !u!1 &202701431438936777
 GameObject:
   m_ObjectHideFlags: 0
