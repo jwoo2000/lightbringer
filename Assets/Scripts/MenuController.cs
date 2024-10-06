@@ -34,6 +34,9 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private bool levelUIOpen = false;
 
+    [SerializeField]
+    private bool pauseMenuOpen = false;
+
     void Awake()
     {
         menuCanvas.SetActive(false);
@@ -53,12 +56,26 @@ public class MenuController : MonoBehaviour
                 PauseGame();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !pauseMenuOpen)
+        {
+            processNextLevelUp();
+        } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
+        {
+            closeLevelUI();
+        }
+    }
+
+    public void closeLevelUI()
+    {
+        levelUpCanvas.SetActive(false);
+        startTimeHideCursor();
+        levelUIOpen = false;
     }
 
     public void QueueLevelUps(int pendingLevels)
     {
-        pendingLevelUps = pendingLevels;
-        processNextLevelUp();
+        pendingLevelUps += pendingLevels;
     }
 
     public void processNextLevelUp()
@@ -117,6 +134,7 @@ public class MenuController : MonoBehaviour
         return (left, possibleChoices[0], middle, possibleChoices[1], right, possibleChoices[2]);
     }
 
+
     private void stopTimeShowCursor()
     {
         //Debug.Log("stopping time");
@@ -138,12 +156,14 @@ public class MenuController : MonoBehaviour
     public void ResumeGame()
     {
         menuCanvas.SetActive(false);
+        pauseMenuOpen = false;
         startTimeHideCursor();
     }
 
     void PauseGame()
     {
         menuCanvas.SetActive(true);
+        pauseMenuOpen = true;
         stopTimeShowCursor();
     }
 
