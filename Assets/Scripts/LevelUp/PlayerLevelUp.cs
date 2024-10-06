@@ -30,22 +30,22 @@ public class PlayerLevelUp : MonoBehaviour
     MovementController movementController;
 
     [SerializeField]
-    int movespeedLvl = 0;
+    public int movespeedLvl = 0;
 
     [SerializeField]
-    int lightRadiusLvl = 0;
+    public int lightRadiusLvl = 0;
 
     [SerializeField]
-    int lightRegenLvl = 0;
+    public int lightRegenLvl = 0;
 
     [SerializeField]
-    int dmgReductionLvl = 0;
+    public int dmgReductionLvl = 0;
 
     [SerializeField]
-    int maxStaminaLvl = 0;
+    public int maxStaminaLvl = 0;
 
     [SerializeField]
-    int staminaRegenLvl = 0;
+    public int staminaRegenLvl = 0;
 
     [SerializeField]
     float dmgRedScalingFactor = 8.0f;

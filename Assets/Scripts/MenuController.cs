@@ -7,6 +7,9 @@ public class MenuController : MonoBehaviour
     public GameObject menuCanvas;
     public GameObject levelUpCanvas;
 
+    [SerializeField]
+    private LevelUpgradesUI levelUpgradesUI;
+
     private bool isPaused = false;
 
     [SerializeField]
@@ -164,6 +167,7 @@ public class MenuController : MonoBehaviour
     {
         menuCanvas.SetActive(true);
         pauseMenuOpen = true;
+        levelUpgradesUI.updateUI();
         stopTimeShowCursor();
     }
 
