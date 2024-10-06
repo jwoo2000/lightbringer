@@ -9,12 +9,28 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private bool isSpawning = true; 
     [SerializeField] private float spawnDistance;
     [SerializeField] private int maxEnemies = 0;
+    [SerializeField] private int startSpawningDistance = 50;
+    GameObject player;
     private int numEnemies;
 
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
-    private void Start() {
+
+    void Start() {
         StartCoroutine(Spawner());
         numEnemies = 0;
+        isSpawning = false;
+    }
+
+    void Update()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) < startSpawningDistance)
+        {
+            isSpawning = true;
+        }
     }
 
     private IEnumerator Spawner () {
@@ -25,12 +41,18 @@ public class EnemySpawner : MonoBehaviour
             int rand = Random.Range(0, enemyPrefabs.Length);
             GameObject enemyToSpawn = enemyPrefabs[rand];
 
-            if (numEnemies < maxEnemies || maxEnemies == 0) {
+            if (numEnemies < maxEnemies || maxEnemies == 0) 
+            {
                 Instantiate(enemyToSpawn, SpawnPosition(), Quaternion.identity);
                 numEnemies++;
-            } else {
+            } 
+            else 
+            {
                 isSpawning = false;
             }
+            
+
+            
 
         }
     }

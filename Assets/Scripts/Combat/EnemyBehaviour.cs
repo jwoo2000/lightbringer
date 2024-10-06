@@ -19,6 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float enemyDmgReduc = 0.0f;
     public float detectionRange = 20.0f;
     public float loseDetectionRange = 40.0f;
+    public int expOnDeath = 5;
 
     //Medium class specific
     public float attackWaitTime = 0.5f;
@@ -34,8 +35,19 @@ public class EnemyBehaviour : MonoBehaviour
     private bool damageCoolDown;
     private string tagToDamage = "Player";
     private bool playerDetected;
+    private int rotationSpeed = 500;
 
+    //wandering variables
+    private Vector3 wanderTarget;
+    private float wanderValue = 0.0f;
+    private bool wandering = false;
 
+    private PlayerStats playerStats;
+
+    void Awake()
+    {
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         if (this._enemyHealth.Health <= 0.0f) {
+            playerStats.addExp(expOnDeath);
             Destroy(gameObject);
             // Spawn an effect to be played when enemy dies
         }
@@ -93,9 +106,16 @@ public class EnemyBehaviour : MonoBehaviour
         }
         if (playerDetected) 
         {
-            transform.LookAt(target, Vector3.up);
+            //transform.LookAt(target, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget(target.position), rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
         }
+    }
+
+    private Quaternion rotationTarget(Vector3 target) 
+    {
+        Quaternion rotTarget = Quaternion.LookRotation(target - this.transform.position);
+        return rotTarget;
     }
 
     public void TakeDamage (float dmg) 
@@ -111,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour
         damageCoolDown = false;
     }
 
-    private void Move() {
+    private void Chase() {
         //Detect player 
         if (distanceToTarget < detectionRange)
         {
@@ -132,7 +152,40 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
-            //wander
+            Wander();
+        }
+    }
+
+    private Vector3 pickDirection()
+    {
+        int deg = Random.Range(0, 360);
+        float rad = deg * Mathf.Deg2Rad;
+        Vector3 lookDirection = new Vector3(Mathf.Sin(rad), 1, Mathf.Cos(rad));
+        return lookDirection;
+    }
+
+    // When player is not in range, move in a random direction at 1/10 of the enemies base speed
+    private void Wander() 
+    {
+        if (wandering) 
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget(wanderTarget), 0.5f * rotationSpeed * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
+            rb.velocity = 0.1f * speed * transform.forward;
+            wanderValue += Time.deltaTime;
+            if (wanderValue >= 2) 
+            {
+                wandering = false;
+            }
+        }
+        else
+        {
+            wanderValue -= Time.deltaTime;
+            if (wanderValue <= 0) 
+            {
+                wandering = true;
+                wanderTarget = transform.position + pickDirection();
+            }
         }
     }
 
@@ -143,6 +196,10 @@ public class EnemyBehaviour : MonoBehaviour
             GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
             Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
             damageCoolDown = true;
+            if (behaviourType == EnemyType.Minion) 
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -151,12 +208,11 @@ public class EnemyBehaviour : MonoBehaviour
         if (attackCoolDown <= 0) 
         {
             damageCoolDown = false;
-            Move();
+            Chase();
         } 
         else 
         {
             attackCoolDown -= Time.deltaTime;
-            
         }
     }
 
@@ -169,12 +225,12 @@ public class EnemyBehaviour : MonoBehaviour
         } 
         else if (distanceToTarget < attackTriggerRange || attackWindUp > 0) 
         {
-        rb.velocity = -1.0f * speed * transform.forward;
-        attackWindUp += Time.deltaTime;
+            rb.velocity = -1.0f * speed * transform.forward;
+            attackWindUp += Time.deltaTime;
         } 
         else 
         {
-            Move();
+            Chase();
         }
             
         if (attackWindUp > attackWaitTime) {
@@ -189,6 +245,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MinionEnemyBehaviour()
     {
-
+        Chase();
     }
 }

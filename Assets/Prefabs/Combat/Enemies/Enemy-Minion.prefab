@@ -157,7 +157,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.73
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -173,12 +173,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9065c490f9aa24b9bb13791beae211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 8
   damageAmount: 20
   startingHealth: 50
-  behaviourType: 0
-  detectionRange: 20
-  loseDetectionRange: 40
+  behaviourType: 3
+  enemyDmgReduc: 0
+  detectionRange: 40
+  loseDetectionRange: 60
+  expOnDeath: 0
   attackWaitTime: 0.5
   lungeSpeed: 7
   attackTriggerRange: 3

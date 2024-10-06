@@ -206,12 +206,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9065c490f9aa24b9bb13791beae211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   damageAmount: 20
   startingHealth: 200
   behaviourType: 1
-  detectionRange: 20
+  enemyDmgReduc: 0
+  detectionRange: 25
   loseDetectionRange: 40
+  expOnDeath: 5
   attackWaitTime: 0.2
   lungeSpeed: 7
   attackTriggerRange: 3
