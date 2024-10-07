@@ -32,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4767174390154978106}
+  - {fileID: 179052092172427818}
   - {fileID: 6451863747661614099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,6 +72,7 @@ MonoBehaviour:
   cloakMat: {fileID: 0}
   POIObjects: {fileID: 2957270546869939980}
   visibilityPainter: {fileID: 2823299030166201913}
+  wepFirefly: {fileID: 8994592474161173474}
   discovered: 0
   playerTransform: {fileID: 0}
   discoverDist: 6
@@ -106,6 +108,73 @@ Transform:
   - {fileID: 4541631198257624827}
   m_Father: {fileID: 5117328974939134221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1082873720615385027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5117328974939134221}
+    m_Modifications:
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346320037420065825, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: m_Name
+      value: WepFirefliesLow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+--- !u!4 &179052092172427818 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 971437234229663209, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+  m_PrefabInstance: {fileID: 1082873720615385027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8994592474161173474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8346320037420065825, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+  m_PrefabInstance: {fileID: 1082873720615385027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1892132387624212561
 PrefabInstance:
   m_ObjectHideFlags: 0

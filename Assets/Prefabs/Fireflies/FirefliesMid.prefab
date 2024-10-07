@@ -3132,7 +3132,7 @@ ParticleSystem:
     rotationAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 360
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4789,7 +4789,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f05ce8b41c939874abd805f66150fa42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4858,6 +4858,8 @@ MonoBehaviour:
   absorbSpeed: 3
   absorbSpeedMulti: 1.15
   isDying: 0
+  isWep: 0
+  tier: 0
   exp: 2
 --- !u!135 &3455073793264798541
 SphereCollider:

@@ -18,13 +18,25 @@ public class AbsorbFireflies : MonoBehaviour
     private bool isDying = false;
 
     [SerializeField]
+    private bool isWep = false;
+
+    [SerializeField]
+    private int tier;
+
+    [SerializeField]
     private int exp = 1;
 
     private Collider trigger;
 
+    private Vector3 psCenter;
+
+    [SerializeField]
+    private float explodeFactor = 1.0f;
+
     private void Start()
     {
         InitIfNeeded();
+        psCenter = particleSystem.transform.position;
         var trigger = particleSystem.trigger;
         trigger.AddCollider(attractor.GetComponent<Collider>());
     }
@@ -55,11 +67,28 @@ public class AbsorbFireflies : MonoBehaviour
             particles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
     }
 
+    // returns direction away from center of particle system
+    private Vector3 outwardsDir(Vector3 pos)
+    {
+        return (pos - psCenter).normalized;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerStats>().addExp(exp);
+            PlayerStats playerStats = other.gameObject.GetComponent<PlayerStats>();
+            playerStats.addExp(exp);
+            playerStats.getWep(tier);
+            if (isWep)
+            {
+                int numParticlesAlive = particleSystem.GetParticles(particles);
+                for (int i = 0; i < numParticlesAlive; i++)
+                {
+                    particles[i].velocity += outwardsDir(particles[i].position) * explodeFactor;
+                }
+                particleSystem.SetParticles(particles, numParticlesAlive);
+            }
             isDying = true;
             Destroy(GetComponent<Collider>());
             particleSystem.Stop();
