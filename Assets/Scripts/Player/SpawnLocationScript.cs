@@ -9,6 +9,11 @@ public class SpawnLocationScript : MonoBehaviour
 
     [SerializeField]
     private Vector3 spawnRingCenter = Vector3.zero;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(spawnRingCenter, spawnRingRadius);
+    }
 
     void Awake()
     {
