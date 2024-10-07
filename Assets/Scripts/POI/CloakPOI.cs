@@ -13,6 +13,9 @@ public class CloakPOI : MonoBehaviour
     [SerializeField]
     private GameObject visibilityPainter;
 
+    [SerializeField]
+    private GameObject wepFirefly;
+
     private Material[][] ogMats;
     private Renderer[] renderers;
 
@@ -30,6 +33,7 @@ public class CloakPOI : MonoBehaviour
     {
         renderers = POIObjects.GetComponentsInChildren<Renderer>();
         saveOgMats();
+        wepFirefly.GetComponent<AbsorbFireflies>().attractor = playerTransform;
         cloak();
     }
     private void Update()
@@ -62,6 +66,7 @@ public class CloakPOI : MonoBehaviour
     {
         //Debug.Log("cloaking poi");
         visibilityPainter.SetActive(false);
+        wepFirefly.SetActive(false);
         for (int i = 0; i < renderers.Length; i++)
         {
             Material[] materials = renderers[i].materials;
@@ -77,6 +82,7 @@ public class CloakPOI : MonoBehaviour
     public void uncloak()
     {
         visibilityPainter.SetActive(true);
+        wepFirefly.SetActive(true);
         for (int i = 0; i < renderers.Length; i++)
         {
             Material[] materials = renderers[i].materials;

@@ -3132,7 +3132,7 @@ ParticleSystem:
     rotationAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 360
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4858,6 +4858,8 @@ MonoBehaviour:
   absorbSpeed: 3
   absorbSpeedMulti: 1.15
   isDying: 0
+  isWep: 0
+  tier: 0
   exp: 2
 --- !u!135 &3455073793264798541
 SphereCollider:
