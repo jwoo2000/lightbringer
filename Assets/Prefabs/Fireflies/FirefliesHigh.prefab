@@ -225,7 +225,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.69640225, g: 0.5235849, b: 1, a: 1}
+      maxColor: {r: 0.90137225, g: 0.6933962, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4861,6 +4861,7 @@ MonoBehaviour:
   isWep: 0
   tier: 0
   exp: 5
+  explodeFactor: 1
 --- !u!135 &3455073793264798541
 SphereCollider:
   m_ObjectHideFlags: 0
