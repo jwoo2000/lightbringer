@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3da6fc47e30eb842976b539c2c5a26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cloakMat: {fileID: 0}
+  playerTransform: {fileID: 0}
+  discoverDist: 0
   variants:
   - {fileID: 2824910908401658563, guid: 7ade203e7146dfe4885aa178263faaf8, type: 3}
   - {fileID: 2824910908401658563, guid: ef012ac0e1bf10442b0af95ce7cc2075, type: 3}
@@ -67,10 +70,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 0.1
   enemyPrefabs:
-  - {fileID: 4952036158238110365, guid: 9ef9eb0f93bde45488bc4cddfba9243f, type: 3}
+  - {fileID: 63767002397184257, guid: 0eaba585f17d9364e8a0b5b7921e5a88, type: 3}
   isSpawning: 1
   spawnDistance: 10
-  maxEnemies: 1
+  maxEnemies: 3
   startSpawningDistance: 50
 --- !u!1001 &8995832279818428534
 PrefabInstance:

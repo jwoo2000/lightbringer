@@ -66,10 +66,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 0.1
   enemyPrefabs:
-  - {fileID: 6162115194065706948, guid: e0891f74b5c956b46bdb1d94d1bd17e0, type: 3}
+  - {fileID: 4952036158238110365, guid: 9ef9eb0f93bde45488bc4cddfba9243f, type: 3}
   isSpawning: 1
   spawnDistance: 15
-  maxEnemies: 5
+  maxEnemies: 2
   startSpawningDistance: 50
 --- !u!1001 &8995832279818428534
 PrefabInstance:
