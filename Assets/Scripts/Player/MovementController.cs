@@ -94,10 +94,10 @@ public class MovementController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && (staminaController.stamina > 0.0f)) {
             currSpeed = speed * sprintMulti;
-            player.position = player.position + (dir * currSpeed * Time.deltaTime);
+            player.position = player.position + (currSpeed * Time.deltaTime * dir);
         }else {
             currSpeed = speed;
-            player.position = player.position + (dir * currSpeed * Time.deltaTime);
+            player.position = player.position + (currSpeed * Time.deltaTime * dir);
         }
 
     }

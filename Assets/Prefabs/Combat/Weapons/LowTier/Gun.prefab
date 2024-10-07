@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4586009408295809615
+--- !u!1 &2553633764474173803
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4894705084999876388}
-  - component: {fileID: 8552471238087782292}
+  - component: {fileID: 4891674712524862509}
+  - component: {fileID: 9060293061136541748}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -17,36 +17,41 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4894705084999876388
+--- !u!4 &4891674712524862509
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4586009408295809615}
+  m_GameObject: {fileID: 2553633764474173803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.938765, y: -1.0338879, z: -13.558148}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8552471238087782292
+--- !u!114 &9060293061136541748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4586009408295809615}
+  m_GameObject: {fileID: 2553633764474173803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca41f8075999e4d388ef33fd7c44a756, type: 3}
+  m_Script: {fileID: 11500000, guid: e4ab483b0201f0446bf6fc3bfa0833ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageUpgradeLevel: 1
-  speedUpgradeLevel: 1
-  uniqueUpgradeLevel: 1
-  attackObject: {fileID: 499164591991765233, guid: 977fa135d3bc4184bae14bb99122e937, type: 3}
-  fireRate: 2
-  baseFireRate: 2
+  weaponTier: 0
+  damageLevel: 0
+  speedLevel: 0
+  uniqueLevel: 0
+  playerTransform: {fileID: 0}
+  weaponOriginOffset: {x: 0, y: 1, z: 0}
+  projectile: {fileID: 9146211026119439065, guid: 79f3f70c2ac94434abede99f13fa656d, type: 3}
+  baseDamage: 20
+  baseCooldown: 1
+  cdReducPerSpeedLevel: 0.2
+  dmgPerDmgLevel: 0.1
