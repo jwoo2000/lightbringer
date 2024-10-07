@@ -45,13 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponTier: 0
+  weaponName: Gun
+  weaponImage: {fileID: 21300000, guid: 577e37ee5f7136e46805d6aec9433994, type: 3}
+  damageLabel: Damage
+  speedLabel: Firerate
+  uniqueLabel: Projectile Count
   damageLevel: 0
   speedLevel: 0
   uniqueLevel: 0
   playerTransform: {fileID: 0}
-  weaponOriginOffset: {x: 0, y: 1, z: 0}
-  projectile: {fileID: 9146211026119439065, guid: 79f3f70c2ac94434abede99f13fa656d, type: 3}
+  weaponOriginOffset: {x: 0, y: 0, z: 0}
+  weaponObject: {fileID: 9146211026119439065, guid: 79f3f70c2ac94434abede99f13fa656d, type: 3}
   baseDamage: 20
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
+  projSpeed: 1

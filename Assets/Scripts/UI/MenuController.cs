@@ -9,6 +9,8 @@ public class MenuController : MonoBehaviour
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
+    [SerializeField]
+    private WeaponInfoPanelController weaponInfoPanelController;
 
     private bool isPaused = false;
 
@@ -38,6 +40,9 @@ public class MenuController : MonoBehaviour
     private bool levelUIOpen = false;
 
     [SerializeField]
+    public bool weaponUpUIOpen = false;
+
+    [SerializeField]
     private bool pauseMenuOpen = false;
 
     void Awake()
@@ -48,7 +53,8 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen)
+        // pause game if level ui and weapon up ui is not open
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponUpUIOpen)
         {
             if (isPaused)
             {
@@ -60,11 +66,13 @@ public class MenuController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !pauseMenuOpen)
+        // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
+        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponUpUIOpen && !pauseMenuOpen)
         {
             processNextLevelUp();
         } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
         {
+            // if level ui is open
             closeLevelUI();
         }
     }
@@ -138,6 +146,8 @@ public class MenuController : MonoBehaviour
     }
 
 
+
+
     private void stopTimeShowCursor()
     {
         //Debug.Log("stopping time");
@@ -168,6 +178,7 @@ public class MenuController : MonoBehaviour
         menuCanvas.SetActive(true);
         pauseMenuOpen = true;
         levelUpgradesUI.updateUI();
+        weaponInfoPanelController.updateAllUI();
         stopTimeShowCursor();
     }
 

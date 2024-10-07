@@ -6,24 +6,23 @@ public abstract class Weapon : MonoBehaviour
     public enum Stat { Damage, Speed, Unique }
     public enum Tier { Low, Mid, High }
 
-    [SerializeField]
     public Tier weaponTier;
 
+    public string weaponName;
+
+    public Sprite weaponImage;
+
     // adjust stat names for specific weapons
-    [SerializeField]
     public string damageLabel = "Damage";
     public string speedLabel = "Speed";
     public string uniqueLabel = "Unique";
 
-    [SerializeField] // serialised for debugging dont manually assign these values
     public int damageLevel = 0;   // Damage upgrade level
     public int speedLevel = 0;    // Speed upgrade level (affects a speed related property: fire rate, rotation speed, etc.)
     public int uniqueLevel = 0;   // Unique stat upgrade level (based on the weapon type)
 
-    [SerializeField]
     public Transform playerTransform;
 
-    [SerializeField]
     public Vector3 weaponOriginOffset;
 
     [SerializeField]

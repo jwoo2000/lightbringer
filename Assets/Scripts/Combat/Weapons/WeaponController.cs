@@ -5,6 +5,9 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField]
+    private WeaponInfoPanelController infoController;
+
+    [SerializeField]
     private GameObject player;
     [SerializeField]
     private Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
@@ -34,7 +37,39 @@ public class WeaponController : MonoBehaviour
                 activeWeaponObjects.Add(weaponInstance);
                 weapon.playerTransform = player.transform;
                 weapon.weaponOriginOffset = weaponOriginOffset;
-
+                switch (weapon.weaponTier)
+                {
+                    case Weapon.Tier.Low:
+                        if (!infoController.lowPanel.weaponShowing)
+                        {
+                            infoController.setLowWep(weapon);
+                        } else
+                        {
+                            Debug.LogWarning("low tier weapon ui already has a weapon");
+                        }
+                        break;
+                    case Weapon.Tier.Mid:
+                        if (!infoController.midPanel.weaponShowing)
+                        {
+                            infoController.setMidWep(weapon);
+                        } else
+                        {
+                            Debug.LogWarning("mid tier weapon ui already has a weapon");
+                        }
+                        break;
+                    case Weapon.Tier.High:
+                        if (!infoController.highPanel.weaponShowing)
+                        {
+                            infoController.setHighWep(weapon);
+                        } else
+                        {
+                            Debug.LogWarning("high tier weapon ui already has a weapon");
+                        }
+                        break;
+                    default:
+                        Debug.LogWarning("unknown weapon tier, cannot assign weapon to ui info");
+                        return;
+                }
                 Debug.Log($"{weaponInstance.name} equipped.");
             }
             else
