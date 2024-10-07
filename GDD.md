@@ -44,7 +44,7 @@ _Lightbringer_ is a third-person roguelike set in an unknown world of darkness. 
 
 ### Core Concept
 
-World is covered in a dark mist/shadows, survivor is trying to fight off the mist using tools of light. Aim is to survive for as long as possible while navigating through the darkness.
+**_Venture into a world shrouded in darkness. Unveil the mysterious secrets of the past with your light, but tread carefully—haste may lead to your undoing._**
 
 ### Related Genres and Games
 
@@ -62,78 +62,94 @@ Gameplay doesn't require any great deal of mechanical skill, targeting more casu
 
 -   Unique weapon/tool usage and combinations
 -   Not the typical horde killer gameplay
--   Large-level instead of dungeon room based roguelike
+-   Large-level instead of dungeon room based roguelike (The player can bee-line straight to the endgame zones from the start, whether they are ready or not)
 -   More exploration focused
 -   Has lore the user can discover or infer from environmental cues.
+-   Unique resources
+-   Non-linear progression
+-   Subtle storytelling through narratives embedded in exploration (Environmental storytelling)
 
 ## Story and Narrative
 
 ### Backstory
 
+An ancient forest, once teeming with life, has been enveloped by an unnatural darkness. No one knows how or why this occurred, but the light that once guided travellers is now just a faint wisp of its former glory. As time passes, the darkness has spread, warping the landscape and presumably its inhabitants. Legend speaks of an ancient, forgotten power buried deep within the forest, one that could hold the key to this curse—or its source.
+
+You, a **being of light**, awaken at the heart of this darkened land. Stripped of memory, you find yourself drawn toward the scattered remnants of the world, guided by an inner pull and aided by small, glowing companions. These little lights act as your guides, nudging you toward **Points of Interest (POIs)** and giving you clues about your past and the calamity that has overtaken the land.
+
 #### Premise
 
--   Village/town fell into darkness suddenly; unknown reason.
--   Adventurers have failed in recovering the place.
--   You are an adventurer trying to recover light in the area.
+-   Area in the middle of a forest has been shrouded in darkness suddenly; unknown reason.
+-   You’ve woken up, a being of light, in the middle of this mess, and it seems you have some little buddies helping you figure out where to go.
 
 #### Storyline
 
--   You meet/defeat different enemies and characters while trying to recover the town.
--   Certain characters appear as past adventurers who have failed to escape/reach the end
--   Certain characters drop items that help progress the game and the story such as journals, crafting guides, other tools, etc.
+-   You encounter and defeat different enemies and characters while trying to figure out what happened here
+-   Each point of interest has something different to tell, a piece of the puzzle.
 
 ### Characters
 
-Player character is a being of light, as they collect items it could show on their body.
-Enemies that spawn (shadow silhouettes) could be people that failed to escape/reach the end. Could have the player’s failed runs (along with their items) appear as enemies.
+_Player_
+
+Player is a being of light, nothing is known much about them. They may have been connected to the forest's ancient light given their ability to absorb them into themselves…
+
+_Ancient Light_
+
+Manifested in a form akin to fireflies, these beings guide the player to points of interests providing the player with power as they find more of them.
+
+_Enemies_
+
+These strange abominations seem to have nothing in mind but to destroy you, the being of light. They seem to congregate around or maybe even originate from these peculiar points of interest…
+
 
 ## Gameplay and Mechanics
 
-Player spawns into a dark environment surrounded by shadow/dark mist (that slowly closes in on them), equipped with a basic weapon of light, they can use it to clear the darkness temporarily. Player can move around and point their weapon into the darkness, and sometimes they may discover a path or special point of interest (related to light, could be a streetlamp or some village ruins, etc). Each point of interest discovered becomes a sort of permanently “liberated” lit up area and gives them exp to level up their weapons/items, or they may discover new weapons/items to pick up.
+Player spawns at the outskirts of a darkness enshrouded forest. They have the ability to unveil their immediate surroundings and walk around. 
+Not long after the player may find a trail of wisps/fireflies that they can absorb, granting them a resource and a direction to go.
+The trails lead to strange points of interest, incomprehensible at times, but they also seem to harbour these more powerful wisps. Picking these up grants something more special to the player - a way to defend themselves.
+
+When the player gathers enough of these wisps they have the ability to level up one of their stats by pressing “Tab”. Opening the pause menu “Esc” will also show the upgrades they have made to their stats.
 
 ### Player perspective
 
 <p align="center">
-  <img src="Images/PlayerPerspective.png">
+  <img src="Images/cameraMovement.gif">
 </p>
 Third-Person perspective with a camera that can move around a point above the player character.
 
 ### Controls
 
+-   WASD character control
 -   Mouse to control third-person camera/aim
 -   RMB to aim down sights (zoom in over shoulder)
--   Tab for inventory -> inventory displays item information
--   Esc for both settings/pause/menu screen
+-   Tab to open and close the level up screen
+-   Esc to pause and resume the game (Contains menu options and player information)
+
 
 ### Progression
 
 #### Player Progression
 
--   Find POIs to have safe zones
--   Find weapons/items to strengthen character
--   Certain items synergise better with certain weapons
+-   Gather wisps
+-   Find POIs to acquire/upgrade weapons
 
 #### Difficulty Progression
 
--   Darkness becomes harder to clear, closes in faster as time progresses.
--   Enemies can slowly be seen lurking in the darkness as time progresses (no silhouettes visible within first few minutes of gameplay)
--   Enemies become manifested when difficulty reaches threshold and can be damaged/damage the player
+-   The deeper into the forest you go, the more difficult enemies appear
 
 ### Gameplay Mechanics
 
 #### Combat Mechanic
 
--   Player uses light to see enemies
--   Defeating an enemy increases light radius (until a maximum limit)
+-   Player uses light to reveal the darkness
 -   Getting hit by an enemy decreases light radius
 -   Player loses when light radius is gone
 -   Light radius = HP
 
 #### Item Drop Mechanic
 
--   Certain enemies drop items
--   Item drops progress gameplay
--   Pickup radius around player where items vacuum into them
+-   Player can have up to 3 weapons
+-   Each has upgrades you can get for them with unique upgrades available for each weapon
 
 ## Levels and World Design
 
@@ -141,6 +157,17 @@ Third-Person perspective with a camera that can move around a point above the pl
 
 2.5D (look around with camera, plane of movement is pretty much top down 2D)
 One (generated?) level for player to navigate, no map or minimap
+
+<p align="center">
+  <img src="Images/gameworld.png">
+</p>
+
+
+### Gameplay Loop
+
+<p align="center">
+  <img src="Images/GameplayFlowchart.png">
+</p>
 
 ### Objects
 
@@ -166,41 +193,35 @@ Certain weapons may interact with dynamic environmental objects.
 -   Little Nightmares
 -   Don’t Starve
 
+
+
 <p align="center">
-  <img src="Images/GameScene.png">
+  <img src="Images/gameworldcolour.png">
 </p>
 Game Scene
-<p align="center">
-  <img src="Images/EnemyAndLighting.png">
-</p>
-How enemies could appear in game
 
 ### Sound and Music
 
-Echoey - high reverb -> alone
+Echoey - high reverb -> windy
 White noise-ish -> eerie vibes
-Louder as enemies move closer
 
 1. SFX for game selection (eg. hover over menu, switch item in inventory)
 2. SFX for player character
     - walking on different surfaces
     - getting hit
-    - picking up items
+    - picking up wisps
 3. SFX for weapons
     - different weapons going off
-    - different weapons combining
 4. SFX for enemies
     - enemies killed
     - enemies hit character
-    - dropping items
 5. Ambient sounds
     - Freeing different areas adds to the ambient sounds
-    - Fireflies?
+    - Fireflies
     - Tinkles and light sprinkle sounds
     - Echoes of past civilisation
 6. Discover special enemies
-    - Plays sound for past adventurers
-    - Plays unique sound for when discovering your past run
+    - Special sound for difficult enemies
 7. Death-related instances
     - Suspenseful music before imminent death
     - Classical strings?
@@ -209,60 +230,56 @@ Louder as enemies move closer
 
 ### Assets
 
-Lamppost:
-https://assetstore.unity.com/packages/3d/environments/urban/lamppost-269488
+https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-forest-environment-free-demo-35361
 
-Village houses pack:
-https://assetstore.unity.com/packages/3d/characters/village-houses-pack-63695
+https://assetstore.unity.com/packages/3d/environments/low-poly-medieval-market-262473#reviews
 
-Medieval environment pack:
-https://assetstore.unity.com/packages/3d/environments/fantasy/free-slavic-medieval-environment-town-interior-and-exterior-167010
+https://assetstore.unity.com/packages/3d/environments/campfires-torches-models-and-fx-242552
 
-Rocks and Boulders:
-https://assetstore.unity.com/packages/3d/props/exterior/rock-and-boulders-2-6947
+https://assetstore.unity.com/packages/3d/environments/dungeons/low-poly-dungeons-lite-177937#description
+
+https://assetstore.unity.com/packages/3d/environments/fantasy/halloween-pack-cemetery-snap-235573
+
+https://assetstore.unity.com/packages/3d/props/exterior/traditional-water-well-4477
+
+https://assetstore.unity.com/packages/3d/props/exterior/tomb-65925
+
+https://assetstore.unity.com/packages/3d/environments/historic/medieval-barrows-and-wagons-33411
+
+https://assetstore.unity.com/packages/3d/props/exterior/ancient-ruins-and-plants-201914
 
 ## User Interface (UI)
 
-No visible GUI when in-game
-An overlay can be shown at will to see items/weapons picked up
+-   Stamina bar up top
+-   Exp bar down bottom
+-   Pause menu (Also displays upgrades/weapons picked up)
 
 <p align="center">
-  <img src="Images/TypicalGameScene.png">
+  <img src="Images/ui.png">
 </p>
-Typical game scene
-
-<p align="center">
-  <img src="Images/TabForOverlay.png">
-</p>
-Pressing tab to show overlay
-
-<p align="center">
-  <img src="Images/PossiblePauseMenus.png">
-</p>
-<p align="center">
-  <img src="Images/PossiblePauseMenu2.png">
-</p>
-Possible pause menus
 
 ## Technology and Tools
 
 -   Unity 2022
 -   GitHub
 -   Figma for brainstorming/ideation
+-   Trello
 -   Audacity
 -   Paint.net / Photoshop
 
 ## Team Communications, Timelines and Task Assignment
 
--   Discord Meetings to delegate work
+-   Discord meetings and Trello to delegate work
 -   Figma/Google docs for collaborative document work
 
 ## Possible Challenges
 
 -   Level design/asset finding
--   Weapon interactions with each other
+-   Weapon implementations
 -   Enemy/darkness implementation
 -   Character interactions
+-   Procedural generation of terrain/trees/details
+
 
 ### References
 
