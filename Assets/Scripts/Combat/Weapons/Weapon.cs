@@ -9,6 +9,12 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     public Tier weaponTier;
 
+    // adjust stat names for specific weapons
+    [SerializeField]
+    public string damageLabel = "Damage";
+    public string speedLabel = "Speed";
+    public string uniqueLabel = "Unique";
+
     [SerializeField] // serialised for debugging dont manually assign these values
     public int damageLevel = 0;   // Damage upgrade level
     public int speedLevel = 0;    // Speed upgrade level (affects a speed related property: fire rate, rotation speed, etc.)
@@ -16,10 +22,12 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField]
     public Transform playerTransform;
+
     [SerializeField]
-    protected Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
+    public Vector3 weaponOriginOffset;
+
     [SerializeField]
-    protected GameObject projectile; // prefab to fire
+    protected GameObject weaponObject; // prefab to instantiate
 
     [SerializeField]
     protected float baseDamage;

@@ -6,11 +6,20 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
 
     public const int maxWeaponSlots = 3;
     public List<Weapon> activeWeapons = new List<Weapon>(maxWeaponSlots);
     public List<GameObject> activeWeaponObjects = new List<GameObject>(maxWeaponSlots);
     public List<GameObject> allWeaponObjects = new List<GameObject>();
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            equipWeapon(allWeaponObjects[0]);
+        }
+    }
 
     public void equipWeapon(GameObject weaponPrefab)
     {
@@ -24,6 +33,7 @@ public class WeaponController : MonoBehaviour
                 activeWeapons.Add(weapon);
                 activeWeaponObjects.Add(weaponInstance);
                 weapon.playerTransform = player.transform;
+                weapon.weaponOriginOffset = weaponOriginOffset;
 
                 Debug.Log($"{weaponInstance.name} equipped.");
             }

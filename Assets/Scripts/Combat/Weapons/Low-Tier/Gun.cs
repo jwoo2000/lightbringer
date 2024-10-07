@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Gun : Weapon
+public class Gun : ProjWeapon
 {
-    private float projSpeed = 1.0f;
-
     // init values for Gun
     public Gun()
     {
+        speedLabel = "Firerate";
+        uniqueLabel = "Projectile Count";
+        projSpeed = 1.0f;
         baseDamage = 20.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
@@ -18,7 +19,7 @@ public class Gun : Weapon
 
     public override void Fire()
     {
-        GameObject projInstance = Instantiate(projectile, playerTransform.position + weaponOriginOffset, Quaternion.identity);
+        GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         GunProjectile gunProj = projInstance.GetComponent<GunProjectile>();
         gunProj.dir = playerTransform.forward;
         gunProj.speed = projSpeed;
