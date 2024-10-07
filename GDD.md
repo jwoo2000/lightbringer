@@ -146,10 +146,19 @@ Third-Person perspective with a camera that can move around a point above the pl
 -   Player loses when light radius is gone
 -   Light radius = HP
 
-#### Item Drop Mechanic
+#### Weapon Mechanic
 
 -   Player can have up to 3 weapons
 -   Each has upgrades you can get for them with unique upgrades available for each weapon
+
+#### Detailed Weapon Information
+<p align="center">
+  <img src="Images/weaponInfo.png">
+</p>
+
+<p align="center">
+  <img src="Images/weaponClassStructure.png">
+</p>
 
 ## Levels and World Design
 
