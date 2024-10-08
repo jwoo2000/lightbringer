@@ -81,6 +81,7 @@ public class AbsorbFireflies : MonoBehaviour
             playerStats.addExp(exp);
             if (isWep)
             {
+                playerStats.weaponController.absorbedWepFF(tier);
                 int numParticlesAlive = particleSystem.GetParticles(particles);
                 for (int i = 0; i < numParticlesAlive; i++)
                 {

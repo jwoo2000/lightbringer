@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6155040526535158398, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+      propertyPath: tier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346320037420065825, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
       propertyPath: m_Name
       value: WepFirefliesLow

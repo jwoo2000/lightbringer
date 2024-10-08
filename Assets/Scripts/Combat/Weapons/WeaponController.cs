@@ -47,10 +47,13 @@ public class WeaponController : MonoBehaviour
         switch (tier)
         {
             case Weapon.Tier.Low:
+                Debug.Log("Absorbed Low Wep FF");
                 break;
             case Weapon.Tier.Mid:
+                Debug.Log("Absorbed Mid Wep FF");
                 break;
             case Weapon.Tier.High:
+                Debug.Log("Absorbed High Wep FF");
                 break;
             default:
                 Debug.LogWarning("WeaponController: Unknown tier weapon firefly absorbed");

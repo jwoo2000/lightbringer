@@ -14,6 +14,10 @@ public class PlayerStats : MonoBehaviour
     private MovementController movementController;
 
     [SerializeField]
+    public WeaponController weaponController;
+
+
+    [SerializeField]
     private FogBlend unexploredFogBlend;
 
     [SerializeField]

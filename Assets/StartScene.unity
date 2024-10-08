@@ -7497,6 +7497,7 @@ MonoBehaviour:
   gameManager: {fileID: 817419118}
   menuController: {fileID: 817419120}
   movementController: {fileID: 1024315739}
+  weaponController: {fileID: 1024315748}
   unexploredFogBlend: {fileID: 17433195}
   exploredFogBlend: {fileID: 2013744118}
   fogClearer: {fileID: 1545632277}
