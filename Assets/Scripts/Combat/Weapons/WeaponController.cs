@@ -8,6 +8,9 @@ public class WeaponController : MonoBehaviour
     private WeaponInfoPanelController infoController;
 
     [SerializeField]
+    private MenuController menuController;
+
+    [SerializeField]
     private GameObject player;
     [SerializeField]
     private Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
@@ -24,23 +27,11 @@ public class WeaponController : MonoBehaviour
     public const int maxWeaponSlots = 3;
     public List<Weapon> activeWeapons = new List<Weapon>(maxWeaponSlots);
     public List<GameObject> lowTierWeaponPrefabs = new List<GameObject>();
+    public List<GameObject> lowTierWeaponChoicePanels = new List<GameObject>();
     public List<GameObject> midTierWeaponPrefabs = new List<GameObject>();
+    public List<GameObject> midTierWeaponChoicePanels = new List<GameObject>();
     public List<GameObject> highTierWeaponPrefabs = new List<GameObject>();
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            equipWeapon(lowTierWeaponPrefabs[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            equipWeapon(midTierWeaponPrefabs[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            equipWeapon(highTierWeaponPrefabs[0]);
-        }
-    }
+    public List<GameObject> highTierWeaponChoicePanels = new List<GameObject>();
 
     public void absorbedWepFF(Weapon.Tier tier)
     {
@@ -51,6 +42,7 @@ public class WeaponController : MonoBehaviour
                 if (LowWeapon == null)
                 {
                     // first wep ff of tier, open get weapon
+                    menuController.newWeaponChoices(tier);
                 } else
                 {
                     // not first, open upgrade for tier
@@ -68,7 +60,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private (GameObject, GameObject, GameObject) random3SelectWeapon(Weapon.Tier tier)
+    public (GameObject, GameObject, GameObject, GameObject, GameObject, GameObject) random3SelectWeapon(Weapon.Tier tier)
     {
         int possibleChoiceCount = getWeaponPrefabs(tier).Count;
         
@@ -89,9 +81,12 @@ public class WeaponController : MonoBehaviour
         }
 
         GameObject left = getWeaponPrefabs(tier)[possibleChoices[0]];
+        GameObject leftPanel = getWeaponPanelPrefabs(tier)[possibleChoices[0]];
         GameObject middle = getWeaponPrefabs(tier)[possibleChoices[1]];
+        GameObject midPanel = getWeaponPanelPrefabs(tier)[possibleChoices[1]];
         GameObject right = getWeaponPrefabs(tier)[possibleChoices[2]];
-        return (left, middle, right);
+        GameObject rightPanel = getWeaponPanelPrefabs(tier)[possibleChoices[2]];
+        return (left, leftPanel, middle, midPanel, right, rightPanel);
     }
 
     private List<GameObject> getWeaponPrefabs(Weapon.Tier tier)
@@ -106,6 +101,22 @@ public class WeaponController : MonoBehaviour
                 return highTierWeaponPrefabs;
             default:
                 Debug.LogWarning("WeaponController: Unknown tier to get weapon prefabs list");
+                return null;
+        }
+    }
+
+    private List<GameObject> getWeaponPanelPrefabs(Weapon.Tier tier)
+    {
+        switch (tier)
+        {
+            case Weapon.Tier.Low:
+                return lowTierWeaponChoicePanels;
+            case Weapon.Tier.Mid:
+                return midTierWeaponChoicePanels;
+            case Weapon.Tier.High:
+                return highTierWeaponChoicePanels;
+            default:
+                Debug.LogWarning("WeaponController: Unknown tier to get weapon choice panels list");
                 return null;
         }
     }

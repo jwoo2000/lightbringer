@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7194312944651196546}
   - component: {fileID: 5008733068405409954}
   m_Layer: 5
-  m_Name: ChoiceTemplate
+  m_Name: GunPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -117.5}
-  m_SizeDelta: {x: -40, y: -265}
+  m_SizeDelta: {x: -60, y: -265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5227040421238255540
 CanvasRenderer:
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Flavour.
+  m_text: No need for grandeur, only reliability.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
@@ -216,8 +216,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: Fires projectiles forward
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Title
+  m_text: Steadfast Bolt
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}

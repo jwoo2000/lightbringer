@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4891674712524862509}
   - component: {fileID: 9060293061136541748}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: Orbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponTier: 0
-  weaponName: Gun
+  weaponName: Orbit
   weaponImage: {fileID: 21300000, guid: 577e37ee5f7136e46805d6aec9433994, type: 3}
-  weaponChoicePanel: {fileID: 281668882846750227, guid: c27001db516a933458bfe838dc640b04, type: 3}
+  weaponChoicePanel: {fileID: 281668882846750227, guid: 63d60d58819ae4747b57896d8da33fe4, type: 3}
   damageLabel: Damage
   speedLabel: Firerate
   uniqueLabel: Projectile Count
@@ -56,7 +56,7 @@ MonoBehaviour:
   uniqueLevel: 0
   playerTransform: {fileID: 0}
   weaponOriginOffset: {x: 0, y: 0, z: 0}
-  weaponObject: {fileID: 9146211026119439065, guid: 79f3f70c2ac94434abede99f13fa656d, type: 3}
+  weaponObject: {fileID: 9146211026119439065, guid: cdbf70a0e35bc874cb40eba82feebdc3, type: 3}
   baseDamage: 20
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2

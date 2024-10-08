@@ -4371,8 +4371,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 255438647}
   levelUpCanvas: {fileID: 1752029125}
+  weaponGetCanvas: {fileID: 1427550205}
   levelUpgradesUI: {fileID: 1496765393}
   weaponInfoPanelController: {fileID: 1105381292}
+  weaponController: {fileID: 1024315748}
+  weaponGetUIController: {fileID: 1427550209}
   levelUpChoicePool:
   - {fileID: 281668882846750227, guid: 6452bd776b3f010408e5232ffde9a608, type: 3}
   - {fileID: 281668882846750227, guid: 9f373f19b11263e4fbc607c6bd383bf0, type: 3}
@@ -4389,7 +4392,7 @@ MonoBehaviour:
   - stamina regen
   pendingLevelUps: 0
   levelUIOpen: 0
-  weaponUpUIOpen: 0
+  weaponGetUIOpen: 0
   pauseMenuOpen: 0
 --- !u!114 &817419121
 MonoBehaviour:
@@ -7251,7 +7254,7 @@ GameObject:
   - component: {fileID: 1000418557}
   - component: {fileID: 1000418556}
   m_Layer: 5
-  m_Name: WeaponUpTitle
+  m_Name: WeaponGetTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7576,6 +7579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoController: {fileID: 1105381292}
+  menuController: {fileID: 817419120}
   player: {fileID: 1024315729}
   weaponOriginOffset: {x: 0, y: 0.5, z: 0}
   LowWeapon: {fileID: 0}
@@ -7584,10 +7588,18 @@ MonoBehaviour:
   activeWeapons: []
   lowTierWeaponPrefabs:
   - {fileID: 2553633764474173803, guid: 52b2712d00043364db2dfdb19705e393, type: 3}
+  - {fileID: 2553633764474173803, guid: a876ad489ed3bb14f95b20bb22dfac36, type: 3}
+  - {fileID: 2553633764474173803, guid: 9dd1c5a55ce595f47a5dcd967d5dd0c3, type: 3}
+  lowTierWeaponChoicePanels:
+  - {fileID: 281668882846750227, guid: c27001db516a933458bfe838dc640b04, type: 3}
+  - {fileID: 281668882846750227, guid: 63d60d58819ae4747b57896d8da33fe4, type: 3}
+  - {fileID: 281668882846750227, guid: 3cfd8ab440d705644b56f493f6135fde, type: 3}
   midTierWeaponPrefabs:
   - {fileID: 2553633764474173803, guid: 0c6ef9bc5bcba9b47b0dfed9fa3fe52e, type: 3}
+  midTierWeaponChoicePanels: []
   highTierWeaponPrefabs:
   - {fileID: 2553633764474173803, guid: ae8530f3b79197240aad0452a573421e, type: 3}
+  highTierWeaponChoicePanels: []
 --- !u!1 &1029944687
 GameObject:
   m_ObjectHideFlags: 0
@@ -13507,7 +13519,7 @@ GameObject:
   - component: {fileID: 1427550207}
   - component: {fileID: 1427550206}
   m_Layer: 5
-  m_Name: WeaponUpUI
+  m_Name: WeaponGetCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13588,14 +13600,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5230eab4384c7c9429f8b5f5a204c2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 0}
-  isNewWep: 0
+  menuController: {fileID: 817419120}
+  weaponController: {fileID: 1024315748}
   leftChoice: {fileID: 0}
   middleChoice: {fileID: 0}
   rightChoice: {fileID: 0}
-  leftChoiceType: 0
-  middleChoiceType: 0
-  rightChoiceType: 0
+  leftWepPrefab: {fileID: 0}
+  midWepPrefab: {fileID: 0}
+  rightWepPrefab: {fileID: 0}
   leftAnchor: {fileID: 1243425204}
   middleAnchor: {fileID: 2125343134}
   rightAnchor: {fileID: 1769937778}

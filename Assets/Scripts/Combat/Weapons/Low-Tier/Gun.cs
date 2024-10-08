@@ -8,7 +8,7 @@ public class Gun : ProjWeapon
     // init values for Gun
     public Gun()
     {
-        weaponName = "Gun";
+        weaponName = "Steadfast Bolt";
         speedLabel = "Firerate";
         uniqueLabel = "Projectile Count";
         projSpeed = 1.0f;

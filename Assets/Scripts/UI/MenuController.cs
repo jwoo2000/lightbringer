@@ -6,11 +6,17 @@ public class MenuController : MonoBehaviour
 {
     public GameObject menuCanvas;
     public GameObject levelUpCanvas;
+    public GameObject weaponGetCanvas;
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
     [SerializeField]
     private WeaponInfoPanelController weaponInfoPanelController;
+
+    [SerializeField]
+    private WeaponController weaponController;
+    [SerializeField]
+    private WeaponGetUIController weaponGetUIController;
 
     private bool isPaused = false;
 
@@ -40,7 +46,7 @@ public class MenuController : MonoBehaviour
     private bool levelUIOpen = false;
 
     [SerializeField]
-    public bool weaponUpUIOpen = false;
+    public bool weaponGetUIOpen = false;
 
     [SerializeField]
     private bool pauseMenuOpen = false;
@@ -49,12 +55,13 @@ public class MenuController : MonoBehaviour
     {
         menuCanvas.SetActive(false);
         levelUpCanvas.SetActive(false);
+        weaponGetCanvas.SetActive(false);
     }
 
     void Update()
     {
         // pause game if level ui and weapon up ui is not open
-        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponUpUIOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen)
         {
             if (isPaused)
             {
@@ -67,7 +74,7 @@ public class MenuController : MonoBehaviour
         }
 
         // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponUpUIOpen && !pauseMenuOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen)
         {
             processNextLevelUp();
         } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
@@ -145,8 +152,21 @@ public class MenuController : MonoBehaviour
         return (left, possibleChoices[0], middle, possibleChoices[1], right, possibleChoices[2]);
     }
 
+    public void newWeaponChoices(Weapon.Tier tier)
+    {
+        stopTimeShowCursor();
+        weaponGetUIOpen = true;
+        (GameObject left, GameObject leftPanel, GameObject mid, GameObject midPanel, GameObject right, GameObject rightPanel) choices = weaponController.random3SelectWeapon(tier);
+        weaponGetUIController.SetChoices(choices);
+        weaponGetCanvas.SetActive(true);
+    }
 
-
+    public void newWeaponChosen()
+    {
+        weaponGetCanvas.SetActive(false);
+        weaponGetUIOpen = false;
+        startTimeHideCursor();
+    }
 
     private void stopTimeShowCursor()
     {
