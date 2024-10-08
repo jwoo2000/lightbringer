@@ -4859,8 +4859,9 @@ MonoBehaviour:
   absorbSpeedMulti: 1.15
   isDying: 0
   isWep: 0
-  tier: 0
+  tier: 1
   exp: 2
+  explodeFactor: 1
 --- !u!135 &3455073793264798541
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class AbsorbFireflies : MonoBehaviour
     private bool isWep = false;
 
     [SerializeField]
-    private int tier;
+    private Weapon.Tier tier;
 
     [SerializeField]
     private int exp = 1;
@@ -79,7 +79,6 @@ public class AbsorbFireflies : MonoBehaviour
         {
             PlayerStats playerStats = other.gameObject.GetComponent<PlayerStats>();
             playerStats.addExp(exp);
-            playerStats.getWep(tier);
             if (isWep)
             {
                 int numParticlesAlive = particleSystem.GetParticles(particles);

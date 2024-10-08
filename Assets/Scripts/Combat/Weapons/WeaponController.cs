@@ -42,6 +42,22 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public void absorbedWepFF(Weapon.Tier tier)
+    {
+        switch (tier)
+        {
+            case Weapon.Tier.Low:
+                break;
+            case Weapon.Tier.Mid:
+                break;
+            case Weapon.Tier.High:
+                break;
+            default:
+                Debug.LogWarning("WeaponController: Unknown tier weapon firefly absorbed");
+                return;
+        }
+    }
+
     public void equipWeapon(GameObject weaponPrefab)
     {
         if (activeWeapons.Count < maxWeaponSlots)

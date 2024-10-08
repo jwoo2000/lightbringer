@@ -110,11 +110,6 @@ public class PlayerStats : MonoBehaviour
         exploredFogBlend.blendSpeed = movementController.currSpeed * 0.7f;
     }
 
-    public void getWep(int tier)
-    {
-        //############################ TODO
-    }
-
 
     public void addExp(int expToAdd)
     {
