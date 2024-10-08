@@ -4860,7 +4860,7 @@ MonoBehaviour:
   isDying: 0
   isWep: 1
   tier: 2
-  exp: 20
+  exp: 80
   explodeFactor: 3
 --- !u!135 &3455073793264798541
 SphereCollider:

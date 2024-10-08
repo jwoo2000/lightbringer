@@ -4407,7 +4407,7 @@ MonoBehaviour:
   MidFireflyPrefab: {fileID: 8346320037420065825, guid: 1f5f8b95dd3995446ae2866eb104411d, type: 3}
   HighFireflyPrefab: {fileID: 8346320037420065825, guid: cbbc0e1046566e348a8b7ad88dc80c01, type: 3}
   fireflyAttractor: {fileID: 1024315731}
-  trailDensity: 6
+  trailDensity: 10
   POIManager: {fileID: 817419122}
   connectingTrailRatio: 0.4
   POINoFireflyRadius: 0
