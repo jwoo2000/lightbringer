@@ -12,15 +12,25 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
 
+    [SerializeField]
+    private Weapon LowWeapon = null;
+
+    [SerializeField]
+    private Weapon MidWeapon = null;
+
+    [SerializeField]
+    private Weapon HighWeapon = null;
+
     public const int maxWeaponSlots = 3;
     public List<Weapon> activeWeapons = new List<Weapon>(maxWeaponSlots);
-    public List<GameObject> activeWeaponObjects = new List<GameObject>(maxWeaponSlots);
-    public List<GameObject> allWeaponObjects = new List<GameObject>();
+    public List<GameObject> lowTierWeaponPrefabs = new List<GameObject>();
+    public List<GameObject> midTierWeaponPrefabs = new List<GameObject>();
+    public List<GameObject> highTierWeaponPrefabs = new List<GameObject>();
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            equipWeapon(allWeaponObjects[0]);
+            equipWeapon(lowTierWeaponPrefabs[0]);
         }
     }
 
@@ -34,7 +44,6 @@ public class WeaponController : MonoBehaviour
             if (weapon != null)
             {
                 activeWeapons.Add(weapon);
-                activeWeaponObjects.Add(weaponInstance);
                 weapon.playerTransform = player.transform;
                 weapon.weaponOriginOffset = weaponOriginOffset;
                 switch (weapon.weaponTier)
@@ -42,6 +51,7 @@ public class WeaponController : MonoBehaviour
                     case Weapon.Tier.Low:
                         if (!infoController.lowPanel.weaponShowing)
                         {
+                            LowWeapon = weapon;
                             infoController.setLowWep(weapon);
                         } else
                         {
@@ -51,6 +61,7 @@ public class WeaponController : MonoBehaviour
                     case Weapon.Tier.Mid:
                         if (!infoController.midPanel.weaponShowing)
                         {
+                            MidWeapon = weapon;
                             infoController.setMidWep(weapon);
                         } else
                         {
@@ -60,6 +71,7 @@ public class WeaponController : MonoBehaviour
                     case Weapon.Tier.High:
                         if (!infoController.highPanel.weaponShowing)
                         {
+                            HighWeapon = weapon;
                             infoController.setHighWep(weapon);
                         } else
                         {

@@ -26,17 +26,15 @@ public class WeaponInfoPanel : MonoBehaviour
 
     public bool weaponShowing = false;
 
-    private void Awake()
-    {
-        noWeapon();
-    }
-
     public void updateUI()
     {
+        //Debug.Log("updating panel UI");
         if (weaponShowing)
         {
+            //Debug.Log("weapon showing was true, gonna do all teh fields");
             if (weapon != null)
             {
+                //Debug.Log("weapon wasnt null FIELD TIME");
                 weaponImage.sprite = weapon.weaponImage;
                 weaponNameText.text = weapon.weaponName;
                 damageLevelText.text = weapon.damageLabel + " Lv." + weapon.damageLevel;
@@ -51,6 +49,7 @@ public class WeaponInfoPanel : MonoBehaviour
 
     public void showWeapon()
     {
+        //Debug.Log("i am panel, showing weapon");
         weaponShowing = true;
         weaponImage.enabled = true;
 
@@ -62,6 +61,7 @@ public class WeaponInfoPanel : MonoBehaviour
 
     public void noWeapon()
     {
+        //Debug.Log("running no weapon");
         weaponShowing = false;
         weaponImage.enabled = false;
         weaponNameText.text = "No weapon";

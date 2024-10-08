@@ -53,10 +53,6 @@ public class AbsorbFireflies : MonoBehaviour
                 // move particles towards player position + (0,0.5,0) the center of player rather than feet
                 absorbDir = (((attractor.position + new Vector3(0, 0.5f, 0)) - particles[i].position).normalized);
                 particles[i].velocity = Vector3.ClampMagnitude(particles[i].velocity + (absorbDir * absorbSpeed * Time.deltaTime), 100.0f);
-                if (particles[i].velocity.magnitude >= 100.0f)
-                {
-                    Debug.Log("firefly particle too fast! " + particles[i].velocity.magnitude);
-                }
             }
             absorbSpeed *= absorbSpeedMulti;
             particleSystem.SetParticles(particles, numParticlesAlive);

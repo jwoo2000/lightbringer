@@ -26,6 +26,7 @@ public class WeaponInfoPanelController : MonoBehaviour
 
     public void updateAllUI()
     {
+        //Debug.Log("updatiung all panel ui");
         lowPanel.updateUI();
         midPanel.updateUI();
         highPanel.updateUI();

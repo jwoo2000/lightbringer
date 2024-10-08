@@ -3820,7 +3820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
+  m_Color: {r: 0.8662842, g: 0.7688679, b: 1, a: 0.4}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4406,6 +4406,9 @@ MonoBehaviour:
   FireflyPrefab: {fileID: 8346320037420065825, guid: ca49e3fd5f7b8b04397b67d2ff96ab48, type: 3}
   MidFireflyPrefab: {fileID: 8346320037420065825, guid: 1f5f8b95dd3995446ae2866eb104411d, type: 3}
   HighFireflyPrefab: {fileID: 8346320037420065825, guid: cbbc0e1046566e348a8b7ad88dc80c01, type: 3}
+  LowWepPrefab: {fileID: 8346320037420065825, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
+  MidWepPrefab: {fileID: 8346320037420065825, guid: 2ff9fb740707c4241a9049feea369786, type: 3}
+  HighWepPrefab: {fileID: 8346320037420065825, guid: 87dcec515269ac0488513877a77b06e6, type: 3}
   fireflyAttractor: {fileID: 1024315731}
   trailDensity: 6
   POIManager: {fileID: 817419122}
@@ -7576,10 +7579,14 @@ MonoBehaviour:
   infoController: {fileID: 1105381292}
   player: {fileID: 1024315729}
   weaponOriginOffset: {x: 0, y: 0.5, z: 0}
+  LowWeapon: {fileID: 0}
+  MidWeapon: {fileID: 0}
+  HighWeapon: {fileID: 0}
   activeWeapons: []
-  activeWeaponObjects: []
-  allWeaponObjects:
+  lowTierWeaponPrefabs:
   - {fileID: 2553633764474173803, guid: 52b2712d00043364db2dfdb19705e393, type: 3}
+  midTierWeaponPrefabs: []
+  highTierWeaponPrefabs: []
 --- !u!1 &1029944687
 GameObject:
   m_ObjectHideFlags: 0
@@ -13588,9 +13595,9 @@ MonoBehaviour:
   leftChoiceType: 0
   middleChoiceType: 0
   rightChoiceType: 0
-  leftAnchor: {fileID: 0}
-  middleAnchor: {fileID: 0}
-  rightAnchor: {fileID: 0}
+  leftAnchor: {fileID: 1243425204}
+  middleAnchor: {fileID: 2125343134}
+  rightAnchor: {fileID: 1769937778}
 --- !u!224 &1427550210
 RectTransform:
   m_ObjectHideFlags: 0

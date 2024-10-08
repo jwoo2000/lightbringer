@@ -4,10 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - FogInstance
   - FogDestroyer
   - POIAnchor
   - Enemy
+  - LowWepFFAnchor
+  - MidWepFFAnchor
+  - HighWepFFAnchor
   layers:
   - Default
   - TransparentFX
