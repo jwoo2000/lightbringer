@@ -48,6 +48,13 @@ public class WeaponController : MonoBehaviour
         {
             case Weapon.Tier.Low:
                 Debug.Log("Absorbed Low Wep FF");
+                if (LowWeapon == null)
+                {
+                    // first wep ff of tier, open get weapon
+                } else
+                {
+                    // not first, open upgrade for tier
+                }
                 break;
             case Weapon.Tier.Mid:
                 Debug.Log("Absorbed Mid Wep FF");
@@ -58,6 +65,48 @@ public class WeaponController : MonoBehaviour
             default:
                 Debug.LogWarning("WeaponController: Unknown tier weapon firefly absorbed");
                 return;
+        }
+    }
+
+    private (GameObject, GameObject, GameObject) random3SelectWeapon(Weapon.Tier tier)
+    {
+        int possibleChoiceCount = getWeaponPrefabs(tier).Count;
+        
+        //Debug.Log("generating choices");
+        int[] possibleChoices = new int[possibleChoiceCount];
+        // populate possible index choices
+        for (int i = 0; i < possibleChoices.Length; i++)
+        {
+            possibleChoices[i] = i;
+        }
+        // fisher-yates shuffle
+        for (int i = possibleChoices.Length - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            int temp = possibleChoices[i];
+            possibleChoices[i] = possibleChoices[j];
+            possibleChoices[j] = temp;
+        }
+
+        GameObject left = getWeaponPrefabs(tier)[possibleChoices[0]];
+        GameObject middle = getWeaponPrefabs(tier)[possibleChoices[1]];
+        GameObject right = getWeaponPrefabs(tier)[possibleChoices[2]];
+        return (left, middle, right);
+    }
+
+    private List<GameObject> getWeaponPrefabs(Weapon.Tier tier)
+    {
+        switch (tier)
+        {
+            case Weapon.Tier.Low:
+                return lowTierWeaponPrefabs;
+            case Weapon.Tier.Mid:
+                return midTierWeaponPrefabs;
+            case Weapon.Tier.High:
+                return highTierWeaponPrefabs;
+            default:
+                Debug.LogWarning("WeaponController: Unknown tier to get weapon prefabs list");
+                return null;
         }
     }
 
