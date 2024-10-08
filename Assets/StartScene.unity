@@ -4406,9 +4406,6 @@ MonoBehaviour:
   FireflyPrefab: {fileID: 8346320037420065825, guid: ca49e3fd5f7b8b04397b67d2ff96ab48, type: 3}
   MidFireflyPrefab: {fileID: 8346320037420065825, guid: 1f5f8b95dd3995446ae2866eb104411d, type: 3}
   HighFireflyPrefab: {fileID: 8346320037420065825, guid: cbbc0e1046566e348a8b7ad88dc80c01, type: 3}
-  LowWepPrefab: {fileID: 8346320037420065825, guid: bca88e6507fdb164abded1db76ef1c24, type: 3}
-  MidWepPrefab: {fileID: 8346320037420065825, guid: 2ff9fb740707c4241a9049feea369786, type: 3}
-  HighWepPrefab: {fileID: 8346320037420065825, guid: 87dcec515269ac0488513877a77b06e6, type: 3}
   fireflyAttractor: {fileID: 1024315731}
   trailDensity: 6
   POIManager: {fileID: 817419122}
@@ -4446,6 +4443,7 @@ MonoBehaviour:
   spawnLocationAngleVariance: 10
   spawnCenter: {x: 0, y: 0, z: 0}
   poiGenerators: []
+  cloakables: []
 --- !u!1 &845400732
 GameObject:
   m_ObjectHideFlags: 0
@@ -7585,8 +7583,10 @@ MonoBehaviour:
   activeWeapons: []
   lowTierWeaponPrefabs:
   - {fileID: 2553633764474173803, guid: 52b2712d00043364db2dfdb19705e393, type: 3}
-  midTierWeaponPrefabs: []
-  highTierWeaponPrefabs: []
+  midTierWeaponPrefabs:
+  - {fileID: 2553633764474173803, guid: 0c6ef9bc5bcba9b47b0dfed9fa3fe52e, type: 3}
+  highTierWeaponPrefabs:
+  - {fileID: 2553633764474173803, guid: ae8530f3b79197240aad0452a573421e, type: 3}
 --- !u!1 &1029944687
 GameObject:
   m_ObjectHideFlags: 0

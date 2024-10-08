@@ -32,6 +32,14 @@ public class WeaponController : MonoBehaviour
         {
             equipWeapon(lowTierWeaponPrefabs[0]);
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            equipWeapon(midTierWeaponPrefabs[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            equipWeapon(highTierWeaponPrefabs[0]);
+        }
     }
 
     public void equipWeapon(GameObject weaponPrefab)
