@@ -7999,11 +7999,21 @@ MonoBehaviour:
   - {fileID: 281668882846750227, guid: 63d60d58819ae4747b57896d8da33fe4, type: 3}
   - {fileID: 281668882846750227, guid: 3cfd8ab440d705644b56f493f6135fde, type: 3}
   midTierWeaponPrefabs:
-  - {fileID: 2553633764474173803, guid: 0c6ef9bc5bcba9b47b0dfed9fa3fe52e, type: 3}
-  midTierWeaponChoicePanels: []
+  - {fileID: 2553633764474173803, guid: 78d96bcf428bbea46a326af5027ce93d, type: 3}
+  - {fileID: 2553633764474173803, guid: e56fdded08200b248aa1d3d219951aaf, type: 3}
+  - {fileID: 2553633764474173803, guid: abfb156adf582b941aa2e67978cb4d25, type: 3}
+  midTierWeaponChoicePanels:
+  - {fileID: 281668882846750227, guid: ea1c0619ce330954d987c4b3573b6eca, type: 3}
+  - {fileID: 281668882846750227, guid: 009daac17d6830043b57c392b4c0beec, type: 3}
+  - {fileID: 281668882846750227, guid: f43e87b8b842e0948a554d2946d7c45b, type: 3}
   highTierWeaponPrefabs:
   - {fileID: 2553633764474173803, guid: ae8530f3b79197240aad0452a573421e, type: 3}
-  highTierWeaponChoicePanels: []
+  - {fileID: 2553633764474173803, guid: 80f77ca1f0e4f2e46a951c8c12e3efd9, type: 3}
+  - {fileID: 2553633764474173803, guid: 4c682ec3205b5204c8e4a413bc32c8a0, type: 3}
+  highTierWeaponChoicePanels:
+  - {fileID: 281668882846750227, guid: 376bc0036ba806b48b6af670d2254e72, type: 3}
+  - {fileID: 281668882846750227, guid: 140e2fb62f4e3f64a9bd71823569190a, type: 3}
+  - {fileID: 281668882846750227, guid: 0b2ff19bdc97ade4b9807ec0ad0ed465, type: 3}
 --- !u!1 &1029944687
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4891674712524862509}
-  - component: {fileID: -3698232878943286687}
+  - component: {fileID: -8261372798778844897}
   m_Layer: 0
-  m_Name: Orbit
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3698232878943286687
+--- !u!114 &-8261372798778844897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,27 +41,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2553633764474173803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1c70f2f9ae5b464abdd341f0a7c2ae1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ac5369e3ba711f49bba4ecfbe9f9afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponTier: 0
-  weaponName: Celestial Orbit
+  weaponTier: 2
+  weaponName: Daybreak Charge
   weaponImage: {fileID: 21300000, guid: 577e37ee5f7136e46805d6aec9433994, type: 3}
   damageLabel: Damage
   damageDesc: Increases weapon damage
-  speedLabel: Orbit Speed
-  speedDesc: Increases projectile orbit speed
-  uniqueLabel: Projectile Count
-  uniqueDesc: Increases number of projectiles orbiting
+  speedLabel: Firerate
+  speedDesc: Increases weapon firerate
+  uniqueLabel: AOE Size
+  uniqueDesc: Increases impact area size
   damageLevel: 0
   speedLevel: 0
   uniqueLevel: 0
   playerTransform: {fileID: 0}
   weaponOriginOffset: {x: 0, y: 0, z: 0}
-  weaponObject: {fileID: 9146211026119439065, guid: cdbf70a0e35bc874cb40eba82feebdc3, type: 3}
+  weaponObject: {fileID: 9146211026119439065, guid: a01af88b9993a8b41a4f3ea9b5ac65b8, type: 3}
   baseDamage: 20
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
-  projSpeed: 1
-  projCount: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+  flightTime: 1
