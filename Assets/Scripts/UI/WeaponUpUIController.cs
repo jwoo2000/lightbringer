@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,14 @@ public class WeaponUpUIController : MonoBehaviour
     private MenuController menuController;
 
     [SerializeField] private GameObject dmgChoicePanel;
+    [SerializeField] private TextMeshProUGUI dmgLabel;
+    [SerializeField] private TextMeshProUGUI dmgDesc;
     [SerializeField] private GameObject speedChoicePanel;
+    [SerializeField] private TextMeshProUGUI speedLabel;
+    [SerializeField] private TextMeshProUGUI speedDesc;
     [SerializeField] private GameObject uniqueChoicePanel;
+    [SerializeField] private TextMeshProUGUI uniqueLabel;
+    [SerializeField] private TextMeshProUGUI uniqueDesc;
 
     [SerializeField] private Weapon weaponToUpgrade;
 
@@ -31,17 +38,24 @@ public class WeaponUpUIController : MonoBehaviour
                 weaponToUpgrade.Upgrade(Weapon.Stat.Damage);
                 choiceSelected();
             });
+            dmgLabel.text = weaponToUpgrade.damageLabel;
+            dmgDesc.text = weaponToUpgrade.damageDesc;
+
             speedChoicePanel.GetComponent<Button>().onClick.AddListener(() =>
             {
                 weaponToUpgrade.Upgrade(Weapon.Stat.Speed);
                 choiceSelected();
             });
+            speedLabel.text = weaponToUpgrade.speedLabel;
+            speedDesc.text = weaponToUpgrade.speedDesc;
+
             uniqueChoicePanel.GetComponent<Button>().onClick.AddListener(() =>
             {
                 weaponToUpgrade.Upgrade(Weapon.Stat.Unique);
                 choiceSelected();
             });
-
+            uniqueLabel.text = weaponToUpgrade.uniqueLabel;
+            uniqueDesc.text = weaponToUpgrade.uniqueDesc;
         }
         else
         {
