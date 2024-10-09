@@ -14,8 +14,11 @@ public abstract class Weapon : MonoBehaviour
 
     // adjust stat names for specific weapons
     public string damageLabel = "Damage";
+    public string damageDesc = "Increases weapon damage";
     public string speedLabel = "Speed";
+    public string speedDesc = "Increases weapon firerate";
     public string uniqueLabel = "Unique";
+    public string uniqueDesc = "Enhances weapon's unique trait";
 
     public int damageLevel = 0;   // Damage upgrade level
     public int speedLevel = 0;    // Speed upgrade level (affects a speed related property: fire rate, rotation speed, etc.)

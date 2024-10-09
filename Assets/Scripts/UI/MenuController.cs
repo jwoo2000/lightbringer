@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
     public GameObject menuCanvas;
     public GameObject levelUpCanvas;
     public GameObject weaponGetCanvas;
+    public GameObject weaponUpCanvas;
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
@@ -17,6 +18,8 @@ public class MenuController : MonoBehaviour
     private WeaponController weaponController;
     [SerializeField]
     private WeaponGetUIController weaponGetUIController;
+    [SerializeField]
+    private WeaponUpUIController weaponUpUIController;
 
     private bool isPaused = false;
 
@@ -49,6 +52,9 @@ public class MenuController : MonoBehaviour
     public bool weaponGetUIOpen = false;
 
     [SerializeField]
+    private bool weaponUpUIOpen = false;
+
+    [SerializeField]
     private bool pauseMenuOpen = false;
 
     void Awake()
@@ -61,7 +67,7 @@ public class MenuController : MonoBehaviour
     void Update()
     {
         // pause game if level ui and weapon up ui is not open
-        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
         {
             if (isPaused)
             {
@@ -74,7 +80,7 @@ public class MenuController : MonoBehaviour
         }
 
         // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen)
         {
             processNextLevelUp();
         } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
@@ -165,6 +171,21 @@ public class MenuController : MonoBehaviour
     {
         weaponGetCanvas.SetActive(false);
         weaponGetUIOpen = false;
+        startTimeHideCursor();
+    }
+
+    public void upgradeWeapon(Weapon weapon)
+    {
+        stopTimeShowCursor();
+        weaponUpUIOpen = true;
+        weaponUpUIController.SetWeapon(weapon);
+        weaponUpCanvas.SetActive(true);
+    }
+
+    public void wepUpgradeChosen()
+    {
+        weaponUpCanvas.SetActive(false);
+        weaponUpUIOpen = false;
         startTimeHideCursor();
     }
 

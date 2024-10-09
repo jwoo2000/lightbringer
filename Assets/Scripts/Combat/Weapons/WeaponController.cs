@@ -46,13 +46,34 @@ public class WeaponController : MonoBehaviour
                 } else
                 {
                     // not first, open upgrade for tier
+                    menuController.upgradeWeapon(LowWeapon);
                 }
                 break;
             case Weapon.Tier.Mid:
                 Debug.Log("Absorbed Mid Wep FF");
+                if (MidWeapon == null)
+                {
+                    // first wep ff of tier, open get weapon
+                    menuController.newWeaponChoices(tier);
+                }
+                else
+                {
+                    // not first, open upgrade for tier
+                    menuController.upgradeWeapon(MidWeapon);
+                }
                 break;
             case Weapon.Tier.High:
                 Debug.Log("Absorbed High Wep FF");
+                if (HighWeapon == null)
+                {
+                    // first wep ff of tier, open get weapon
+                    menuController.newWeaponChoices(tier);
+                }
+                else
+                {
+                    // not first, open upgrade for tier
+                    menuController.upgradeWeapon(HighWeapon);
+                }
                 break;
             default:
                 Debug.LogWarning("WeaponController: Unknown tier weapon firefly absorbed");
