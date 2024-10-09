@@ -15,6 +15,8 @@ public class MenuController : MonoBehaviour
     private WeaponInfoPanelController weaponInfoPanelController;
 
     [SerializeField]
+    private LevelUpChoices levelUpChoices;
+    [SerializeField]
     private WeaponController weaponController;
     [SerializeField]
     private WeaponGetUIController weaponGetUIController;
@@ -62,6 +64,7 @@ public class MenuController : MonoBehaviour
         menuCanvas.SetActive(false);
         levelUpCanvas.SetActive(false);
         weaponGetCanvas.SetActive(false);
+        weaponUpCanvas.SetActive(false);
     }
 
     void Update()
@@ -82,10 +85,17 @@ public class MenuController : MonoBehaviour
         // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
         if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen)
         {
-            processNextLevelUp();
+            if (levelUpChoices.newChoices)
+            {
+                processNextLevelUp();
+            } else
+            {
+                openLevelUI();
+            }
         } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
         {
-            // if level ui is open
+            // if level ui is open, close and dont reroll new choices
+            levelUpChoices.newChoices = false;
             closeLevelUI();
         }
     }
@@ -97,6 +107,13 @@ public class MenuController : MonoBehaviour
         levelUIOpen = false;
     }
 
+    public void openLevelUI()
+    {
+        levelUpCanvas.SetActive(true);
+        stopTimeShowCursor();
+        levelUIOpen = true;
+    }
+
     public void QueueLevelUps(int pendingLevels)
     {
         pendingLevelUps += pendingLevels;
@@ -106,16 +123,14 @@ public class MenuController : MonoBehaviour
     {
         if (pendingLevelUps > 0)
         {
-            stopTimeShowCursor();
-            levelUIOpen = true;
             (GameObject left, int leftType, GameObject mid, int midType, GameObject right, int rightType) choices = genLevelUpChoices();
             //Debug.Log("menucontroller: sending choices to levelupchoices");
-            levelUpCanvas.GetComponent<LevelUpChoices>().SetChoices(
+            levelUpChoices.SetChoices(
                 choices.left, choices.leftType, 
                 choices.mid, choices.midType, 
                 choices.right, choices.rightType
                 );
-            levelUpCanvas.SetActive(true);
+            openLevelUI();
         }
     }
 
@@ -123,6 +138,7 @@ public class MenuController : MonoBehaviour
     {
         //Debug.Log("choice selected, menu controller closing level up ui");
         pendingLevelUps--;
+        levelUpChoices.newChoices = true;
         levelUpCanvas.SetActive(false);
         if (pendingLevelUps > 0)
         {

@@ -12,8 +12,8 @@ public class Gun : ProjWeapon
     // init values for Gun
     public Gun()
     {
+        weaponTier = Weapon.Tier.Low;
         weaponName = "Steadfast Bolt";
-        speedLabel = "Firerate";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles fired";
         projSpeed = 1.0f;

@@ -11,6 +11,7 @@ public class Orbit : ProjWeapon
     // init values for Orbit
     public Orbit()
     {
+        weaponTier = Weapon.Tier.Low;
         weaponName = "Celestial Orbit";
         speedLabel = "Orbit Speed";
         speedDesc = "Increases projectile orbit speed";

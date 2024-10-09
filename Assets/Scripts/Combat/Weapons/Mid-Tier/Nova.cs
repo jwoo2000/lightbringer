@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Arrow : ProjWeapon
+public class Nova : ProjWeapon
 {
     [SerializeField]
-    private int pierceCount = 1;
+    private int projCount = 4;
 
-    // init values for Arrow
-    public Arrow()
+    // init values for Nova
+    public Nova()
     {
-        weaponTier = Weapon.Tier.Low;
-        weaponName = "Lightlance";
-        uniqueLabel = "Pierce Count";
-        uniqueDesc = "Increases number of enemies pierced";
+        weaponTier = Weapon.Tier.Mid;
+        weaponName = "Lightburst";
+        uniqueLabel = "Projectile Count";
+        uniqueDesc = "Increases number of projectiles fired";
         projSpeed = 1.0f;
         baseDamage = 20.0f;
         baseCooldown = 1.0f;
@@ -25,9 +25,9 @@ public class Arrow : ProjWeapon
     public override void Fire()
     {
         GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
-        ArrowProjectile arrowProj = projInstance.GetComponent<ArrowProjectile>();
-        arrowProj.dir = playerTransform.forward;
-        arrowProj.speed = projSpeed;
+        NovaProjectile novaProj = projInstance.GetComponent<NovaProjectile>();
+        novaProj.dir = playerTransform.forward;
+        novaProj.speed = projSpeed;
     }
 
     protected override void upgradeSpeed()
@@ -37,6 +37,6 @@ public class Arrow : ProjWeapon
 
     protected override void upgradeUnique()
     {
-        pierceCount++;
+        projCount++;
     }
 }
