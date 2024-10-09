@@ -3831,7 +3831,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 0.3
     light: {fileID: 0}
     randomDistribution: 0
@@ -4858,7 +4858,10 @@ MonoBehaviour:
   absorbSpeed: 3
   absorbSpeedMulti: 1.15
   isDying: 0
+  isWep: 0
+  tier: 0
   exp: 1
+  explodeFactor: 1
 --- !u!135 &3455073793264798541
 SphereCollider:
   m_ObjectHideFlags: 0
