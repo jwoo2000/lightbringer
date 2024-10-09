@@ -37,5 +37,6 @@ public class POIGenerator : MonoBehaviour
         cloakPOI.cloakMat = cloakMat;
         cloakPOI.playerTransform = playerTransform;
         cloakPOI.discoverDist = discoverDist;
+        cloakPOI.wepFirefly.GetComponent<AbsorbFireflies>().attractor = playerTransform;
     }
 }

@@ -14,6 +14,10 @@ public class PlayerStats : MonoBehaviour
     private MovementController movementController;
 
     [SerializeField]
+    public WeaponController weaponController;
+
+
+    [SerializeField]
     private FogBlend unexploredFogBlend;
 
     [SerializeField]
@@ -108,11 +112,6 @@ public class PlayerStats : MonoBehaviour
     {
         unexploredFogBlend.blendSpeed = movementController.currSpeed * 0.7f;
         exploredFogBlend.blendSpeed = movementController.currSpeed * 0.7f;
-    }
-
-    public void getWep(int tier)
-    {
-        //############################ TODO
     }
 
 

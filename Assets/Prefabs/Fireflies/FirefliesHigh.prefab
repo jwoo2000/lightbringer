@@ -225,7 +225,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.90137225, g: 0.6933962, b: 1, a: 1}
+      maxColor: {r: 0.87739366, g: 0.6179246, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4859,7 +4859,7 @@ MonoBehaviour:
   absorbSpeedMulti: 1.15
   isDying: 0
   isWep: 0
-  tier: 0
+  tier: 2
   exp: 5
   explodeFactor: 1
 --- !u!135 &3455073793264798541

@@ -14,7 +14,7 @@ public class CloakPOI : MonoBehaviour
     private GameObject visibilityPainter;
 
     [SerializeField]
-    private GameObject wepFirefly;
+    public GameObject wepFirefly;
 
     private Material[][] ogMats;
     private Renderer[] renderers;
@@ -33,7 +33,6 @@ public class CloakPOI : MonoBehaviour
     {
         renderers = POIObjects.GetComponentsInChildren<Renderer>();
         saveOgMats();
-        wepFirefly.GetComponent<AbsorbFireflies>().attractor = playerTransform;
         cloak();
     }
     private void Update()

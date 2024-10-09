@@ -50,6 +50,7 @@ public class FireflyManagerScript : MonoBehaviour
 
     public void startManager()
     {
+        //Debug.Log("starting fireflymanager");
         numLowTierPOI = POIManager.numLowTierPOI;
         numMidTierPOI = POIManager.numMidTierPOI;
         numHighTierPOI = POIManager.numHighTierPOI;
@@ -66,6 +67,7 @@ public class FireflyManagerScript : MonoBehaviour
         GenerateTrails();
         GenerateConnectingTrails();
         GeneratePlayerToFirstLowTrail();
+        //Debug.Log("finished generating all trails");
         InvokeRepeating("checkParticleSystems", 0, 1f); // Check every 1 second
     }
 

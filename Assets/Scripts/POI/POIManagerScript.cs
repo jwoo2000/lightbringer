@@ -55,6 +55,9 @@ public class POIManagerScript : MonoBehaviour
     [SerializeField]
     private List<POIGenerator> poiGenerators = new List<POIGenerator>();
 
+    [SerializeField]
+    private List<CloakPOI> cloakables = new List<CloakPOI>();
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -167,6 +170,7 @@ public class POIManagerScript : MonoBehaviour
 
     private void setCloakParams()
     {
+        //Debug.Log("poimanager: setting all cloak params");
         foreach (POIGenerator poiGen in poiGenerators)
         {
             poiGen.playerTransform = playerTransform;
