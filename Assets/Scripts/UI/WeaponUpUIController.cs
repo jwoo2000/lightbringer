@@ -21,6 +21,8 @@ public class WeaponUpUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI uniqueDesc;
 
     [SerializeField] private Weapon weaponToUpgrade;
+    [SerializeField] private TextMeshProUGUI weaponName;
+    [SerializeField] private Image weaponImage;
 
     private Action choiceSelected;
 
@@ -33,6 +35,9 @@ public class WeaponUpUIController : MonoBehaviour
     {
         if (weaponToUpgrade != null)
         {
+            weaponName.text = weaponToUpgrade.weaponName;
+            weaponImage.sprite = weaponToUpgrade.weaponImage;
+
             dmgChoicePanel.GetComponent<Button>().onClick.AddListener(() =>
             {
                 weaponToUpgrade.Upgrade(Weapon.Stat.Damage);
