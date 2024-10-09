@@ -64,6 +64,7 @@ public class MenuController : MonoBehaviour
         menuCanvas.SetActive(false);
         levelUpCanvas.SetActive(false);
         weaponGetCanvas.SetActive(false);
+        weaponUpCanvas.SetActive(false);
     }
 
     void Update()
