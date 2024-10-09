@@ -4515,6 +4515,7 @@ MonoBehaviour:
   weaponUpCanvas: {fileID: 882958776}
   levelUpgradesUI: {fileID: 1496765393}
   weaponInfoPanelController: {fileID: 1105381292}
+  levelUpChoices: {fileID: 1752029130}
   weaponController: {fileID: 1024315748}
   weaponGetUIController: {fileID: 1427550209}
   weaponUpUIController: {fileID: 882958781}
@@ -7120,7 +7121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &882958777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15803,6 +15804,7 @@ MonoBehaviour:
   leftAnchor: {fileID: 1833337543}
   middleAnchor: {fileID: 340239042}
   rightAnchor: {fileID: 292238390}
+  newChoices: 1
   levelUpOverflowText: {fileID: 552717946}
 --- !u!1 &1753846174
 GameObject:

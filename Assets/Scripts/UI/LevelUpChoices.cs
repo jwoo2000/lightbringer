@@ -31,6 +31,8 @@ public class LevelUpChoices : MonoBehaviour
 
     private Action choiceSelected;
 
+    public bool newChoices = true;
+
     [SerializeField]
     private TextMeshProUGUI levelUpOverflowText;
 
@@ -48,78 +50,87 @@ public class LevelUpChoices : MonoBehaviour
         {
             levelUpOverflowText.text = "";
         }
-        //Debug.Log("enabling level up ui");
-        if (leftChoice != null)
+        if (newChoices)
         {
-            leftInstance = Instantiate(leftChoice, leftAnchor);
-            leftInstance.GetComponent<Button>().onClick.AddListener(() => {
-                Debug.Log(menuController.choiceTypes[leftChoiceType]);
-                playerLevelUp.upgradeStat(leftChoiceType);
-                choiceSelected(); 
-            });
-        } else {
-            Debug.Log("left is null");
-        }
-        if (middleChoice != null)
-        {
-            middleInstance = Instantiate(middleChoice, middleAnchor);
-            middleInstance.GetComponent<Button>().onClick.AddListener(() => {
-                Debug.Log(menuController.choiceTypes[middleChoiceType]);
-                playerLevelUp.upgradeStat(middleChoiceType);
-                choiceSelected(); 
-            });
-        } else
-        {
-            Debug.Log("mid is null");
-        }
-        if (rightChoice != null)
-        {
-            rightInstance = Instantiate(rightChoice, rightAnchor);
-            rightInstance.GetComponent<Button>().onClick.AddListener(() => {
-                Debug.Log(menuController.choiceTypes[rightChoiceType]);
-                playerLevelUp.upgradeStat(rightChoiceType);
-                choiceSelected(); 
-            });
-        } else
-        {
-            Debug.Log("right is null");
+            //Debug.Log("enabling level up ui");
+            if (leftChoice != null)
+            {
+                leftInstance = Instantiate(leftChoice, leftAnchor);
+                leftInstance.GetComponent<Button>().onClick.AddListener(() => {
+                    Debug.Log(menuController.choiceTypes[leftChoiceType]);
+                    playerLevelUp.upgradeStat(leftChoiceType);
+                    choiceSelected(); 
+                });
+            } else {
+                Debug.Log("left is null");
+            }
+            if (middleChoice != null)
+            {
+                middleInstance = Instantiate(middleChoice, middleAnchor);
+                middleInstance.GetComponent<Button>().onClick.AddListener(() => {
+                    Debug.Log(menuController.choiceTypes[middleChoiceType]);
+                    playerLevelUp.upgradeStat(middleChoiceType);
+                    choiceSelected(); 
+                });
+            } else
+            {
+                Debug.Log("mid is null");
+            }
+            if (rightChoice != null)
+            {
+                rightInstance = Instantiate(rightChoice, rightAnchor);
+                rightInstance.GetComponent<Button>().onClick.AddListener(() => {
+                    Debug.Log(menuController.choiceTypes[rightChoiceType]);
+                    playerLevelUp.upgradeStat(rightChoiceType);
+                    choiceSelected(); 
+                });
+            } else
+            {
+                Debug.Log("right is null");
+            }
         }
     }
 
     private void OnDisable()
     {
-        //Debug.Log("disabling level up ui");
-        if (leftInstance != null)
+        if (newChoices)
         {
-            leftInstance.GetComponent<Button>().onClick.RemoveAllListeners();
-            Destroy(leftInstance);
-            leftChoice = null;
-            leftChoiceType = -1;
-        }
-        if (middleInstance != null)
-        {
-            middleInstance.GetComponent<Button>().onClick.RemoveAllListeners();
-            Destroy(middleInstance);
-            middleChoice = null;
-            middleChoiceType = -1;
-        }
-        if (rightInstance != null)
-        {
-            rightInstance.GetComponent<Button>().onClick.RemoveAllListeners();
-            Destroy(rightInstance);
-            rightChoice = null;
-            rightChoiceType = -1;
+            //Debug.Log("disabling level up ui");
+            if (leftInstance != null)
+            {
+                leftInstance.GetComponent<Button>().onClick.RemoveAllListeners();
+                Destroy(leftInstance);
+                leftChoice = null;
+                leftChoiceType = -1;
+            }
+            if (middleInstance != null)
+            {
+                middleInstance.GetComponent<Button>().onClick.RemoveAllListeners();
+                Destroy(middleInstance);
+                middleChoice = null;
+                middleChoiceType = -1;
+            }
+            if (rightInstance != null)
+            {
+                rightInstance.GetComponent<Button>().onClick.RemoveAllListeners();
+                Destroy(rightInstance);
+                rightChoice = null;
+                rightChoiceType = -1;
+            }
         }
     }
 
     public void SetChoices(GameObject left, int leftType, GameObject middle, int midType, GameObject right, int rightType)
     {
-        //Debug.Log("levelupchoices: setting choices");
-        leftChoice = left;
-        leftChoiceType = leftType;
-        middleChoice = middle;
-        middleChoiceType = midType;
-        rightChoice = right;
-        rightChoiceType = rightType;
+        if (newChoices)
+        {
+            //Debug.Log("levelupchoices: setting choices");
+            leftChoice = left;
+            leftChoiceType = leftType;
+            middleChoice = middle;
+            middleChoiceType = midType;
+            rightChoice = right;
+            rightChoiceType = rightType;
+        }
     }
 }
