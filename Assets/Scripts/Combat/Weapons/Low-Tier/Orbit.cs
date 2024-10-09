@@ -17,11 +17,12 @@ public class Orbit : ProjWeapon
         speedDesc = "Increases projectile orbit speed";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles orbiting";
-        projSpeed = 1.0f;
         baseDamage = 20.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
+
+        projSpeed = 1.0f;
     }
 
     public override void Fire()

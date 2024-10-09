@@ -10,6 +10,8 @@ public abstract class Projectile : MonoBehaviour
     public float speed = 1.0f;
     protected float lifetime = 5.0f;
 
+    public float damage;
+
     private float timeAlive = 0.0f;
 
     protected virtual void Update()
@@ -22,6 +24,15 @@ public abstract class Projectile : MonoBehaviour
         timeAlive += Time.deltaTime;
         if (timeAlive >= lifetime)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

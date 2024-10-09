@@ -63,6 +63,6 @@ MonoBehaviour:
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
-  projSpeed: 1
+  projSpeed: 5
   projCount: 1
   spreadAngle: 10

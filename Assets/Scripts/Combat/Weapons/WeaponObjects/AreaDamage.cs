@@ -10,6 +10,8 @@ public abstract class AreaDamage : MonoBehaviour
     public float lifetime = 2.0f;
     public float damageCD = 1.0f;
 
+    public float damage;
+
     private float timeAlive = 0.0f;
 
     protected virtual void Update()

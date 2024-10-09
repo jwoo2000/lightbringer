@@ -16,11 +16,12 @@ public class Gun : ProjWeapon
         weaponName = "Steadfast Bolt";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles fired";
-        projSpeed = 1.0f;
         baseDamage = 20.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
+
+        projSpeed = 5.0f;
     }
 
     public override void Fire()
@@ -42,6 +43,7 @@ public class Gun : ProjWeapon
 
             GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
             GunProjectile gunProj = projInstance.GetComponent<GunProjectile>();
+            gunProj.damage = getDamage();
             gunProj.dir = fireDir;
             gunProj.speed = projSpeed;
         }

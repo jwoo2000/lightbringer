@@ -13,6 +13,8 @@ public abstract class GrenadeObject : MonoBehaviour
     public Vector3 targetPosition;
     public float flightTime = 1.0f;
 
+    public float damage;
+
     private float timeAlive = 0.0f;
 
     protected virtual void Update()
