@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponTier: 2
   weaponName: Daybreak Charge
-  weaponImage: {fileID: 21300000, guid: 577e37ee5f7136e46805d6aec9433994, type: 3}
+  weaponImage: {fileID: 21300000, guid: bb98be8c239e43c4d9ba1afb47ba854c, type: 3}
   damageLabel: Damage
   damageDesc: Increases weapon damage
   speedLabel: Firerate
