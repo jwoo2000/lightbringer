@@ -9,7 +9,7 @@ public class Homing : ProjWeapon
     private int projCount = 1;
 
     // init values for Orbit
-    public Homing()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Mid;
         weaponName = "Seeking Light";

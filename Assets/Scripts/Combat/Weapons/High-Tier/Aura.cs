@@ -6,7 +6,7 @@ using UnityEngine;
 public class Aura : AreaWeapon
 {
     // init values for Aura
-    public Aura()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.High;
         weaponName = "Blazing Radiance";

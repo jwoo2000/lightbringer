@@ -9,7 +9,7 @@ public class Orbit : ProjWeapon
     private int projCount = 1;
 
     // init values for Orbit
-    public Orbit()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Low;
         weaponName = "Celestial Orbit";

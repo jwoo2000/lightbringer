@@ -6,7 +6,7 @@ using UnityEngine;
 public class Grenade : GrenadeWeapon
 {
     // init values for Grenade
-    public Grenade()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.High;
         weaponName = "Daybreak Charge";
@@ -18,6 +18,12 @@ public class Grenade : GrenadeWeapon
         dmgPerDmgLevel = 0.1f;
 
         flightTime = 1.0f;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        targetPosition = playerTransform.position + (playerTransform.forward * 2.0f);
     }
 
     public override void Fire()

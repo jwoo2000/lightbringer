@@ -5,7 +5,7 @@ using UnityEngine;
 public class MolotovArea : AreaDamage
 {
     // molotov impact damage area object
-    public MolotovArea()
+    private void Awake()
     {
         lifetime = 2.0f;
         damageCD = 1.0f;

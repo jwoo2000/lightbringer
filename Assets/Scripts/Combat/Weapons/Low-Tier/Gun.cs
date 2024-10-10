@@ -10,7 +10,7 @@ public class Gun : ProjWeapon
     [SerializeField]
     private float spreadAngle = 10.0f; // angle between proj if projCount > 1
     // init values for Gun
-    public Gun()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Low;
         weaponName = "Steadfast Bolt";

@@ -9,7 +9,7 @@ public class Arrow : ProjWeapon
     private int pierceCount = 1;
 
     // init values for Arrow
-    public Arrow()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Low;
         weaponName = "Lightlance";

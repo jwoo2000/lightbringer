@@ -9,7 +9,7 @@ public class Nova : ProjWeapon
     private int projCount = 4;
 
     // init values for Nova
-    public Nova()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Mid;
         weaponName = "Lightburst";

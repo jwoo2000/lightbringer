@@ -6,7 +6,7 @@ using UnityEngine;
 public class Molotov : GrenadeWeapon
 {
     // init values for Molotov
-    public Molotov()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.High;
         weaponName = "Afterglow";

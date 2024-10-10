@@ -6,7 +6,7 @@ using UnityEngine;
 public class Swipe : AreaWeapon
 {
     // init values for Swipe
-    public Swipe()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Mid;
         weaponName = "Radiant Sweep";
