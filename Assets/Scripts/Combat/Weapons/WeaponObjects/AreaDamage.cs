@@ -13,6 +13,7 @@ public abstract class AreaDamage : MonoBehaviour
     public float damage;
 
     private float timeAlive = 0.0f;
+    private List<EnemyBehaviour> enemiesInArea = new List<EnemyBehaviour>(); // list of enemies in area collider
 
     protected virtual void Update()
     {
@@ -20,6 +21,52 @@ public abstract class AreaDamage : MonoBehaviour
         if (timeAlive >= lifetime)
         {
             Destroy(gameObject);
+        }
+    }
+
+    // add enemies that enter the area to the stuff to damage list
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+            if (enemy != null)
+            {
+                enemiesInArea.Add(enemy);
+                if (enemiesInArea.Count == 1)
+                {
+                    StartCoroutine(damageEnemiesInArea());
+                }
+            }
+        }
+    }
+
+    // remove enemies that leave the area frmo the stuff to damage list
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            EnemyBehaviour enemy = other.gameObject.GetComponent<EnemyBehaviour>();
+            if (enemy != null)
+            {
+                enemiesInArea.Remove(enemy);
+            }
+        }
+    }
+
+    private IEnumerator damageEnemiesInArea()
+    {
+        while (enemiesInArea.Count > 0)
+        {
+            foreach (EnemyBehaviour enemy in enemiesInArea)
+            {
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
+            }
+
+            yield return new WaitForSeconds(damageCD);
         }
     }
 }
