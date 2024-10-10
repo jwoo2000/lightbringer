@@ -25,7 +25,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private Transform target; 
     private float distanceToTarget;
-    private float attackWindUp;
     private Vector3 attackTarget;
     private Rigidbody rb;
     private float attackCoolDown; 
@@ -62,7 +61,6 @@ public class EnemyBehaviour : MonoBehaviour
         animator.SetFloat("Speed", speed);
         _enemyHealth = new UnitHealth(startingHealth, startingHealth);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        attackWindUp = 0.0f;
         attackCoolDown = 0.0f;
         damageCoolDown = false;
         rb = GetComponent<Rigidbody>();
@@ -134,7 +132,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Attack() {
         damageCoolDown = false;
 
-        animator.SetBool("Attack", true);
+        animator.SetTrigger("Attack");
     }
 
     private void DetectPlayer()
@@ -231,11 +229,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MediumEnemyBehaviour()
     {
-        
-        if (animator.GetBool("Attack")) 
-        {
-            animator.SetBool("Attack", false);
-        }
         if (distanceToTarget < attackTriggerRange) 
         {
             Attack();
@@ -250,8 +243,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void LargeEnemyBehaviour()
     {
-        int keepAwayDistance = 15;
-        int closeInDistance = 25;
+        int keepAwayDistance = 10;
+        int closeInDistance = 15;
         // Stay between 15 - 30 units away from the player
         DetectPlayer();
 
@@ -259,25 +252,38 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Wander();
         }
+        else 
+        {
+            if (spawnCooldown <= 0)
+            {
+                animator.SetTrigger("Summon");
+                SpawnMinions();
+                spawnCooldown = 10.0f;
+            }
+            else
+            {
+                spawnCooldown -= Time.deltaTime;
+            }
+            if (distanceToTarget < keepAwayDistance) 
+            {
+                animator.SetBool("Backward", true);
+                animator.SetBool("Forward", false);
+            }
+            else if (distanceToTarget > closeInDistance)
+            {
+                animator.SetBool("Forward", true);
+                animator.SetBool("Backward", false);
+            }
+            else 
+            {
+                animator.SetBool("Backward", false);
+                animator.SetBool("Forward", false);
+            }
+        }
 
-        if (distanceToTarget < keepAwayDistance) 
-        {
-            rb.velocity = -1 * speed * transform.forward;
-        }
-        else if (distanceToTarget > closeInDistance)
-        {
-            rb.velocity = speed * transform.forward;
-        }
+        
 
-        if (spawnCooldown <= 0)
-        {
-            SpawnMinions();
-            spawnCooldown = 10.0f;
-        }
-        else
-        {
-            spawnCooldown -= Time.deltaTime;
-        }
+        
 
 
     }
