@@ -15,7 +15,7 @@ public class Swipe : AreaWeapon
         uniqueLabel = "AOE Size";
         uniqueDesc = "Increases swipe area";
         baseDamage = 20.0f;
-        baseCooldown = 1.0f;
+        baseCooldown = 2.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
@@ -26,7 +26,7 @@ public class Swipe : AreaWeapon
 
     public override void Fire()
     {
-        GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity, transform);
+        GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset + (playerTransform.forward*1.0f), Quaternion.identity, transform);
         SwipeArea swipeArea = areaInstance.GetComponent<SwipeArea>();
         swipeArea.damage = getDamage();
         swipeArea.lifetime = areaDuration;

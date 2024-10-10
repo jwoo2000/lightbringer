@@ -13,6 +13,8 @@ public class AbsorbFireflies : MonoBehaviour
     private float absorbSpeed = 3.0f;
     [SerializeField]
     private float absorbSpeedMulti = 1.03f;
+    [SerializeField]
+    private float maxSpeed = 100.0f;
 
     [SerializeField]
     private bool isDying = false;
@@ -52,9 +54,9 @@ public class AbsorbFireflies : MonoBehaviour
             {
                 // move particles towards player position + (0,0.5,0) the center of player rather than feet
                 absorbDir = (((attractor.position + new Vector3(0, 0.5f, 0)) - particles[i].position).normalized);
-                particles[i].velocity = Vector3.ClampMagnitude(particles[i].velocity + (absorbDir * absorbSpeed * Time.deltaTime), 100.0f);
+                particles[i].velocity = Vector3.ClampMagnitude(particles[i].velocity + (absorbDir * absorbSpeed * Time.deltaTime), maxSpeed);
             }
-            absorbSpeed *= absorbSpeedMulti;
+            absorbSpeed = Mathf.Min(absorbSpeed * absorbSpeedMulti, maxSpeed);
             particleSystem.SetParticles(particles, numParticlesAlive);
         }
     }
@@ -77,6 +79,9 @@ public class AbsorbFireflies : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            particleSystem.Stop();
+            isDying = true;
+            Destroy(GetComponent<Collider>());
             PlayerStats playerStats = other.gameObject.GetComponent<PlayerStats>();
             playerStats.addExp(exp);
             if (isWep)
@@ -85,17 +90,14 @@ public class AbsorbFireflies : MonoBehaviour
                 int numParticlesAlive = particleSystem.GetParticles(particles);
                 for (int i = 0; i < numParticlesAlive; i++)
                 {
-                    particles[i].velocity = Vector3.ClampMagnitude(particles[i].velocity + (outwardsDir(particles[i].position) * explodeFactor), 100.0f);
-                    if (particles[i].velocity.magnitude >= 100.0f)
+                    particles[i].velocity = Vector3.ClampMagnitude(particles[i].velocity + (outwardsDir(particles[i].position) * explodeFactor), maxSpeed);
+                    if (particles[i].velocity.magnitude >= maxSpeed)
                     {
                         Debug.Log("firefly particle too fast! "+ particles[i].velocity.magnitude);
                     }
                 }
                 particleSystem.SetParticles(particles, numParticlesAlive);
             }
-            isDying = true;
-            Destroy(GetComponent<Collider>());
-            particleSystem.Stop();
         }
     }
 }
