@@ -12,6 +12,9 @@ public abstract class Projectile : MonoBehaviour
 
     public float damage;
 
+    [SerializeField]
+    protected TrailRenderer trailRenderer;
+
     protected float timeAlive = 0.0f;
 
     protected virtual void Update()
@@ -24,7 +27,7 @@ public abstract class Projectile : MonoBehaviour
         timeAlive += Time.deltaTime;
         if (timeAlive >= lifetime)
         {
-            Destroy(gameObject);
+            DestroyProj();
         }
     }
 
@@ -33,7 +36,13 @@ public abstract class Projectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && other.isTrigger)
         {
             other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(damage);
-            Destroy(gameObject);
+            DestroyProj();
         }
+    }
+    protected virtual void DestroyProj()
+    {
+        trailRenderer.transform.parent = null;
+        trailRenderer.autodestruct = true;
+        Destroy(gameObject);
     }
 }

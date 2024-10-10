@@ -9,6 +9,8 @@ public abstract class GrenadeObject : MonoBehaviour
     // to land at a targetPosition, landing after flightTime,
     // then creating an instance of spawnOnImpact before destroying itself
     // lifetime = flightTime
+    [SerializeField]
+    protected TrailRenderer trailRenderer;
     public GameObject spawnOnImpact;
 
     public Vector3 targetPosition;
@@ -44,7 +46,7 @@ public abstract class GrenadeObject : MonoBehaviour
             GameObject spawnedAreaDamage = Instantiate(spawnOnImpact, transform.position, Quaternion.identity);
             spawnedAreaDamage.GetComponent<AreaDamage>().damage = damage;
 
-            Destroy(gameObject);
+            DestroyProj();
         }
     }
 
@@ -56,5 +58,12 @@ public abstract class GrenadeObject : MonoBehaviour
         // rearranged displacement kinematics equation for init velocity
         initVelocity.y = ((end.y - start.y) / time) - 0.5f * Physics.gravity.y * time;
         return initVelocity;
+    }
+
+    protected virtual void DestroyProj()
+    {
+        trailRenderer.transform.parent = null;
+        trailRenderer.autodestruct = true;
+        Destroy(gameObject);
     }
 }

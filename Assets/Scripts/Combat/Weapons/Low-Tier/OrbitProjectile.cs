@@ -12,7 +12,7 @@ public class OrbitProjectile : Projectile
         timeAlive += Time.deltaTime;
         if (timeAlive >= lifetime)
         {
-            Destroy(gameObject);
+            DestroyProj();
         }
     }
 
