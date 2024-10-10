@@ -132,12 +132,8 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     private void Attack() {
-        /*attackTarget.y = 1;
-        rb.velocity = lungeSpeed * transform.forward;
-        attackWindUp = 0.0f;
-        attackCoolDown = attackCD;*/
         damageCoolDown = false;
-        
+
         animator.SetBool("Attack", true);
     }
 
@@ -163,6 +159,7 @@ public class EnemyBehaviour : MonoBehaviour
         //Chase Player
         if (playerDetected)
         {
+            rb.velocity = speed * transform.forward;
             animator.SetBool("Running", true);
         }
         else
