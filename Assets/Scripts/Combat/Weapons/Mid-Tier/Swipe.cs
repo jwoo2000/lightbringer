@@ -26,7 +26,7 @@ public class Swipe : AreaWeapon
 
     public override void Fire()
     {
-        GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
+        GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity, transform);
         SwipeArea swipeArea = areaInstance.GetComponent<SwipeArea>();
         swipeArea.damage = getDamage();
         swipeArea.lifetime = areaDuration;
