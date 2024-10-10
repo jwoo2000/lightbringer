@@ -6,7 +6,7 @@ using UnityEngine;
 public class Arrow : ProjWeapon
 {
     [SerializeField]
-    private int pierceCount = 1;
+    private int pierceCount;
 
     // init values for Arrow
     private void Awake()
@@ -20,7 +20,8 @@ public class Arrow : ProjWeapon
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
-        projSpeed = 1.0f;
+        pierceCount = 1;
+        projSpeed = 15.0f;
     }
 
     public override void Fire()
@@ -30,6 +31,7 @@ public class Arrow : ProjWeapon
         arrowProj.damage = getDamage();
         arrowProj.dir = playerTransform.forward;
         arrowProj.speed = projSpeed;
+        arrowProj.pierceCount = pierceCount;
     }
 
     protected override void upgradeSpeed()

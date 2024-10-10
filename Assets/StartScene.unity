@@ -5366,9 +5366,9 @@ MonoBehaviour:
   lowTierPOIGenerator: {fileID: 8877068767026970902, guid: 19f1404fab12b5444b21c7bd997ad093, type: 3}
   midTierPOIGenerator: {fileID: 8877068767026970902, guid: be2751116e10c644595a57ea8326feab, type: 3}
   highTierPOIGenerator: {fileID: 8877068767026970902, guid: b88bfc493d2b0154980d00002f8d0cfe, type: 3}
-  numLowTierPOI: 10
-  numMidTierPOI: 6
-  numHighTierPOI: 3
+  numLowTierPOI: 12
+  numMidTierPOI: 8
+  numHighTierPOI: 5
   lowTierSpawnRadius: 130
   midTierSpawnRadius: 90
   highTierSpawnRadius: 50

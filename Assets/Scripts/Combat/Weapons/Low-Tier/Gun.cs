@@ -21,7 +21,7 @@ public class Gun : ProjWeapon
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
-        projSpeed = 5.0f;
+        projSpeed = 10.0f;
     }
 
     public override void Fire()
