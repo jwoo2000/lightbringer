@@ -27,6 +27,7 @@ public class Arrow : ProjWeapon
     {
         GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         ArrowProjectile arrowProj = projInstance.GetComponent<ArrowProjectile>();
+        arrowProj.damage = getDamage();
         arrowProj.dir = playerTransform.forward;
         arrowProj.speed = projSpeed;
     }

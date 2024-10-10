@@ -28,6 +28,7 @@ public class Aura : AreaWeapon
     {
         GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity, transform);
         AuraArea auraArea = areaInstance.GetComponent<AuraArea>();
+        auraArea.damage = getDamage();
         auraArea.lifetime = areaDuration;
         auraArea.damageCD = damageCD;
     }

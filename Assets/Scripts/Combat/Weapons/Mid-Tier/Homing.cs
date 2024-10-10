@@ -26,6 +26,7 @@ public class Homing : ProjWeapon
     {
         GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         HomingProjectile homingProj = projInstance.GetComponent<HomingProjectile>();
+        homingProj.damage = getDamage();
         homingProj.dir = playerTransform.forward;
         homingProj.speed = projSpeed;
     }

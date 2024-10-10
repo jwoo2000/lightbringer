@@ -28,6 +28,7 @@ public class Swipe : AreaWeapon
     {
         GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         SwipeArea swipeArea = areaInstance.GetComponent<SwipeArea>();
+        swipeArea.damage = getDamage();
         swipeArea.lifetime = areaDuration;
         swipeArea.damageCD = damageCD;
     }

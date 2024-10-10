@@ -29,6 +29,7 @@ public class Orbit : ProjWeapon
     {
         GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         OrbitProjectile orbitProj = projInstance.GetComponent<OrbitProjectile>();
+        orbitProj.damage = getDamage();
         orbitProj.dir = playerTransform.forward;
         orbitProj.speed = projSpeed;
     }

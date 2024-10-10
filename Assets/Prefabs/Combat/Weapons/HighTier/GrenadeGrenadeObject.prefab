@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOnImpact: {fileID: 5072214633377645143, guid: 8a391b388f3883e47a02a54a9886bcb5, type: 3}
+  spawnedAreaDamage: {fileID: 5660669532343817118, guid: 8a391b388f3883e47a02a54a9886bcb5, type: 3}
   targetPosition: {x: 0, y: 0, z: 0}
   flightTime: 1
+  damage: 0
 --- !u!33 &1746285928791670504
 MeshFilter:
   m_ObjectHideFlags: 0

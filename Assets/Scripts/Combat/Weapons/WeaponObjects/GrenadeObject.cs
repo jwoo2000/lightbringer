@@ -22,7 +22,9 @@ public abstract class GrenadeObject : MonoBehaviour
         timeAlive += Time.deltaTime;
         if (timeAlive >= flightTime)
         {
-            Instantiate(spawnOnImpact, transform.position, Quaternion.identity);
+            GameObject spawnedAreaDamage = Instantiate(spawnOnImpact, transform.position, Quaternion.identity);
+            spawnedAreaDamage.GetComponent<AreaDamage>().damage = damage;
+            
             Destroy(gameObject);
         }
     }

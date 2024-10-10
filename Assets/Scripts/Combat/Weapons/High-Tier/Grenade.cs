@@ -24,6 +24,7 @@ public class Grenade : GrenadeWeapon
     {
         GameObject grenadeInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         GrenadeGrenadeObject grenadeObject = grenadeInstance.GetComponent<GrenadeGrenadeObject>();
+        grenadeObject.damage = getDamage();
         grenadeObject.targetPosition = targetPosition;
         grenadeObject.flightTime = flightTime;
     }

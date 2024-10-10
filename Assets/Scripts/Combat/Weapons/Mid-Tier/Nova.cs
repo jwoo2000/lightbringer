@@ -26,6 +26,7 @@ public class Nova : ProjWeapon
     {
         GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         NovaProjectile novaProj = projInstance.GetComponent<NovaProjectile>();
+        novaProj.damage = getDamage();
         novaProj.dir = playerTransform.forward;
         novaProj.speed = projSpeed;
     }
