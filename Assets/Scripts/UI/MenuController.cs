@@ -9,6 +9,7 @@ public class MenuController : MonoBehaviour
     public GameObject weaponGetCanvas;
     public GameObject weaponUpCanvas;
     public GameObject helpCanvas;
+    public GameObject optionsCanvas;
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
@@ -63,6 +64,9 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private bool helpOpen = false;
 
+    [SerializeField]
+    private bool optionsOpen = false;
+
     void Awake()
     {
         menuCanvas.SetActive(false);
@@ -70,6 +74,7 @@ public class MenuController : MonoBehaviour
         weaponGetCanvas.SetActive(false);
         weaponUpCanvas.SetActive(false);
         helpCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
     }
 
     void Update()
@@ -80,7 +85,10 @@ public class MenuController : MonoBehaviour
             if (helpOpen)
             {
                 closeHelp();
-            } 
+            } else if (optionsOpen)
+            {
+                closeOptions();
+            }
             else
             {
                 if (isPaused)
@@ -95,7 +103,7 @@ public class MenuController : MonoBehaviour
         }
 
         // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen && !helpOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen && !helpOpen && !optionsOpen)
         {
             if (levelUpChoices.newChoices)
             {
@@ -110,6 +118,18 @@ public class MenuController : MonoBehaviour
             levelUpChoices.newChoices = false;
             closeLevelUI();
         }
+    }
+
+    public void openOptions()
+    {
+        optionsOpen = true;
+        optionsCanvas.SetActive(true);
+    }
+
+    public void closeOptions()
+    {
+        optionsOpen = false;
+        optionsCanvas.SetActive(false);
     }
 
     public void openHelp()
@@ -272,10 +292,5 @@ public class MenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void OpenOptions()
-    {
-        Debug.Log("Options Menu Opened");
     }
 }
