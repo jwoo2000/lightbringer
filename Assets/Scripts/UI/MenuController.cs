@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour
     public GameObject levelUpCanvas;
     public GameObject weaponGetCanvas;
     public GameObject weaponUpCanvas;
+    public GameObject helpCanvas;
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
@@ -59,12 +60,16 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private bool pauseMenuOpen = false;
 
+    [SerializeField]
+    private bool helpOpen = false;
+
     void Awake()
     {
         menuCanvas.SetActive(false);
         levelUpCanvas.SetActive(false);
         weaponGetCanvas.SetActive(false);
         weaponUpCanvas.SetActive(false);
+        helpCanvas.SetActive(false);
     }
 
     void Update()
@@ -72,18 +77,25 @@ public class MenuController : MonoBehaviour
         // pause game if level ui and weapon up ui is not open
         if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
         {
-            if (isPaused)
+            if (helpOpen)
             {
-                ResumeGame();
-            }
+                closeHelp();
+            } 
             else
             {
-                PauseGame();
+                if (isPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
 
         // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen && !helpOpen)
         {
             if (levelUpChoices.newChoices)
             {
@@ -98,6 +110,18 @@ public class MenuController : MonoBehaviour
             levelUpChoices.newChoices = false;
             closeLevelUI();
         }
+    }
+
+    public void openHelp()
+    {
+        helpOpen = true;
+        helpCanvas.SetActive(true);
+    }
+
+    public void closeHelp()
+    {
+        helpOpen = false;
+        helpCanvas.SetActive(false);
     }
 
     public void closeLevelUI()
