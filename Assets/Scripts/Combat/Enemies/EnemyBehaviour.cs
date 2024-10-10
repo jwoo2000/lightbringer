@@ -131,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Attack() {
         damageCoolDown = false;
-
+        attackCoolDown = 1.0f;
         animator.SetTrigger("Attack");
     }
 
@@ -153,11 +153,12 @@ public class EnemyBehaviour : MonoBehaviour
     private void Chase() 
     {
         DetectPlayer();
+        animator.SetFloat("Speed", speed);
 
         //Chase Player
         if (playerDetected)
         {
-            rb.velocity = speed * transform.forward;
+            //rb.velocity = speed * transform.forward;
             animator.SetBool("Running", true);
         }
         else
@@ -178,8 +179,10 @@ public class EnemyBehaviour : MonoBehaviour
     // When player is not in range, move in a random direction at 1/10 of the enemies base speed
     private void Wander() 
     {
+        animator.SetFloat("Speed", speed / 2.0f);
         if (wandering) 
         {
+            animator.SetBool("Running", true);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget(wanderTarget), 0.5f * rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
             rb.velocity = 0.1f * speed * transform.forward;
@@ -191,6 +194,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Running", false);
             wanderValue -= Time.deltaTime;
             if (wanderValue <= 0) 
             {
@@ -216,26 +220,27 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SmallEnemyBehaviour()
     {
-        if (attackCoolDown <= 0) 
-        {
-            damageCoolDown = false;
-            Chase();
-        } 
-        else 
-        {
-            attackCoolDown -= Time.deltaTime;
-        }
-    }
-
-    private void MediumEnemyBehaviour()
-    {
-        if (distanceToTarget < attackTriggerRange) 
+        if (distanceToTarget < attackTriggerRange && attackCoolDown <= 0) 
         {
             Attack();
         } 
         else 
         {
             Chase();
+            attackCoolDown -= Time.deltaTime;
+        }
+    }
+
+    private void MediumEnemyBehaviour()
+    {
+        if (distanceToTarget < attackTriggerRange && attackCoolDown <= 0) 
+        {
+            Attack();
+        } 
+        else 
+        {
+            Chase();
+            attackCoolDown -= Time.deltaTime;
         }
         
 
