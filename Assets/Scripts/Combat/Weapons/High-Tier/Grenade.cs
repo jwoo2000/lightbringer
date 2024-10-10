@@ -23,7 +23,8 @@ public class Grenade : GrenadeWeapon
     protected override void Update()
     {
         base.Update();
-        targetPosition = playerTransform.position + (playerTransform.forward * 2.0f);
+        targetPosition = playerTransform.position + (playerTransform.forward * 5.0f);
+        targetPosition.y = 0.0f;
     }
 
     public override void Fire()

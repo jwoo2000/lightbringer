@@ -23,7 +23,7 @@ public abstract class GrenadeObject : MonoBehaviour
     protected virtual void Start()
     {
         startPosition = transform.position;
-        CalculateInitialVelocity(startPosition, targetPosition, flightTime);
+        initialVelocity = CalculateInitialVelocity(startPosition, targetPosition, flightTime);
     }
 
     protected virtual void Update()
