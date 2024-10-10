@@ -11,6 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
         Minion
     }
 
+    public Animator animator;
     public float speed = 1.0f;
     public float damageAmount = 20.0f;
     public float startingHealth = 100.0f;
@@ -52,11 +53,13 @@ public class EnemyBehaviour : MonoBehaviour
     void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        animator.SetFloat("Speed", speed);
         _enemyHealth = new UnitHealth(startingHealth, startingHealth);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         attackWindUp = 0.0f;
@@ -129,11 +132,13 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     private void Attack() {
-        attackTarget.y = 1;
+        /*attackTarget.y = 1;
         rb.velocity = lungeSpeed * transform.forward;
         attackWindUp = 0.0f;
-        attackCoolDown = attackCD;
+        attackCoolDown = attackCD;*/
         damageCoolDown = false;
+        
+        animator.SetBool("Attack", true);
     }
 
     private void DetectPlayer()
@@ -158,11 +163,11 @@ public class EnemyBehaviour : MonoBehaviour
         //Chase Player
         if (playerDetected)
         {
-            attackTarget = target.position;
-            rb.velocity = speed * transform.forward;
+            animator.SetBool("Running", true);
         }
         else
         {
+            animator.SetBool("Running", false);
             Wander();
         }
     }
@@ -229,24 +234,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MediumEnemyBehaviour()
     {
-        if (attackCoolDown > 0) 
+        
+        if (animator.GetBool("Attack")) 
         {
-            attackCoolDown -= Time.deltaTime;
-            attackTarget = target.position;
-        } 
-        else if (distanceToTarget < attackTriggerRange || attackWindUp > 0) 
+            animator.SetBool("Attack", false);
+        }
+        if (distanceToTarget < attackTriggerRange) 
         {
-            rb.velocity = -1.0f * speed * transform.forward;
-            attackWindUp += Time.deltaTime;
+            Attack();
         } 
         else 
         {
             Chase();
         }
-            
-        if (attackWindUp > attackWaitTime) {
-            Attack();
-        }
+        
+
     }
 
     private void LargeEnemyBehaviour()
