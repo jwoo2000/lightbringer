@@ -20,6 +20,13 @@ public class Molotov : GrenadeWeapon
         flightTime = 1.0f;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        targetPosition = playerTransform.position + (playerTransform.forward * 5.0f);
+        targetPosition.y = 0.0f;
+    }
+
     public override void Fire()
     {
         GameObject grenadeInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
