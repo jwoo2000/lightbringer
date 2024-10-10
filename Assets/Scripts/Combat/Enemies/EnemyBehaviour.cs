@@ -11,6 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
         Minion
     }
 
+    public Animator animator;
     public float speed = 1.0f;
     public float damageAmount = 20.0f;
     public float startingHealth = 100.0f;
@@ -24,7 +25,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private Transform target; 
     private float distanceToTarget;
-    private float attackWindUp;
     private Vector3 attackTarget;
     private Rigidbody rb;
     private float attackCoolDown; 
@@ -52,14 +52,15 @@ public class EnemyBehaviour : MonoBehaviour
     void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        animator.SetFloat("Speed", speed);
         _enemyHealth = new UnitHealth(startingHealth, startingHealth);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        attackWindUp = 0.0f;
         attackCoolDown = 0.0f;
         damageCoolDown = false;
         rb = GetComponent<Rigidbody>();
@@ -129,11 +130,9 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     private void Attack() {
-        attackTarget.y = 1;
-        rb.velocity = lungeSpeed * transform.forward;
-        attackWindUp = 0.0f;
-        attackCoolDown = attackCD;
         damageCoolDown = false;
+        attackCoolDown = 1.0f;
+        animator.SetTrigger("Attack");
     }
 
     private void DetectPlayer()
@@ -154,15 +153,17 @@ public class EnemyBehaviour : MonoBehaviour
     private void Chase() 
     {
         DetectPlayer();
+        animator.SetFloat("Speed", speed);
 
         //Chase Player
         if (playerDetected)
         {
-            attackTarget = target.position;
-            rb.velocity = speed * transform.forward;
+            //rb.velocity = speed * transform.forward;
+            animator.SetBool("Running", true);
         }
         else
         {
+            animator.SetBool("Running", false);
             Wander();
         }
     }
@@ -178,8 +179,10 @@ public class EnemyBehaviour : MonoBehaviour
     // When player is not in range, move in a random direction at 1/10 of the enemies base speed
     private void Wander() 
     {
+        animator.SetFloat("Speed", speed / 2.0f);
         if (wandering) 
         {
+            animator.SetBool("Running", true);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget(wanderTarget), 0.5f * rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
             rb.velocity = 0.1f * speed * transform.forward;
@@ -191,6 +194,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Running", false);
             wanderValue -= Time.deltaTime;
             if (wanderValue <= 0) 
             {
@@ -216,43 +220,36 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SmallEnemyBehaviour()
     {
-        if (attackCoolDown <= 0) 
+        if (distanceToTarget < attackTriggerRange && attackCoolDown <= 0) 
         {
-            damageCoolDown = false;
-            Chase();
+            Attack();
         } 
         else 
         {
+            Chase();
             attackCoolDown -= Time.deltaTime;
         }
     }
 
     private void MediumEnemyBehaviour()
     {
-        if (attackCoolDown > 0) 
+        if (distanceToTarget < attackTriggerRange && attackCoolDown <= 0) 
         {
-            attackCoolDown -= Time.deltaTime;
-            attackTarget = target.position;
-        } 
-        else if (distanceToTarget < attackTriggerRange || attackWindUp > 0) 
-        {
-            rb.velocity = -1.0f * speed * transform.forward;
-            attackWindUp += Time.deltaTime;
+            Attack();
         } 
         else 
         {
             Chase();
+            attackCoolDown -= Time.deltaTime;
         }
-            
-        if (attackWindUp > attackWaitTime) {
-            Attack();
-        }
+        
+
     }
 
     private void LargeEnemyBehaviour()
     {
-        int keepAwayDistance = 15;
-        int closeInDistance = 25;
+        int keepAwayDistance = 10;
+        int closeInDistance = 15;
         // Stay between 15 - 30 units away from the player
         DetectPlayer();
 
@@ -260,25 +257,38 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Wander();
         }
+        else 
+        {
+            if (spawnCooldown <= 0)
+            {
+                animator.SetTrigger("Summon");
+                SpawnMinions();
+                spawnCooldown = 10.0f;
+            }
+            else
+            {
+                spawnCooldown -= Time.deltaTime;
+            }
+            if (distanceToTarget < keepAwayDistance) 
+            {
+                animator.SetBool("Backward", true);
+                animator.SetBool("Forward", false);
+            }
+            else if (distanceToTarget > closeInDistance)
+            {
+                animator.SetBool("Forward", true);
+                animator.SetBool("Backward", false);
+            }
+            else 
+            {
+                animator.SetBool("Backward", false);
+                animator.SetBool("Forward", false);
+            }
+        }
 
-        if (distanceToTarget < keepAwayDistance) 
-        {
-            rb.velocity = -1 * speed * transform.forward;
-        }
-        else if (distanceToTarget > closeInDistance)
-        {
-            rb.velocity = speed * transform.forward;
-        }
+        
 
-        if (spawnCooldown <= 0)
-        {
-            SpawnMinions();
-            spawnCooldown = 10.0f;
-        }
-        else
-        {
-            spawnCooldown -= Time.deltaTime;
-        }
+        
 
 
     }
