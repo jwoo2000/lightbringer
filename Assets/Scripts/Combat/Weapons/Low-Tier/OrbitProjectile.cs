@@ -12,7 +12,7 @@ public class OrbitProjectile : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && other.isTrigger)
+        if (other.CompareTag("Enemy") && other.isTrigger)
         {
             other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(damage);
         }

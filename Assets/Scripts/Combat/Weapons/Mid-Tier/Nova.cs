@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Nova : ProjWeapon
 {
     [SerializeField]
-    private int projCount = 4;
+    private int projCount;
 
     // init values for Nova
     private void Awake()
@@ -21,6 +21,7 @@ public class Nova : ProjWeapon
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
+        projCount = 4;
         projSpeed = 10.0f;
     }
 

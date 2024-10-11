@@ -6,9 +6,9 @@ using UnityEngine;
 public class Orbit : ProjWeapon
 {
     [SerializeField]
-    private int projCount = 1;
+    private int projCount;
     [SerializeField]
-    private float orbitRadius = 2.0f;
+    private float orbitRadius;
     [SerializeField]
     private float baseProjSpeed;
 
@@ -29,9 +29,10 @@ public class Orbit : ProjWeapon
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
+        projCount = 1;
         projSpeed = 180.0f;
         baseProjSpeed = projSpeed;
-
+        orbitRadius = 2.0f;
     }
 
     public override void Fire()

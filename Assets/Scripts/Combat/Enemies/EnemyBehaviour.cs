@@ -202,7 +202,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == this.tagToDamage && damageCoolDown == false) 
+        if (col.CompareTag(tagToDamage) && damageCoolDown == false) 
         {
             GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
             Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);

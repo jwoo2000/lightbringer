@@ -27,7 +27,7 @@ public abstract class AreaDamage : MonoBehaviour
     // add enemies that enter the area to the stuff to damage list
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && other.isTrigger)
+        if (other.CompareTag("Enemy") && other.isTrigger)
         {
             EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
             if (enemy != null)
@@ -44,7 +44,7 @@ public abstract class AreaDamage : MonoBehaviour
     // remove enemies that leave the area frmo the stuff to damage list
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && other.isTrigger)
+        if (other.CompareTag("Enemy") && other.isTrigger)
         {
             EnemyBehaviour enemy = other.gameObject.GetComponent<EnemyBehaviour>();
             if (enemy != null)
