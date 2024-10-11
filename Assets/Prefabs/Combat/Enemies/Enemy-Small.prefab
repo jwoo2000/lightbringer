@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1471955992139393229}
   - component: {fileID: 2330574101609332077}
   - component: {fileID: -7201005188608644649}
+  - component: {fileID: 1000728717448483959}
   - component: {fileID: 5838395730658667058}
   - component: {fileID: 6308559290908604893}
   - component: {fileID: 6998865940038640054}
@@ -88,10 +89,28 @@ MonoBehaviour:
   loseDetectionRange: 40
   expOnDeath: 2
   attackCD: 1
+  target: {fileID: 0}
   attackWaitTime: 0.5
   lungeSpeed: 7
   attackTriggerRange: 1
   minion: {fileID: 0}
+--- !u!114 &1000728717448483959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63767002397184257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc050387b3fa6454f9501823bffa0e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviour: {fileID: -7201005188608644649}
+  discoverDist: 15
+  discovered: 0
+  cloakedColor: {r: 0, g: 0, b: 0, a: 1}
+  uncloakDur: 1
 --- !u!95 &5838395730658667058
 Animator:
   serializedVersion: 5

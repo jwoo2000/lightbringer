@@ -26,7 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
     public int expOnDeath = 5;
     public float attackCD = 1.5f;
 
-    private Transform target; 
+    public Transform target; 
     private float distanceToTarget;
     private Vector3 attackTarget;
     private Rigidbody rb;

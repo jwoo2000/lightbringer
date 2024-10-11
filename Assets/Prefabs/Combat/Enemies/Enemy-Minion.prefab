@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471955992139393229}
   - component: {fileID: 2330574101609332077}
+  - component: {fileID: 5488761088711824880}
   - component: {fileID: -7201005188608644649}
   - component: {fileID: 5856061897716604730}
   - component: {fileID: 668362025896087953}
@@ -64,6 +65,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &5488761088711824880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63767002397184257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc050387b3fa6454f9501823bffa0e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviour: {fileID: -7201005188608644649}
+  discoverDist: 15
+  discovered: 0
+  cloakedColor: {r: 0, g: 0, b: 0, a: 1}
+  uncloakDur: 1
 --- !u!114 &-7201005188608644649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +106,7 @@ MonoBehaviour:
   loseDetectionRange: 60
   expOnDeath: 0
   attackCD: 0.5
+  target: {fileID: 0}
   attackWaitTime: 0.5
   lungeSpeed: 7
   attackTriggerRange: 3

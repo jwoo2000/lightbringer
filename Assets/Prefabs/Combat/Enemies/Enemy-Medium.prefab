@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 86162988315063589}
   - component: {fileID: 4304228929817738368}
   - component: {fileID: 7574952498278834371}
+  - component: {fileID: 82856787086061292}
   - component: {fileID: 8923105198181648954}
   - component: {fileID: 9091907759385650141}
   m_Layer: 0
@@ -119,6 +120,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6162115194065706948}
   m_Mesh: {fileID: -8545447256379345787, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
+--- !u!114 &82856787086061292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162115194065706948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc050387b3fa6454f9501823bffa0e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviour: {fileID: 8923105198181648954}
+  discoverDist: 15
+  discovered: 0
+  cloakedColor: {r: 0, g: 0, b: 0, a: 1}
+  uncloakDur: 1
 --- !u!114 &8923105198181648954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +161,7 @@ MonoBehaviour:
   loseDetectionRange: 40
   expOnDeath: 5
   attackCD: 1
+  target: {fileID: 0}
   attackWaitTime: 0
   lungeSpeed: 0
   attackTriggerRange: 2.5
@@ -355,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4137360376990707587, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c0102c0696ff99e4493b19d3adf189ac, type: 2}
     - target: {fileID: 6480516387375092837, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
       propertyPath: m_TagString
       value: Enemy
