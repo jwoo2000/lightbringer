@@ -101,7 +101,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         switch(behaviourType)
         {
             case EnemyType.Small:

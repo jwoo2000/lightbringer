@@ -41,7 +41,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             Debug.Log(spawnRate);
             if (weaponController.HighWeapon != null) 
             {
-                int pick = Random.Range(0, 2);
+                int pick = Random.Range(0, 4);
                 if (pick == 0)
                 {
                     Instantiate(enemyLarge, SpawnPosition(spawnDistance * 2.0f), Quaternion.identity);
@@ -53,7 +53,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             }
             else if (weaponController.MidWeapon != null) 
             {
-                int pick = Random.Range(0, 1);
+                int pick = Random.Range(0, 2);
                 if (pick == 0)
                 {
                     Instantiate(enemySmall, SpawnPosition(spawnDistance), Quaternion.identity);
