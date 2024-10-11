@@ -39,7 +39,7 @@ public abstract class Projectile : MonoBehaviour
             DestroyProj();
         }
     }
-    protected virtual void DestroyProj()
+    public virtual void DestroyProj()
     {
         trailRenderer.transform.parent = null;
         trailRenderer.autodestruct = true;

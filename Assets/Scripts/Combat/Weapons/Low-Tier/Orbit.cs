@@ -13,7 +13,7 @@ public class Orbit : ProjWeapon
     private float baseProjSpeed;
 
     [SerializeField]
-    private List<GameObject> projList = new List<GameObject>();
+    private List<OrbitProjectile> projList = new List<OrbitProjectile>();
 
     // init values for Orbit
     private void Awake()
@@ -45,13 +45,13 @@ public class Orbit : ProjWeapon
             Vector3 projSpawnPos = new Vector3(spawnX, playerTransform.position.y + weaponOriginOffset.y, spawnZ);
             
             GameObject projInstance = Instantiate(weaponObject, projSpawnPos, Quaternion.identity, playerTransform);
-            projList.Add(projInstance);
 
             OrbitProjectile orbitProj = projInstance.GetComponent<OrbitProjectile>();
             orbitProj.damage = getDamage();
             orbitProj.dir = playerTransform.forward;
             orbitProj.speed = projSpeed;
             orbitProj.lifetime = baseCooldown;
+            projList.Add(orbitProj);
 
             currAngle += angleStep;
         }
@@ -59,21 +59,27 @@ public class Orbit : ProjWeapon
     protected override float GetCooldownTime()
     {
         // orbit speed upgrade affects projspeed not fire cd
+        // disable base weapon speed upgrade
         return baseCooldown;
     }
 
     protected override void upgradeSpeed()
     {
-        projSpeed = (baseProjSpeed * (1 + (speedLevel * 20.0f)));
+        projSpeed = (baseProjSpeed * (1 + (speedLevel * 0.2f)));
+        foreach (OrbitProjectile proj in projList)
+        {
+            proj.speed = projSpeed;
+        }
     }
 
     protected override void upgradeUnique()
     {
         projCount++;
-        foreach (GameObject proj in projList)
+        foreach (OrbitProjectile proj in projList)
         {
-            Destroy(proj);
+            proj.DestroyProj();
         }
+        projList.Clear();
         Fire();
     }
 }
