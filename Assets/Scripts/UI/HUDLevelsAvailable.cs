@@ -15,10 +15,10 @@ public class HUDLevelsAvailable : MonoBehaviour
     {
         if (menuController.pendingLevelUps == 1)
         {
-            textComponent.text = menuController.pendingLevelUps.ToString() + " level available";
+            textComponent.text = menuController.pendingLevelUps.ToString() + " level available (Tab)";
         } else if (menuController.pendingLevelUps > 1)
         {
-            textComponent.text = menuController.pendingLevelUps.ToString() + " levels available";
+            textComponent.text = menuController.pendingLevelUps.ToString() + " levels available (Tab)";
         } else
         {
             textComponent.text = "";

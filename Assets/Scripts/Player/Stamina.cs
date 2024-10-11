@@ -8,7 +8,7 @@ public class Stamina : MonoBehaviour
     [SerializeField] private GameObject player;
 
     public float maxStamina = 100.0f; // default 100
-    public float regenerationRate = 10.0f; // amt per second
+    public float regenerationRate = 20.0f; // amt per second
     public float consumptionRate = 20.0f; // amt per second
     public float stamina; // curr stamina
     private float health;
