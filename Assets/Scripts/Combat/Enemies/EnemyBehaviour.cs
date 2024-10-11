@@ -66,7 +66,14 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyHealth = new UnitHealth(startingHealth, startingHealth);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         attackCoolDown = 0.0f;
-        damageCoolDown = true;
+        if (behaviourType == EnemyType.Minion)
+        {
+            damageCoolDown = false;
+        }
+        else
+        {
+            damageCoolDown = true;
+        }
         rb = GetComponent<Rigidbody>();
         playerDetected = false;
     }
@@ -226,14 +233,19 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag(tagToDamage) && damageCoolDown == false) 
+        if (col.CompareTag(tagToDamage)) 
         {
-            GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
-            Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
-            damageCoolDown = true;
+            
             if (behaviourType == EnemyType.Minion) 
             {
+                GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
                 Destroy(gameObject);
+            }
+            else if (damageCoolDown == false)
+            {
+                GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
+                Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
+                damageCoolDown = true;
             }
         }
     }
@@ -341,6 +353,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MinionEnemyBehaviour()
     {
+        damageCoolDown = false;
         Chase();
     }
 
@@ -351,7 +364,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             animator.SetTrigger("Wakeup");
         }
-
+        
         if (attackCoolDown <= 0)
         {
             if (distanceToTarget < attackTriggerRange)
@@ -372,5 +385,7 @@ public class EnemyBehaviour : MonoBehaviour
                 damageCoolDown = true;
             }
         }
+        // Hard coding locking the Y value
+        transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
     }
 }
