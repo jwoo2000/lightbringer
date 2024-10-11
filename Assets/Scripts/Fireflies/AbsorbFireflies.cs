@@ -77,7 +77,7 @@ public class AbsorbFireflies : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other != null && other.CompareTag("Player"))
         {
             particleSystem.Stop();
             isDying = true;

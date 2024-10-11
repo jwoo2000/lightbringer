@@ -12,9 +12,13 @@ public class OrbitProjectile : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && other.isTrigger)
+        if (other != null && other.CompareTag("Enemy") && other.isTrigger)
         {
-            other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(damage);
+            EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
         }
     }
 }
