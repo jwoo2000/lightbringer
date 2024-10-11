@@ -15,6 +15,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float speed = 1.0f;
     //acceleration only used for minions
     public float acceleration = 1.0f;
+    public float knockback = 1.0f;
     public float damageAmount = 20.0f;
     public float startingHealth = 100.0f;
     public EnemyType behaviourType;
@@ -23,7 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float detectionRange = 20.0f;
     public float loseDetectionRange = 40.0f;
     public int expOnDeath = 5;
-    public float attackCD = 0.5f;
+    public float attackCD = 1.5f;
 
     private Transform target; 
     private float distanceToTarget;
@@ -64,7 +65,7 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyHealth = new UnitHealth(startingHealth, startingHealth);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         attackCoolDown = 0.0f;
-        damageCoolDown = false;
+        damageCoolDown = true;
         rb = GetComponent<Rigidbody>();
         playerDetected = false;
     }
@@ -130,12 +131,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _enemyHealth.DmgUnit(dmg, enemyDmgReduc);
         animator.SetTrigger("Hit");
+        //transform.position = transform.position - (transform.forward * knockback);
         rb.velocity = rb.velocity / 1.5f;
     }
 
     private void Attack() {
         damageCoolDown = false;
-        attackCoolDown = 1.0f;
+        attackCoolDown = attackCD;
         animator.SetTrigger("Attack");
     }
 
@@ -228,27 +230,49 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SmallEnemyBehaviour()
     {
-        if (distanceToTarget < attackTriggerRange && attackCoolDown <= 0) 
+        if (distanceToTarget < attackTriggerRange ) 
         {
-            Attack();
+            animator.SetBool("Running", false);
+            if (attackCoolDown <= 0)
+            {
+                Attack();
+            } 
+            else
+            {
+                attackCoolDown -= Time.deltaTime;
+            }
         } 
         else 
         {
             Chase();
             attackCoolDown -= Time.deltaTime;
+            if (attackCoolDown <= 0) {
+                damageCoolDown = true;
+            }
         }
     }
 
     private void MediumEnemyBehaviour()
     {
-        if (distanceToTarget < attackTriggerRange && attackCoolDown <= 0) 
+        if (distanceToTarget < attackTriggerRange ) 
         {
-            Attack();
+            animator.SetBool("Running", false);
+            if (attackCoolDown <= 0)
+            {
+                Attack();
+            } 
+            else
+            {
+                attackCoolDown -= Time.deltaTime;
+            }
         } 
         else 
         {
             Chase();
             attackCoolDown -= Time.deltaTime;
+            if (attackCoolDown <= 0) {
+                damageCoolDown = true;
+            }
         }
         
 

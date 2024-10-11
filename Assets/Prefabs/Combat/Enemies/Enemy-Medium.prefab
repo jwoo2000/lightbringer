@@ -133,6 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 9091907759385650141}
   speed: 1
+  acceleration: 1
+  knockback: 0.1
   damageAmount: 20
   startingHealth: 100
   behaviourType: 1
@@ -140,10 +142,10 @@ MonoBehaviour:
   detectionRange: 20
   loseDetectionRange: 40
   expOnDeath: 5
-  attackCD: 0
+  attackCD: 1
   attackWaitTime: 0
   lungeSpeed: 0
-  attackTriggerRange: 3
+  attackTriggerRange: 2.5
   minion: {fileID: 0}
 --- !u!95 &9091907759385650141
 Animator:

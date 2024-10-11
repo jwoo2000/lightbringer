@@ -78,6 +78,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5856061897716604730}
   speed: 8
+  acceleration: 1
+  knockback: 0.5
   damageAmount: 20
   startingHealth: 50
   behaviourType: 3
