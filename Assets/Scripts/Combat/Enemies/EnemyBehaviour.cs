@@ -26,6 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float loseDetectionRange = 40.0f;
     public int expOnDeath = 5;
     public float attackCD = 1.5f;
+    public float despawnDistance = 40.0f;
 
     public Transform target; 
     private float distanceToTarget;
@@ -96,6 +97,10 @@ public class EnemyBehaviour : MonoBehaviour
             // Spawn an effect to be played when enemy dies
         }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
+        if (distanceToTarget > despawnDistance) 
+        {
+            Destroy(gameObject);
+        }
 
         switch(behaviourType)
         {
