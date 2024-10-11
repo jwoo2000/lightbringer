@@ -15,14 +15,16 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
 
+
+    // if the below are != null, then player has been to the POI of its tier
     [SerializeField]
-    private Weapon LowWeapon = null;
+    public Weapon LowWeapon = null;
 
     [SerializeField]
-    private Weapon MidWeapon = null;
+    public Weapon MidWeapon = null;
 
     [SerializeField]
-    private Weapon HighWeapon = null;
+    public Weapon HighWeapon = null;
 
     public const int maxWeaponSlots = 3;
     public List<Weapon> activeWeapons = new List<Weapon>(maxWeaponSlots);
