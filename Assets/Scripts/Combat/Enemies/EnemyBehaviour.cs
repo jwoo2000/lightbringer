@@ -13,6 +13,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Animator animator;
     public float speed = 1.0f;
+    //acceleration only used for minions
+    public float acceleration = 1.0f;
     public float damageAmount = 20.0f;
     public float startingHealth = 100.0f;
     public EnemyType behaviourType;
@@ -127,6 +129,8 @@ public class EnemyBehaviour : MonoBehaviour
     public void TakeDamage (float dmg) 
     {
         _enemyHealth.DmgUnit(dmg, enemyDmgReduc);
+        animator.SetTrigger("Hit");
+        rb.velocity = rb.velocity / 1.5f;
     }
 
     private void Attack() {
@@ -158,7 +162,11 @@ public class EnemyBehaviour : MonoBehaviour
         //Chase Player
         if (playerDetected)
         {
-            //rb.velocity = speed * transform.forward;
+            if (rb.velocity.magnitude < speed && behaviourType == EnemyType.Minion) 
+            {
+                rb.velocity += speed * transform.forward * Time.deltaTime * acceleration;
+            }
+            
             animator.SetBool("Running", true);
         }
         else
@@ -305,6 +313,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MinionEnemyBehaviour()
     {
+        
         Chase();
     }
 }
