@@ -19,15 +19,20 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (dir != Vector3.zero)
-        {
-            transform.position += speed * Time.deltaTime * dir;
-        }
+        moveProj();
 
         timeAlive += Time.deltaTime;
         if (timeAlive >= lifetime)
         {
             DestroyProj();
+        }
+    }
+
+    protected virtual void moveProj()
+    {
+        if (dir != Vector3.zero)
+        {
+            transform.position += speed * Time.deltaTime * dir;
         }
     }
 

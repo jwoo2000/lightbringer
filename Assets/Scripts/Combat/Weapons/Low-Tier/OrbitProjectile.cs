@@ -5,15 +5,9 @@ using UnityEngine;
 public class OrbitProjectile : Projectile
 {
     // orbit projectile
-    protected override void Update()
+    protected override void moveProj()
     {
         transform.RotateAround(transform.parent.position, Vector3.up, speed * Time.deltaTime);
-
-        timeAlive += Time.deltaTime;
-        if (timeAlive >= lifetime)
-        {
-            DestroyProj();
-        }
     }
 
     protected override void OnTriggerEnter(Collider other)
