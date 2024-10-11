@@ -8,7 +8,8 @@ public class EnemyBehaviour : MonoBehaviour
         Small,
         Medium,
         Large,
-        Minion
+        Minion,
+        Boss
     }
 
     public Animator animator;
@@ -111,6 +112,11 @@ public class EnemyBehaviour : MonoBehaviour
                 SmallEnemyBehaviour();
                 break;
             }
+            case EnemyType.Boss:
+            {
+                BossEnemyBehaviour();
+                break;
+            }
             default: break;
         }
         if (playerDetected) 
@@ -167,6 +173,10 @@ public class EnemyBehaviour : MonoBehaviour
             if (rb.velocity.magnitude < speed && behaviourType == EnemyType.Minion) 
             {
                 rb.velocity += speed * transform.forward * Time.deltaTime * acceleration;
+            }
+            if (behaviourType == EnemyType.Boss)
+            {
+                transform.position = transform.position + (transform.forward * speed * Time.deltaTime);
             }
             
             animator.SetBool("Running", true);
@@ -317,12 +327,6 @@ public class EnemyBehaviour : MonoBehaviour
                 animator.SetBool("Forward", false);
             }
         }
-
-        
-
-        
-
-
     }
 
     private void SpawnMinions()
@@ -337,7 +341,36 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MinionEnemyBehaviour()
     {
-        
         Chase();
+    }
+
+    private void BossEnemyBehaviour()
+    {
+        DetectPlayer();
+        if (playerDetected)
+        {
+            animator.SetTrigger("Wakeup");
+        }
+
+        if (attackCoolDown <= 0)
+        {
+            if (distanceToTarget < attackTriggerRange)
+            {
+                Attack();
+                animator.SetBool("Running", false);
+            }
+            else 
+            {
+                Chase();
+            }
+        }
+        else
+        {
+            attackCoolDown -= Time.deltaTime;
+            if (attackCoolDown <= 0)
+            {
+                damageCoolDown = true;
+            }
+        }
     }
 }
