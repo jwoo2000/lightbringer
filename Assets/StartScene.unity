@@ -8830,7 +8830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1024315729}
   maxStamina: 100
-  regenerationRate: 10
+  regenerationRate: 20
   consumptionRate: 20
   stamina: 0
   staminaBarColour: {r: 0, g: 0.6, b: 0, a: 1}
