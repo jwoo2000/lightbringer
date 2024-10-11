@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2805690048795694218}
   - component: {fileID: 4767120657587819540}
   - component: {fileID: 2356711490199145426}
+  - component: {fileID: 6069856000525953012}
   m_Layer: 0
   m_Name: Enemy-Boss
   m_TagString: Enemy
@@ -130,6 +131,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6069856000525953012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370212819581386843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9065c490f9aa24b9bb13791beae211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5989406626735526274}
+  speed: 8
+  acceleration: 1
+  knockback: 1
+  damageAmount: 20
+  startingHealth: 1000
+  behaviourType: 4
+  enemyDmgReduc: 0
+  detectionRange: 20
+  loseDetectionRange: 40
+  expOnDeath: 5
+  attackCD: 1.5
+  target: {fileID: 0}
+  attackWaitTime: 0.5
+  lungeSpeed: 7
+  attackTriggerRange: 4
+  minion: {fileID: 0}
 --- !u!1001 &777248155932606734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,7 +339,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.25
+  m_Radius: 0.37
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &777248155933006760 stripped
 Transform:
