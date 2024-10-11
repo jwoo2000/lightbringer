@@ -159,7 +159,7 @@ MonoBehaviour:
   enemyDmgReduc: 0
   detectionRange: 30
   loseDetectionRange: 40
-  expOnDeath: 5
+  expOnDeath: 20
   attackCD: 1
   target: {fileID: 0}
   attackWaitTime: 0
