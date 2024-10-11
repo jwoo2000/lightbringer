@@ -9,11 +9,14 @@ public abstract class AreaDamage : MonoBehaviour
     // they deal damage every damageCD (default 1s)
     public float lifetime = 2.0f;
     public float damageCD = 1.0f;
+    public float aoeSize;
 
     public float damage;
 
     private float timeAlive = 0.0f;
-    private List<EnemyBehaviour> enemiesInArea = new List<EnemyBehaviour>(); // list of enemies in area collider
+
+    [SerializeField]
+    private Collider[] colliders;
 
     protected virtual void Update()
     {
@@ -24,48 +27,27 @@ public abstract class AreaDamage : MonoBehaviour
         }
     }
 
-    // add enemies that enter the area to the stuff to damage list
-    private void OnTriggerEnter(Collider other)
+    protected virtual void Start()
     {
-        if (other != null && other.CompareTag("Enemy") && other.isTrigger)
-        {
-            EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
-            if (enemy != null)
-            {
-                enemiesInArea.Add(enemy);
-                if (enemiesInArea.Count == 1)
-                {
-                    StartCoroutine(damageEnemiesInArea());
-                }
-            }
-        }
+        StartCoroutine(damageEnemiesArea());
     }
 
-    // remove enemies that leave the area frmo the stuff to damage list
-    private void OnTriggerExit(Collider other)
+    private IEnumerator damageEnemiesArea()
     {
-        if (other != null && other.CompareTag("Enemy") && other.isTrigger)
+        while (timeAlive < lifetime)
         {
-            EnemyBehaviour enemy = other.gameObject.GetComponent<EnemyBehaviour>();
-            if (enemy != null)
+            colliders = Physics.OverlapSphere(transform.position, aoeSize/2.0f);
+            foreach (Collider collider in colliders)
             {
-                enemiesInArea.Remove(enemy);
-            }
-        }
-    }
-
-    private IEnumerator damageEnemiesInArea()
-    {
-        while (enemiesInArea.Count > 0)
-        {
-            foreach (EnemyBehaviour enemy in enemiesInArea)
-            {
-                if (enemy != null)
+                if (collider.CompareTag("Enemy") && collider.isTrigger)
                 {
-                    enemy.TakeDamage(damage);
+                    EnemyBehaviour enemy = collider.GetComponent<EnemyBehaviour>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeDamage(damage);
+                    }
                 }
             }
-
             yield return new WaitForSeconds(damageCD);
         }
     }

@@ -14,7 +14,7 @@ public class Swipe : AreaWeapon
         speedDesc = "Increases attack speed";
         uniqueLabel = "AOE Size";
         uniqueDesc = "Increases swipe area";
-        baseDamage = 20.0f;
+        baseDamage = 60.0f;
         baseCooldown = 2.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
@@ -22,15 +22,18 @@ public class Swipe : AreaWeapon
         // swipe has short duration (like a melee swipe) and damageCD longer than its area duration => only deals one tick of damage
         areaDuration = 0.2f;
         damageCD = 1.0f;
+        aoeSize = 2.0f;
     }
 
     public override void Fire()
     {
-        GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset + (playerTransform.forward*1.0f), Quaternion.identity, transform);
+        GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset + (playerTransform.forward*(aoeSize/2.0f)), transform.rotation, transform);
+        areaInstance.transform.localScale = new Vector3(aoeSize, 1.0f, aoeSize);
         SwipeArea swipeArea = areaInstance.GetComponent<SwipeArea>();
         swipeArea.damage = getDamage();
         swipeArea.lifetime = areaDuration;
         swipeArea.damageCD = damageCD;
+        swipeArea.aoeSize = aoeSize;
     }
 
     protected override void upgradeSpeed()
@@ -40,6 +43,6 @@ public class Swipe : AreaWeapon
 
     protected override void upgradeUnique()
     {
-
+        aoeSize++;
     }
 }
