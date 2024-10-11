@@ -16,7 +16,12 @@ public abstract class GrenadeObject : MonoBehaviour
     public Vector3 targetPosition;
     public float flightTime = 1.0f;
 
+    public float aoeSize;
+
     public float damage;
+
+    public float damageCD;
+    public float areaLifetime;
 
     private Vector3 startPosition;
     private Vector3 initialVelocity;
@@ -43,8 +48,13 @@ public abstract class GrenadeObject : MonoBehaviour
         else
         {
             // landed
-            GameObject spawnedAreaDamage = Instantiate(spawnOnImpact, transform.position, Quaternion.identity);
-            spawnedAreaDamage.GetComponent<AreaDamage>().damage = damage;
+            GameObject spawnedAreaDamageInstance = Instantiate(spawnOnImpact, transform.position, Quaternion.identity);
+            spawnedAreaDamageInstance.transform.localScale = Vector3.one * aoeSize;
+            AreaDamage spawnedAreaDamage = spawnedAreaDamageInstance.GetComponent<AreaDamage>();
+            spawnedAreaDamage.damage = damage;
+            spawnedAreaDamage.damageCD = damageCD;
+            spawnedAreaDamage.lifetime = areaLifetime;
+            spawnedAreaDamage.aoeSize = aoeSize;
 
             DestroyProj();
         }

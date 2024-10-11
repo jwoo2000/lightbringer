@@ -6,8 +6,6 @@ using UnityEngine;
 public class Aura : AreaWeapon
 {
     [SerializeField]
-    private float aoeSize;
-    [SerializeField]
     private float baseAoe;
 
     [SerializeField]
@@ -34,7 +32,7 @@ public class Aura : AreaWeapon
 
         // aura has a long duration around player
         areaDuration = 999.0f;
-        damageCD = 1.0f;
+        damageCD = 0.5f;
         baseDmgCD = damageCD;
         aoeSize = 5.0f;
         baseAoe = aoeSize;
@@ -42,12 +40,14 @@ public class Aura : AreaWeapon
 
     public override void Fire()
     {
-        activeAuraAreaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity, transform);
+        activeAuraAreaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         activeAuraAreaInstance.transform.localScale = Vector3.one * aoeSize;
         activeAuraArea = activeAuraAreaInstance.GetComponent<AuraArea>();
         activeAuraArea.damage = getDamage();
         activeAuraArea.lifetime = areaDuration;
         activeAuraArea.damageCD = damageCD;
+        activeAuraArea.aoeSize = aoeSize;
+        activeAuraArea.auraWeapon = transform;
     }
 
     protected override void upgradeSpeed()
@@ -59,6 +59,7 @@ public class Aura : AreaWeapon
     protected override void upgradeUnique()
     {
         aoeSize = (baseAoe * (1 + (uniqueLevel * 0.3f)));
+        activeAuraArea.aoeSize = aoeSize;
         activeAuraAreaInstance.transform.localScale = Vector3.one * aoeSize;
     }
 }

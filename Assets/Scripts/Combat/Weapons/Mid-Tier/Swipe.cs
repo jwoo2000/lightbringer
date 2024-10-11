@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Swipe : AreaWeapon
 {
-    [SerializeField]
-    private float aoeSize;
-
     // init values for Swipe
     private void Awake()
     {
@@ -36,6 +33,7 @@ public class Swipe : AreaWeapon
         swipeArea.damage = getDamage();
         swipeArea.lifetime = areaDuration;
         swipeArea.damageCD = damageCD;
+        swipeArea.aoeSize = aoeSize;
     }
 
     protected override void upgradeSpeed()
