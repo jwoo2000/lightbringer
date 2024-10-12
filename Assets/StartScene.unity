@@ -8841,12 +8841,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef73d81a6dc1f5040b41dcd552deb4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 10
+  isSpawning: 0
   enemySmall: {fileID: 63767002397184257, guid: 0eaba585f17d9364e8a0b5b7921e5a88, type: 3}
   enemyMedium: {fileID: 6162115194065706948, guid: e0891f74b5c956b46bdb1d94d1bd17e0, type: 3}
   enemyLarge: {fileID: 4952036158238110365, guid: 9ef9eb0f93bde45488bc4cddfba9243f, type: 3}
-  isSpawning: 1
-  spawnDistance: 10
+  weaponController: {fileID: 1024315748}
+  playerStats: {fileID: 1024315744}
+  baseSpawnDistance: 0
+  baseSpawnWaveCD: 0
+  minSpawnWaveCD: 0
+  spawnWaveCD: 0
+  spawnRateScaling: 0
+  spawnWave: 
 --- !u!1 &1029944687
 GameObject:
   m_ObjectHideFlags: 0
