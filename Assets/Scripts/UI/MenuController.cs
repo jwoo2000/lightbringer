@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    [SerializeField] private MovementController movementController;
     public GameObject menuCanvas;
     public GameObject levelUpCanvas;
     public GameObject weaponGetCanvas;
@@ -79,44 +80,47 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        // pause game if level ui and weapon up ui is not open
-        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
+        if (movementController.controlsActive)
         {
-            if (helpOpen)
+            // pause game if level ui and weapon up ui is not open
+            if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
             {
-                closeHelp();
-            } else if (optionsOpen)
-            {
-                closeOptions();
-            }
-            else
-            {
-                if (isPaused)
+                if (helpOpen)
                 {
-                    ResumeGame();
+                    closeHelp();
+                } else if (optionsOpen)
+                {
+                    closeOptions();
                 }
                 else
                 {
-                    PauseGame();
+                    if (isPaused)
+                    {
+                        ResumeGame();
+                    }
+                    else
+                    {
+                        PauseGame();
+                    }
                 }
             }
-        }
 
-        // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen && !helpOpen && !optionsOpen)
-        {
-            if (levelUpChoices.newChoices)
+            // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
+            if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen && !helpOpen && !optionsOpen)
             {
-                processNextLevelUp();
-            } else
+                if (levelUpChoices.newChoices)
+                {
+                    processNextLevelUp();
+                } else
+                {
+                    openLevelUI();
+                }
+            } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
             {
-                openLevelUI();
+                // if level ui is open, close and dont reroll new choices
+                levelUpChoices.newChoices = false;
+                closeLevelUI();
             }
-        } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
-        {
-            // if level ui is open, close and dont reroll new choices
-            levelUpChoices.newChoices = false;
-            closeLevelUI();
         }
     }
 
