@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 583277555387913414}
   - component: {fileID: 7194312944651196546}
   - component: {fileID: 5008733068405409954}
+  - component: {fileID: 1329157071944963669}
   m_Layer: 5
   m_Name: LightIntegrity
   m_TagString: Untagged
@@ -125,6 +126,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1329157071944963669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281668882846750227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449917283764f814398e19b1281512a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drDescText: {fileID: 5701668683745866038}
 --- !u!1 &3937662848629335120
 GameObject:
   m_ObjectHideFlags: 0

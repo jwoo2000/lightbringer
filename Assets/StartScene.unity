@@ -8762,7 +8762,7 @@ MonoBehaviour:
   dmgReductionLvl: 0
   maxStaminaLvl: 0
   staminaRegenLvl: 0
-  dmgRedScalingFactor: 10
+  dmgRedScalingFactor: 40
 --- !u!114 &1024315747
 MonoBehaviour:
   m_ObjectHideFlags: 0
