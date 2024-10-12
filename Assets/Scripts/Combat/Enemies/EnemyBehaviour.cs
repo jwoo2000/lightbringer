@@ -248,7 +248,7 @@ public class EnemyBehaviour : MonoBehaviour
             else if (damageCoolDown == false)
             {
                 GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
-                Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
+                //Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
                 damageCoolDown = true;
             }
         }

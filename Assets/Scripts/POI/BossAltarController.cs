@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BossAltarController : MonoBehaviour
@@ -13,11 +14,18 @@ public class BossAltarController : MonoBehaviour
     [SerializeField] private float activationTime; // activation sequence time
 
     [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private GameObject spawnParticle;
     [SerializeField] private Light playerLight;
     [SerializeField] private float playerLightInitIntensity;
     [SerializeField] private Light altarLight;
     [SerializeField] private float altarLightInitRange;
     [SerializeField] private ParticleSystem altarPS;
+
+    [SerializeField] private GameObject conditionTextPanel;
+    [SerializeField] private Color conditionTextColor;
+    [SerializeField] private TMP_Text conditionText1;
+    [SerializeField] private TMP_Text conditionText2;
+    [SerializeField] private bool failMessageShowing;
 
     private void Awake()
     {
@@ -25,18 +33,22 @@ public class BossAltarController : MonoBehaviour
         activationRange = 5.0f;
         levelCondition = 20;
         activationTime = 5.0f;
+        failMessageShowing = false;
     }
 
     private void Start()
     {
         altarLightInitRange = altarLight.range;
         playerLightInitIntensity = playerLight.intensity;
+        conditionText1.color = new Color(conditionTextColor.r, conditionTextColor.g, conditionTextColor.b, 0.0f);
+        conditionText2.color = new Color(conditionTextColor.r, conditionTextColor.g, conditionTextColor.b, 0.0f);
+        conditionTextPanel.SetActive(false);
     }
 
     private void Update()
     {
         float dist = Vector3.Distance(transform.position, playerTransform.position);
-        if ((dist < activationRange) && !activated && (Time.timeScale !=  0))
+        if ((dist < activationRange) && !activated && !failMessageShowing && (Time.timeScale !=  0))
         {
             if (conditionsMet())
             {
@@ -44,14 +56,18 @@ public class BossAltarController : MonoBehaviour
                 activateAltar();
             } else
             {
-                activationFail();
+                if (!failMessageShowing)
+                {
+                    failMessageShowing = true;
+                    StartCoroutine(activationFail());
+                }
             }
         }
     }
 
     private bool conditionsMet()
     {
-        return (playerStats.level > levelCondition);
+        return (playerStats.level >= levelCondition);
     }
 
     private void activateAltar()
@@ -78,7 +94,10 @@ public class BossAltarController : MonoBehaviour
 
         altarLight.range = 0.0f;
         playerLight.intensity = 0.0f;
-        Debug.Log("SPAWN THE BOSS");
+
+        Instantiate(spawnParticle, transform.position, Quaternion.identity);
+        Instantiate(bossPrefab, transform.position, Quaternion.identity);
+
         timeLeft = 0.0f;
         while (timeLeft < 0.3f)
         {
@@ -89,8 +108,54 @@ public class BossAltarController : MonoBehaviour
         }
     }
 
-    private void activationFail()
+    private IEnumerator FadeOutText(TMP_Text text, float fadeDur)
+    {
+        Color ogColor = conditionTextColor;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < fadeDur)
+        {
+            float currAlpha = Mathf.Lerp(1.0f, 0.0f, timeElapsed / fadeDur);
+            text.color = new Color(ogColor.r, ogColor.g, ogColor.b, currAlpha);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        text.color = new Color(ogColor.r, ogColor.g, ogColor.b, 0.0f);
+    }
+
+    private IEnumerator FadeInText(TMP_Text text, float fadeDur)
+    {
+        Color ogColor = conditionTextColor;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < fadeDur)
+        {
+            float currAlpha = Mathf.Lerp(0.0f, 1.0f, timeElapsed / fadeDur);
+            text.color = new Color(ogColor.r, ogColor.g, ogColor.b, currAlpha);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        text.color = new Color(ogColor.r, ogColor.g, ogColor.b, 1.0f);
+    }
+
+    private IEnumerator activationFail()
     {
         Debug.Log("Activation failed!");
+        conditionTextPanel.SetActive(true);
+        StartCoroutine(FadeInText(conditionText1, 2.0f));
+        yield return StartCoroutine(FadeInText(conditionText2, 2.0f));
+
+        yield return new WaitForSeconds(2.0f);
+
+        StartCoroutine(FadeOutText(conditionText1, 2.0f));
+        yield return StartCoroutine(FadeOutText(conditionText2, 2.0f));
+
+        conditionTextPanel.SetActive(false);
+
+        yield return new WaitForSeconds(1.0f);
+
+        failMessageShowing = false;
     }
 }

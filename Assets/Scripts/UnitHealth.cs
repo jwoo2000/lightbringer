@@ -47,7 +47,7 @@ public class UnitHealth
         {
             float damageDealt = dmgAmount * (1.0f - dmgReduction);
             _currentHealth -= damageDealt;
-            Debug.Log("Damage dealt: "+ damageDealt);
+            //Debug.Log("Damage dealt: "+ damageDealt);
         }
     }
 
