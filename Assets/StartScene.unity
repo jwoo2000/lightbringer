@@ -9976,6 +9976,7 @@ MonoBehaviour:
   weaponController: {fileID: 1024315748}
   unexploredFogBlend: {fileID: 17433195}
   exploredFogBlend: {fileID: 2013744118}
+  playerLight: {fileID: 192922453}
   fogClearer: {fileID: 1545632277}
   visibilityPainter: {fileID: 1135776894}
   movespeed: 2

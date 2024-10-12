@@ -4,68 +4,36 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField]
-    private GameManager gameManager;
-
-    [SerializeField]
-    private MenuController menuController;
-
-    [SerializeField]
-    private MovementController movementController;
-
-    [SerializeField]
-    public WeaponController weaponController;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private MenuController menuController;
+    [SerializeField] private MovementController movementController;
+    [SerializeField] public WeaponController weaponController;
 
 
-    [SerializeField]
-    private FogBlend unexploredFogBlend;
-
-    [SerializeField]
-    private FogBlend exploredFogBlend;
-
+    [SerializeField] private FogBlend unexploredFogBlend;
+    [SerializeField] private FogBlend exploredFogBlend;
     private float initBlendSpeed;
 
-    [SerializeField]
-    private GameObject fogClearer;
+    [SerializeField] private Light playerLight;
+    private float initLightRange;
+    [SerializeField] private float minLightRange;
+    [SerializeField] private GameObject fogClearer;
+    [SerializeField] private GameObject visibilityPainter;
 
-    [SerializeField]
-    private GameObject visibilityPainter;
+    [SerializeField] public float movespeed = 2.0f;
+    [SerializeField] private float sprintMulti = 2.0f;
+    [SerializeField] public float lightRadius = 1.0f;
+    [SerializeField] public float maxLightRadius = 1.0f;
+    [SerializeField] public float lightRadiusRegen = 0.0f; // % max hp per second
+    [SerializeField] public float dmgReduction = 0.0f; // % dmg taken reduced
 
-    [SerializeField]
-    public float movespeed = 2.0f;
+    [SerializeField] private float initMaxHP = 100.0f;
+    [SerializeField] public float currHP;
+    [SerializeField] public float currMaxHP;
 
-    [SerializeField]
-    private float sprintMulti = 2.0f;
-
-    [SerializeField]
-    public float lightRadius = 1.0f;
-
-    [SerializeField]
-    public float maxLightRadius = 1.0f;
-
-    [SerializeField]
-    public float lightRadiusRegen = 0.0f; // % max hp per second
-
-    [SerializeField]
-    public float dmgReduction = 0.0f; // % dmg taken reduced
-
-    [SerializeField]
-    private float initMaxHP = 100.0f;
-
-    [SerializeField]
-    public float currHP;
-
-    [SerializeField]
-    public float currMaxHP;
-
-    [SerializeField]
-    private int exp = 0;
-
-    [SerializeField]
-    private int maxExp = 30;
-
-    [SerializeField]
-    public int level = 0;
+    [SerializeField] private int exp = 0;
+    [SerializeField] private int maxExp = 30;
+    [SerializeField] public int level = 0;
 
     public int Exp
     {
@@ -92,6 +60,8 @@ public class PlayerStats : MonoBehaviour
         updateLightRadius(maxLightRadius);
         initPlayerHP();
         initBlendSpeed = exploredFogBlend.blendSpeed;
+        initLightRange = playerLight.range;
+        minLightRange = 15.0f;
     }
 
     private void Update()
@@ -185,13 +155,18 @@ public class PlayerStats : MonoBehaviour
     {
         maxLightRadius = gameManager._playerHealth.MaxHealth / initMaxHP;
         lightRadius = calcHpToLightRadius(gameManager._playerHealth);
+        playerLight.range = Mathf.Max(minLightRange, initLightRange * hpRatio(gameManager._playerHealth));
     }
 
     private float calcHpToLightRadius(UnitHealth unitHealth)
     {
-        float hpRatio = (float) unitHealth.Health / (float) unitHealth.MaxHealth;
-        float radius = hpRatio * maxLightRadius;
+        float radius = hpRatio(unitHealth) * maxLightRadius;
         return radius;
+    }
+
+    private float hpRatio(UnitHealth unitHealth)
+    {
+        return ((float)unitHealth.Health / (float)unitHealth.MaxHealth);
     }
 
     private void regenHP()
