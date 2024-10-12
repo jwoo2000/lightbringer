@@ -91,13 +91,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f370448e3207d4588bacfaf643feaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloakMat: {fileID: 0}
+  cloakMat: {fileID: 2100000, guid: 5cafee4bbf531e94cb68e85c113398e2, type: 2}
   POIObjects: {fileID: 8527851417594026628}
   visibilityPainter: {fileID: 6937585955113814610}
   wepFirefly: {fileID: 8448527716620346117}
   discovered: 0
   playerTransform: {fileID: 0}
   discoverDist: 0
+  cloakedColor: {r: 0, g: 0, b: 0, a: 1}
+  cloakedMetallic: 1
+  cloakedSmooth: 0
+  uncloakDur: 1
 --- !u!1 &8527851417594026628
 GameObject:
   m_ObjectHideFlags: 0

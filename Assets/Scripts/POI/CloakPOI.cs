@@ -110,7 +110,10 @@ public class CloakPOI : MonoBehaviour
     {
         //Debug.Log("cloaking poi");
         visibilityPainter.SetActive(false);
-        wepFirefly.SetActive(false);
+        if (wepFirefly != null)
+        {
+            wepFirefly.SetActive(false);
+        }
         for (int i = 0; i < renderers.Length; i++)
         {
             if (renderers[i] != null && renderers[i].material != null)
@@ -142,7 +145,10 @@ public class CloakPOI : MonoBehaviour
     public void uncloak()
     {
         visibilityPainter.SetActive(true);
-        wepFirefly.SetActive(true);
+        if (wepFirefly != null)
+        {
+            wepFirefly.SetActive(true);
+        }
         for (int i = 0; i < renderers.Length; i++)
         {
             if (renderers[i] != null && renderers[i].material != null)

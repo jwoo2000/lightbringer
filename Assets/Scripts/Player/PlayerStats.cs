@@ -200,7 +200,8 @@ public class PlayerStats : MonoBehaviour
         float currHP = gameManager._playerHealth.Health;
         if (currHP < maxHP)
         {
-            gameManager._playerHealth.Health = Mathf.Clamp(currHP + (lightRadiusRegen * Time.deltaTime), 0.0f, maxHP);
+            float hpToRegen = maxHP * lightRadiusRegen * Time.deltaTime;
+            gameManager._playerHealth.Health = Mathf.Clamp(currHP + hpToRegen, 0.0f, maxHP);
         }
     }
 
