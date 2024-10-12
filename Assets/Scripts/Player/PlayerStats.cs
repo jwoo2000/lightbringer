@@ -59,7 +59,7 @@ public class PlayerStats : MonoBehaviour
     public float currMaxHP;
 
     [SerializeField]
-    public int exp = 0;
+    private int exp = 0;
 
     [SerializeField]
     private int maxExp = 30;
