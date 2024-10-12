@@ -47,7 +47,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             Debug.Log("Spawning wave in: " + spawnWaveCD + " seconds.");
             yield return new WaitForSeconds(spawnWaveCD);
             SpawnWave();
-            Debug.Log("Wave: "+spawnWave);
+            Debug.Log("Spawned wave: "+ spawnWave.Count +" enemies.");
 
             playerLevel = playerStats.level;
             spawnWave.Clear();
