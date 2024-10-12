@@ -41,6 +41,7 @@ public class GameOverMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 0.0f;
     }
 
     private IEnumerator FadeInBG(Image image, Color ogColor, float fadeDur)
