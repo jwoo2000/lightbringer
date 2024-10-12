@@ -95,9 +95,13 @@ public class EnemyBehaviour : MonoBehaviour
             playerStats.addExp(expOnDeath);
             Destroy(gameObject);
             // Spawn an effect to be played when enemy dies
+            if (behaviourType == EnemyType.Boss)
+            {
+                GameManager.playerWin();
+            }
         }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if (distanceToTarget > despawnDistance) 
+        if ((distanceToTarget > despawnDistance) && (behaviourType != EnemyType.Boss)) 
         {
             Destroy(gameObject);
         }

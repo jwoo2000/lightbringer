@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static void playerWin()
+    {
+        Debug.Log("Player win!");
+    }
+
     private void playerDeath()
     {
         playerAlive = false;
