@@ -20,6 +20,7 @@ public class Molotov : GrenadeWeapon
         flightTime = 1.0f;
         targetRadius = 10.0f;
         aoeSize = 5.0f;
+        timeToAoe = 0.3f;
 
         areaLifetime = 2.0f;
         damageCD = 0.5f;
@@ -45,6 +46,7 @@ public class Molotov : GrenadeWeapon
         grenadeObject.aoeSize = aoeSize;
         grenadeObject.damageCD = damageCD;
         grenadeObject.areaLifetime = areaLifetime;
+        grenadeObject.timeToAoe = timeToAoe;
     }
 
     protected override void upgradeSpeed()

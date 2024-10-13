@@ -10,14 +10,6 @@ public class AuraArea : AreaDamage
 
     [SerializeField] private float minScale;
     [SerializeField] private float maxScale;
-    [SerializeField] private float currScale;
-
-    private void Awake()
-    {
-        minScale = aoeSize;
-        maxScale = minScale*1.2f;
-        currScale = maxScale;
-    }
 
     protected override void Update()
     {
@@ -26,33 +18,35 @@ public class AuraArea : AreaDamage
         maxScale = minScale * 1.1f;
         transform.position = auraWeapon.position;
         transform.Rotate(0, 30.0f * Time.deltaTime, 0);
-        transform.localScale = Vector3.one * currScale;
     }
-    protected override void Start()
+
+    protected override IEnumerator onInstantiate()
     {
-        base.Start();
+        minScale = aoeSize;
+        maxScale = minScale * 1.1f;
+        yield return StartCoroutine(growAoe(maxScale));
+        StartCoroutine(damageEnemiesArea());
         StartCoroutine(attackScale());
     }
 
     private IEnumerator attackScale()
     {
-        while (true)
+        while (!growing)
         {
             float timeToPeak = 0.0f;
-            while (timeToPeak < (damageCD / 2.0f))
-            {
-                currScale = Mathf.Lerp(minScale, maxScale, timeToPeak / (damageCD / 2.0f));
-                timeToPeak += Time.deltaTime;
-                yield return null;
-            }
-            timeToPeak = 0.0f;
             while (timeToPeak < (damageCD / 2.0f))
             {
                 currScale = Mathf.Lerp(maxScale, minScale, timeToPeak / (damageCD / 2.0f));
                 timeToPeak += Time.deltaTime;
                 yield return null;
             }
-            yield return null;
+            timeToPeak = 0.0f;
+            while (timeToPeak < (damageCD / 2.0f))
+            {
+                currScale = Mathf.Lerp(minScale, maxScale, timeToPeak / (damageCD / 2.0f));
+                timeToPeak += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }

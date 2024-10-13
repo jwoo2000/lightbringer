@@ -17,6 +17,7 @@ public abstract class GrenadeObject : MonoBehaviour
     public float flightTime = 1.0f;
 
     public float aoeSize;
+    public float timeToAoe;
 
     public float damage;
 
@@ -49,12 +50,12 @@ public abstract class GrenadeObject : MonoBehaviour
         {
             // landed
             GameObject spawnedAreaDamageInstance = Instantiate(spawnOnImpact, transform.position, Quaternion.identity);
-            spawnedAreaDamageInstance.transform.localScale = Vector3.one * aoeSize;
             AreaDamage spawnedAreaDamage = spawnedAreaDamageInstance.GetComponent<AreaDamage>();
             spawnedAreaDamage.damage = damage;
             spawnedAreaDamage.damageCD = damageCD;
             spawnedAreaDamage.lifetime = areaLifetime;
             spawnedAreaDamage.aoeSize = aoeSize;
+            spawnedAreaDamage.timeToAoe = timeToAoe;
 
             DestroyProj();
         }

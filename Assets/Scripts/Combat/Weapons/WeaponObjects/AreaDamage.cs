@@ -10,6 +10,14 @@ public abstract class AreaDamage : MonoBehaviour
     public float lifetime = 2.0f;
     public float damageCD = 1.0f;
     public float aoeSize;
+    public float timeToAoe;
+
+    [SerializeField]
+    protected bool growing;
+    [SerializeField]
+    protected float currScale;
+    [SerializeField]
+    private float initScale;
 
     public float damage;
 
@@ -18,21 +26,40 @@ public abstract class AreaDamage : MonoBehaviour
     [SerializeField]
     private Collider[] colliders;
 
+    protected virtual void Awake()
+    {
+        initScale = 0.1f;
+        currScale = initScale;
+        growing = true;
+        transform.localScale = Vector3.one * currScale;
+    }
+
     protected virtual void Update()
     {
-        timeAlive += Time.deltaTime;
+        if (!growing)
+        {
+            timeAlive += Time.deltaTime;
+        }
         if (timeAlive >= lifetime)
         {
             Destroy(gameObject);
         }
+
+        transform.localScale = Vector3.one * currScale;
     }
 
     protected virtual void Start()
     {
+        StartCoroutine(onInstantiate());
+    }
+
+    protected virtual IEnumerator onInstantiate()
+    {
+        yield return StartCoroutine(growAoe(aoeSize));
         StartCoroutine(damageEnemiesArea());
     }
 
-    private IEnumerator damageEnemiesArea()
+    protected IEnumerator damageEnemiesArea()
     {
         while (timeAlive < lifetime)
         {
@@ -50,5 +77,19 @@ public abstract class AreaDamage : MonoBehaviour
             }
             yield return new WaitForSeconds(damageCD);
         }
+    }
+
+    protected IEnumerator growAoe(float toAoeSize)
+    {
+        growing = true;
+        float timeElapsed = 0.0f;
+        while (timeElapsed < timeToAoe)
+        {
+            currScale = Mathf.Lerp(initScale, toAoeSize, timeElapsed/timeToAoe);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        currScale = toAoeSize;
+        growing = false;
     }
 }

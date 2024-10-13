@@ -36,18 +36,19 @@ public class Aura : AreaWeapon
         baseDmgCD = damageCD;
         aoeSize = 5.0f;
         baseAoe = aoeSize;
+        timeToAoe = 1.0f;
     }
 
     public override void Fire()
     {
         activeAuraAreaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
-        activeAuraAreaInstance.transform.localScale = Vector3.one * aoeSize;
         activeAuraArea = activeAuraAreaInstance.GetComponent<AuraArea>();
         activeAuraArea.damage = getDamage();
         activeAuraArea.lifetime = areaDuration;
         activeAuraArea.damageCD = damageCD;
         activeAuraArea.aoeSize = aoeSize;
         activeAuraArea.auraWeapon = transform;
+        activeAuraArea.timeToAoe = timeToAoe;
     }
 
     protected override void upgradeSpeed()

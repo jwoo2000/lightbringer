@@ -17,6 +17,8 @@ public abstract class GrenadeWeapon : Weapon
     protected float targetRadius;
     [SerializeField]
     protected float aoeSize;
+    [SerializeField] 
+    protected float timeToAoe;
     [SerializeField]
     protected float damageCD;
     [SerializeField]

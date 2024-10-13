@@ -23,6 +23,7 @@ public class Swipe : AreaWeapon
         areaDuration = 0.2f;
         damageCD = 1.0f;
         aoeSize = 2.0f;
+        timeToAoe = 0.2f;
     }
 
     public override void Fire()
@@ -34,6 +35,7 @@ public class Swipe : AreaWeapon
         swipeArea.lifetime = areaDuration;
         swipeArea.damageCD = damageCD;
         swipeArea.aoeSize = aoeSize;
+        swipeArea.timeToAoe = timeToAoe;
     }
 
     protected override void upgradeSpeed()
