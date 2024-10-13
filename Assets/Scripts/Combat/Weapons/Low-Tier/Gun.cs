@@ -16,7 +16,7 @@ public class Gun : ProjWeapon
         weaponName = "Steadfast Bolt";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles fired";
-        baseDamage = 20.0f;
+        baseDamage = 30.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;

@@ -15,7 +15,7 @@ public class Swipe : AreaWeapon
         uniqueLabel = "AOE Size";
         uniqueDesc = "Increases swipe area";
         baseDamage = 60.0f;
-        baseCooldown = 2.0f;
+        baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 

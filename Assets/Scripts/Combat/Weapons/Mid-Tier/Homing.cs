@@ -23,7 +23,7 @@ public class Homing : ProjWeapon
         weaponName = "Seeking Light";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles fired";
-        baseDamage = 40.0f;
+        baseDamage = 50.0f;
         baseCooldown = 2.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
