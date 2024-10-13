@@ -48,10 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 4502338532673037079}
-  spawnOnImpact: {fileID: 5072214633377645143, guid: 56a8e3f36e9e8b044b0631cec7714f29, type: 3}
+  spawnOnImpact: {fileID: 5718937455785546210, guid: 76fa0ef618d52dc489cbc092be99dba9, type: 3}
   targetPosition: {x: 0, y: 0, z: 0}
   flightTime: 1
+  aoeSize: 0
+  timeToAoe: 0
   damage: 0
+  damageCD: 0
+  areaLifetime: 0
 --- !u!33 &1746285928791670504
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -80,7 +84,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 03f84ef29f0aa954b827f62998fc83d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,6 +157,18 @@ PrefabInstance:
     - target: {fileID: 5405437184420408119, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.34045935
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.2235294
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
