@@ -61,6 +61,5 @@ public class Aura : AreaWeapon
     {
         aoeSize = (baseAoe * (1 + (uniqueLevel * 0.3f)));
         activeAuraArea.aoeSize = aoeSize;
-        activeAuraAreaInstance.transform.localScale = Vector3.one * aoeSize;
     }
 }

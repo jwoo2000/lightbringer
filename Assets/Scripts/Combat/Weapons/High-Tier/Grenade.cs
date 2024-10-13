@@ -20,7 +20,7 @@ public class Grenade : GrenadeWeapon
         flightTime = 1.0f;
         targetRadius = 10.0f;
         aoeSize = 5.0f;
-        timeToAoe = 0.3f;
+        timeToAoe = 0.2f;
 
         damageCD = 1.0f;
         areaLifetime = 0.1f;
@@ -46,6 +46,7 @@ public class Grenade : GrenadeWeapon
         grenadeObject.aoeSize = aoeSize;
         grenadeObject.damageCD = damageCD;
         grenadeObject.areaLifetime = areaLifetime;
+        grenadeObject.timeToAoe = timeToAoe;
     }
 
     protected override void upgradeSpeed()

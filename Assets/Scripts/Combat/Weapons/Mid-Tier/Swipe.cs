@@ -23,13 +23,12 @@ public class Swipe : AreaWeapon
         areaDuration = 0.2f;
         damageCD = 1.0f;
         aoeSize = 2.0f;
-        timeToAoe = 0.2f;
+        timeToAoe = 0.1f;
     }
 
     public override void Fire()
     {
         GameObject areaInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset + (playerTransform.forward*(aoeSize/2.0f)), transform.rotation, transform);
-        areaInstance.transform.localScale = new Vector3(aoeSize, 1.0f, aoeSize);
         SwipeArea swipeArea = areaInstance.GetComponent<SwipeArea>();
         swipeArea.damage = getDamage();
         swipeArea.lifetime = areaDuration;

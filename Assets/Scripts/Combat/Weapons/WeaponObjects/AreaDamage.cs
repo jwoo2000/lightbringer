@@ -45,6 +45,11 @@ public abstract class AreaDamage : MonoBehaviour
             Destroy(gameObject);
         }
 
+        updateScale();
+    }
+
+    protected virtual void updateScale()
+    {
         transform.localScale = Vector3.one * currScale;
     }
 
