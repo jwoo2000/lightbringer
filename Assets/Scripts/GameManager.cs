@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Rigidbody playerRB;
     [SerializeField] private SkinnedMeshRenderer playerMesh;
-    [SerializeField] private MovementController playerMovementController;
+    [SerializeField] public MovementController playerMovementController;
     [SerializeField] public PlayerStats _playerStats;
 
     [SerializeField] private bool playerAlive;
 
     [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject gameWinCanvas;
+    [SerializeField] public bool gameWin;
 
     public UnitHealth _playerHealth;
 
@@ -28,9 +30,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void playerWin()
+    public void playerWin()
     {
         Debug.Log("Player win!");
+        gameWin = true;
+        gameWinCanvas.SetActive(true);
+        UnitHealth.calcDamage = false;
     }
 
     private void playerDeath()
@@ -47,6 +52,9 @@ public class GameManager : MonoBehaviour
     {
         playerAlive = true;
         gameOverCanvas.SetActive(false);
+        gameWinCanvas.SetActive(false);
+        gameWin = false;
+        UnitHealth.calcDamage = true;
 
         if (gameManager != null && gameManager != this)
         {

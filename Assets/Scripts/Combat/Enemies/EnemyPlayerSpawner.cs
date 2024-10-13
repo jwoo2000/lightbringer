@@ -29,8 +29,8 @@ public class EnemyPlayerSpawner : MonoBehaviour
     {
         isSpawning = true;
         baseSpawnDistance = 15.0f;
-        baseSpawnWaveCD = 30.0f;
-        minSpawnWaveCD = 5.0f;
+        baseSpawnWaveCD = 40.0f;
+        minSpawnWaveCD = 20.0f;
         spawnRateScaling = 0.1f;
         spawnWaveCD = baseSpawnWaveCD;
     }

@@ -54,6 +54,7 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z); // lock player y so they dont fly around
         if (controlsActive)
         {
             Vector3 direction = player.position - new Vector3(camera.position.x, player.position.y, camera.position.z);

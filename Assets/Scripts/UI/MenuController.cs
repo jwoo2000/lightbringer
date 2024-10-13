@@ -11,6 +11,7 @@ public class MenuController : MonoBehaviour
     public GameObject weaponUpCanvas;
     public GameObject helpCanvas;
     public GameObject optionsCanvas;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
@@ -80,7 +81,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (movementController.controlsActive)
+        if (movementController.controlsActive && !gameManager.gameWin)
         {
             // pause game if level ui and weapon up ui is not open
             if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)

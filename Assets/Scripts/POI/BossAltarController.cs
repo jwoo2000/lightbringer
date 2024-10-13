@@ -7,6 +7,7 @@ public class BossAltarController : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField] private float activationRange;
     [SerializeField] private bool activated;
@@ -96,7 +97,8 @@ public class BossAltarController : MonoBehaviour
         playerLight.intensity = 0.0f;
 
         Instantiate(spawnParticle, transform.position, Quaternion.identity);
-        Instantiate(bossPrefab, transform.position, Quaternion.identity);
+        GameObject bossInstance = Instantiate(bossPrefab, transform.position, Quaternion.identity);
+        bossInstance.GetComponent<BossBehaviour>().gameManager = gameManager;
 
         timeLeft = 0.0f;
         while (timeLeft < 0.3f)

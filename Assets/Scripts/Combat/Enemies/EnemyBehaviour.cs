@@ -92,13 +92,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         if (this._enemyHealth.Health <= 0.0f) {
-            playerStats.addExp(expOnDeath);
-            Destroy(gameObject);
-            // Spawn an effect to be played when enemy dies
-            if (behaviourType == EnemyType.Boss)
-            {
-                GameManager.playerWin();
-            }
+            OnDeath();
         }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if ((distanceToTarget > despawnDistance) && (behaviourType != EnemyType.Boss)) 
@@ -140,6 +134,13 @@ public class EnemyBehaviour : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget(target.position), rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
         }
+    }
+
+    protected virtual void OnDeath()
+    {
+        playerStats.addExp(expOnDeath);
+        Destroy(gameObject);
+        // Spawn an effect to be played when enemy dies
     }
 
     private Quaternion rotationTarget(Vector3 target) 
