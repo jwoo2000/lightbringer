@@ -6,21 +6,24 @@ using UnityEngine;
 public class Gun : ProjWeapon
 {
     [SerializeField]
-    private int projCount = 1;
+    private int projCount;
     [SerializeField]
-    private float spreadAngle = 10.0f; // angle between proj if projCount > 1
+    private float spreadAngle; // angle between proj if projCount > 1
     // init values for Gun
-    public Gun()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.Low;
         weaponName = "Steadfast Bolt";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles fired";
-        projSpeed = 1.0f;
         baseDamage = 20.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
+
+        projCount = 1;
+        projSpeed = 10.0f;
+        spreadAngle = 10.0f;
     }
 
     public override void Fire()
@@ -42,6 +45,7 @@ public class Gun : ProjWeapon
 
             GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
             GunProjectile gunProj = projInstance.GetComponent<GunProjectile>();
+            gunProj.damage = getDamage();
             gunProj.dir = fireDir;
             gunProj.speed = projSpeed;
         }

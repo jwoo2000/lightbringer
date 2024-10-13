@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitHealth
 {
+    public static bool calcDamage = true;
     // Fields
     private float _currentHealth;
     private float _currentMaxHealth;
@@ -43,11 +44,11 @@ public class UnitHealth
     // Methods
     public void DmgUnit(float dmgAmount, float dmgReduction) 
     {
-        if (_currentHealth > 0.0f) 
+        if ((_currentHealth > 0.0f) && calcDamage) 
         {
             float damageDealt = dmgAmount * (1.0f - dmgReduction);
             _currentHealth -= damageDealt;
-            Debug.Log("Damage dealt: "+ damageDealt);
+            //Debug.Log("Damage dealt: "+ damageDealt);
         }
     }
 

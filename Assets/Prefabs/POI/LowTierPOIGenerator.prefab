@@ -72,9 +72,9 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 63767002397184257, guid: 0eaba585f17d9364e8a0b5b7921e5a88, type: 3}
   isSpawning: 1
-  spawnDistance: 10
-  maxEnemies: 3
-  startSpawningDistance: 50
+  spawnDistance: 3
+  maxEnemies: 5
+  startSpawningDistance: 30
 --- !u!1001 &8995832279818428534
 PrefabInstance:
   m_ObjectHideFlags: 0

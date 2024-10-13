@@ -4,10 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    [SerializeField] private MovementController movementController;
     public GameObject menuCanvas;
     public GameObject levelUpCanvas;
     public GameObject weaponGetCanvas;
     public GameObject weaponUpCanvas;
+    public GameObject helpCanvas;
+    public GameObject optionsCanvas;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField]
     private LevelUpgradesUI levelUpgradesUI;
@@ -59,45 +63,90 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private bool pauseMenuOpen = false;
 
+    [SerializeField]
+    private bool helpOpen = false;
+
+    [SerializeField]
+    private bool optionsOpen = false;
+
     void Awake()
     {
         menuCanvas.SetActive(false);
         levelUpCanvas.SetActive(false);
         weaponGetCanvas.SetActive(false);
         weaponUpCanvas.SetActive(false);
+        helpCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
     }
 
     void Update()
     {
-        // pause game if level ui and weapon up ui is not open
-        if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
+        if (movementController.controlsActive && !gameManager.gameWin)
         {
-            if (isPaused)
+            // pause game if level ui and weapon up ui is not open
+            if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
             {
-                ResumeGame();
+                if (helpOpen)
+                {
+                    closeHelp();
+                } else if (optionsOpen)
+                {
+                    closeOptions();
+                }
+                else
+                {
+                    if (isPaused)
+                    {
+                        ResumeGame();
+                    }
+                    else
+                    {
+                        PauseGame();
+                    }
+                }
             }
-            else
-            {
-                PauseGame();
-            }
-        }
 
-        // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
-        if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen)
-        {
-            if (levelUpChoices.newChoices)
+            // open level up ui if: level ui is not open && weapon ui is not open && pause menu is not open
+            if (Input.GetKeyDown(KeyCode.Tab) && !levelUIOpen && !weaponGetUIOpen && !pauseMenuOpen && !weaponUpUIOpen && !helpOpen && !optionsOpen)
             {
-                processNextLevelUp();
-            } else
+                if (levelUpChoices.newChoices)
+                {
+                    processNextLevelUp();
+                } else
+                {
+                    openLevelUI();
+                }
+            } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
             {
-                openLevelUI();
+                // if level ui is open, close and dont reroll new choices
+                levelUpChoices.newChoices = false;
+                closeLevelUI();
             }
-        } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
-        {
-            // if level ui is open, close and dont reroll new choices
-            levelUpChoices.newChoices = false;
-            closeLevelUI();
         }
+    }
+
+    public void openOptions()
+    {
+        optionsOpen = true;
+        optionsCanvas.SetActive(true);
+    }
+
+    public void closeOptions()
+    {
+        optionsOpen = false;
+        optionsCanvas.SetActive(false);
+    }
+
+    public void openHelp()
+    {
+        helpOpen = true;
+        helpCanvas.SetActive(true);
+    }
+
+    public void closeHelp()
+    {
+        helpOpen = false;
+        helpCanvas.SetActive(false);
     }
 
     public void closeLevelUI()
@@ -248,10 +297,5 @@ public class MenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void OpenOptions()
-    {
-        Debug.Log("Options Menu Opened");
     }
 }

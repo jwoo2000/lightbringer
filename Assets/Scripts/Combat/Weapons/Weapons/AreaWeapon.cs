@@ -9,4 +9,6 @@ public abstract class AreaWeapon : Weapon
     protected float areaDuration; // default 1.0 s
     [SerializeField]
     protected float damageCD; // default 1.0 s
+    [SerializeField]
+    protected float aoeSize;
 }

@@ -58,7 +58,7 @@ MonoBehaviour:
   uniqueLevel: 0
   playerTransform: {fileID: 0}
   weaponOriginOffset: {x: 0, y: 0, z: 0}
-  weaponObject: {fileID: 5072214633377645143, guid: efa9992a0313793498f9984b3fd3cde0, type: 3}
+  weaponObject: {fileID: 5718937455785546210, guid: 68d2b40c3ddcc734fa496c6176d7b1a5, type: 3}
   baseDamage: 20
   baseCooldown: 999
   cdReducPerSpeedLevel: 0.2

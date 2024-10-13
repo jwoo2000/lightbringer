@@ -9,8 +9,14 @@ public abstract class AreaDamage : MonoBehaviour
     // they deal damage every damageCD (default 1s)
     public float lifetime = 2.0f;
     public float damageCD = 1.0f;
+    public float aoeSize;
+
+    public float damage;
 
     private float timeAlive = 0.0f;
+
+    [SerializeField]
+    private Collider[] colliders;
 
     protected virtual void Update()
     {
@@ -18,6 +24,31 @@ public abstract class AreaDamage : MonoBehaviour
         if (timeAlive >= lifetime)
         {
             Destroy(gameObject);
+        }
+    }
+
+    protected virtual void Start()
+    {
+        StartCoroutine(damageEnemiesArea());
+    }
+
+    private IEnumerator damageEnemiesArea()
+    {
+        while (timeAlive < lifetime)
+        {
+            colliders = Physics.OverlapSphere(transform.position, aoeSize/2.0f);
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("Enemy") && collider.isTrigger)
+                {
+                    EnemyBehaviour enemy = collider.GetComponent<EnemyBehaviour>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeDamage(damage);
+                    }
+                }
+            }
+            yield return new WaitForSeconds(damageCD);
         }
     }
 }

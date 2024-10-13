@@ -6,26 +6,44 @@ using UnityEngine;
 public class Grenade : GrenadeWeapon
 {
     // init values for Grenade
-    public Grenade()
+    private void Awake()
     {
         weaponTier = Weapon.Tier.High;
         weaponName = "Daybreak Charge";
         uniqueLabel = "AOE Size";
         uniqueDesc = "Increases impact area size";
-        baseDamage = 20.0f;
+        baseDamage = 100.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
         flightTime = 1.0f;
+        targetRadius = 10.0f;
+        aoeSize = 5.0f;
+
+        damageCD = 1.0f;
+        areaLifetime = 0.1f;
     }
 
     public override void Fire()
     {
+        if (enemyInRange())
+        {
+            targetPosition = nearestEnemyPos;
+        } else
+        {
+            targetPosition = playerTransform.position + (playerTransform.forward * 5.0f);
+            targetPosition.y = 0.0f;
+        }
+
         GameObject grenadeInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
         GrenadeGrenadeObject grenadeObject = grenadeInstance.GetComponent<GrenadeGrenadeObject>();
+        grenadeObject.damage = getDamage();
         grenadeObject.targetPosition = targetPosition;
         grenadeObject.flightTime = flightTime;
+        grenadeObject.aoeSize = aoeSize;
+        grenadeObject.damageCD = damageCD;
+        grenadeObject.areaLifetime = areaLifetime;
     }
 
     protected override void upgradeSpeed()
@@ -35,6 +53,6 @@ public class Grenade : GrenadeWeapon
 
     protected override void upgradeUnique()
     {
-        
+        aoeSize++;
     }
 }

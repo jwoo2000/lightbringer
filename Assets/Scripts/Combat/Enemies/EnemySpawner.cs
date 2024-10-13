@@ -22,39 +22,44 @@ public class EnemySpawner : MonoBehaviour
     void Start() {
         StartCoroutine(Spawner());
         numEnemies = 0;
-        isSpawning = false;
     }
 
     void Update()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < startSpawningDistance)
-        {
-            isSpawning = true;
-        }
+        
     }
 
     private IEnumerator Spawner () {
         WaitForSeconds wait = new WaitForSeconds(spawnRate);
-
-        while (isSpawning) {
+        while(true) {
             yield return wait;
-            int rand = Random.Range(0, enemyPrefabs.Length);
-            GameObject enemyToSpawn = enemyPrefabs[rand];
-
-            if (numEnemies < maxEnemies || maxEnemies == 0) 
+            if (Vector3.Distance(player.transform.position, transform.position) < startSpawningDistance)
             {
-                Instantiate(enemyToSpawn, SpawnPosition(), Quaternion.identity);
-                numEnemies++;
-            } 
-            else 
+                isSpawning = true;
+            }
+            else
             {
                 isSpawning = false;
             }
-            
 
-            
 
+            while (isSpawning) {
+                yield return wait;
+                int rand = Random.Range(0, enemyPrefabs.Length);
+                GameObject enemyToSpawn = enemyPrefabs[rand];
+
+                if (numEnemies < maxEnemies || maxEnemies == 0) 
+                {
+                    Instantiate(enemyToSpawn, SpawnPosition(), Quaternion.identity);
+                    numEnemies++;
+                } 
+                else 
+                {
+                    isSpawning = false;
+                }
+            }
         }
+        
     }
 
     private Vector3 SpawnPosition() {

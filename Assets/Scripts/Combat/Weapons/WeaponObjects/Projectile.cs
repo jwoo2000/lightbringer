@@ -8,21 +8,50 @@ public abstract class Projectile : MonoBehaviour
     // upon instantiation, objects of this type just move forward in the given direction at a speed until it dies (default after 5s)
     public Vector3 dir = Vector3.zero;
     public float speed = 1.0f;
-    protected float lifetime = 5.0f;
+    public float lifetime = 5.0f;
 
-    private float timeAlive = 0.0f;
+    public float damage;
+
+    [SerializeField]
+    protected TrailRenderer trailRenderer;
+
+    protected float timeAlive = 0.0f;
 
     protected virtual void Update()
+    {
+        moveProj();
+
+        timeAlive += Time.deltaTime;
+        if (timeAlive >= lifetime)
+        {
+            DestroyProj();
+        }
+    }
+
+    protected virtual void moveProj()
     {
         if (dir != Vector3.zero)
         {
             transform.position += speed * Time.deltaTime * dir;
         }
+    }
 
-        timeAlive += Time.deltaTime;
-        if (timeAlive >= lifetime)
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other != null && other.CompareTag("Enemy") && other.isTrigger)
         {
-            Destroy(gameObject);
+            EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+            DestroyProj();
         }
+    }
+    public virtual void DestroyProj()
+    {
+        trailRenderer.transform.parent = null;
+        trailRenderer.autodestruct = true;
+        Destroy(gameObject);
     }
 }

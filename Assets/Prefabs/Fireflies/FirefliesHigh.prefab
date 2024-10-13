@@ -45,7 +45,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 1
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -3831,7 +3831,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 0.3
     light: {fileID: 0}
     randomDistribution: 0
@@ -4857,6 +4857,7 @@ MonoBehaviour:
   attractor: {fileID: 0}
   absorbSpeed: 3
   absorbSpeedMulti: 1.15
+  maxSpeed: 100
   isDying: 0
   isWep: 0
   tier: 2

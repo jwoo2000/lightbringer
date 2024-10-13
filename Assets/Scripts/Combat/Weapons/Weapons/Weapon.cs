@@ -43,7 +43,7 @@ public abstract class Weapon : MonoBehaviour
     protected float dmgPerDmgLevel = 0.1f; // dmg scaling per damage upgrade, default: increase damage by 10% per level (additive)
 
 
-    private void Update()
+    protected virtual void Update()
     {
         tickCooldown();
     }

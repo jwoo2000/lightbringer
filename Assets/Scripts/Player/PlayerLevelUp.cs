@@ -48,7 +48,10 @@ public class PlayerLevelUp : MonoBehaviour
     public int staminaRegenLvl = 0;
 
     [SerializeField]
-    float dmgRedScalingFactor = 8.0f;
+    public float dmgRedScalingFactor;
+
+    [SerializeField]
+    public float regenScaleFactor;
 
     private float initMS;
     private float initMaxHP;
@@ -65,6 +68,8 @@ public class PlayerLevelUp : MonoBehaviour
         initDmgRed = stats.dmgReduction;
         initMaxStam = staminaController.maxStamina;
         initStamRegen = staminaController.regenerationRate;
+        dmgRedScalingFactor = 30.0f;
+        regenScaleFactor = 40.0f;
     }
 
     private void Start()
@@ -117,13 +122,23 @@ public class PlayerLevelUp : MonoBehaviour
     private void lightRegen()
     {
         lightRegenLvl++;
-        stats.lightRadiusRegen = initRegen + (lightRegenLvl * 5.0f);
+        stats.lightRadiusRegen = calcRegen(lightRegenLvl, regenScaleFactor);
     }
 
     private void dmgReduction()
     {
         dmgReductionLvl++;
-        stats.dmgReduction = dmgReductionLvl/(dmgReductionLvl+dmgRedScalingFactor);
+        stats.dmgReduction = calcDR(dmgReductionLvl,dmgRedScalingFactor);
+    }
+
+    public float calcDR(int DRLvl, float DRScaleFactor)
+    {
+        return (DRLvl / (DRLvl+DRScaleFactor));
+    }
+
+    public float calcRegen(int RegenLvl, float RegenScaleFactor)
+    {
+        return (RegenLvl / (RegenLvl+RegenScaleFactor));
     }
 
     private void maxStamina()

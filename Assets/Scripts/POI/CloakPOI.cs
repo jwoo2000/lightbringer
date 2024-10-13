@@ -28,11 +28,56 @@ public class CloakPOI : MonoBehaviour
     [SerializeField]
     public float discoverDist;
 
+    [SerializeField]
+    private Color cloakedColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+    [SerializeField]
+    private float cloakedMetallic = 1.0f;
+    [SerializeField]
+    private float cloakedSmooth = 0.0f;
+
+    private Color[] uncloakedColours;
+    private float[] uncloakedMetallic;
+    private float[] uncloakedSmoothness;
+
+    [SerializeField]
+    private float uncloakDur = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         renderers = POIObjects.GetComponentsInChildren<Renderer>();
+        uncloakedColours = new Color[renderers.Length];
+        uncloakedMetallic = new float[renderers.Length];
+        uncloakedSmoothness = new float[renderers.Length];
         saveOgMats();
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            if (renderers[i].material.HasProperty("_Color"))
+            {
+                uncloakedColours[i] = renderers[i].material.color;
+            } else
+            {
+                uncloakedColours[i] = Color.white;
+            }
+                
+            if (renderers[i].material.HasProperty("_Metallic"))
+            {
+                uncloakedMetallic[i] = renderers[i].material.GetFloat("_Metallic");
+            } else
+            {
+                uncloakedMetallic[i] = 0;
+            }
+            if (renderers[i].material.HasProperty("_Smoothness"))
+            {
+                uncloakedSmoothness[i] = renderers[i].material.GetFloat("_Smoothness");
+            } else
+            {
+                uncloakedSmoothness[i] = 0;
+            }
+            renderers[i].material = new Material(renderers[i].material);
+        }
+
         cloak();
     }
     private void Update()
@@ -65,32 +110,83 @@ public class CloakPOI : MonoBehaviour
     {
         //Debug.Log("cloaking poi");
         visibilityPainter.SetActive(false);
-        wepFirefly.SetActive(false);
+        if (wepFirefly != null)
+        {
+            wepFirefly.SetActive(false);
+        }
         for (int i = 0; i < renderers.Length; i++)
         {
-            Material[] materials = renderers[i].materials;
-            // change all materials in children to cloakmat
-            for (int j = 0; j < renderers[i].materials.Length; j++)
+            if (renderers[i] != null && renderers[i].material != null)
             {
-                materials[j] = cloakMat;
+                if (renderers[i].material.HasProperty("_Color"))
+                {
+                    renderers[i].material.color = cloakedColor;
+                }
+                if (renderers[i].material.HasProperty("_Metallic"))
+                {
+                    renderers[i].material.SetFloat("_Metallic", cloakedMetallic);
+                }
+                if (renderers[i].material.HasProperty("_Smoothness"))
+                {
+                    renderers[i].material.SetFloat("_Glossiness", cloakedSmooth);
+                }
+
+                Material[] materials = renderers[i].materials;
+                // change all materials in children to cloakmat
+                for (int j = 0; j < renderers[i].materials.Length; j++)
+                {
+                    materials[j] = cloakMat;
+                }
+                renderers[i].materials = materials;
             }
-            renderers[i].materials = materials;
         }
     }
 
     public void uncloak()
     {
         visibilityPainter.SetActive(true);
-        wepFirefly.SetActive(true);
+        if (wepFirefly != null)
+        {
+            wepFirefly.SetActive(true);
+        }
         for (int i = 0; i < renderers.Length; i++)
         {
-            Material[] materials = renderers[i].materials;
-            // revert the materials of all children to original materials
-            for (int j = 0; j < renderers[i].materials.Length; j++)
+            if (renderers[i] != null && renderers[i].material != null)
             {
-                materials[j] = ogMats[i][j];
+                Material[] materials = renderers[i].materials;
+                // revert the materials of all children to original materials
+                for (int j = 0; j < renderers[i].materials.Length; j++)
+                {
+                    materials[j] = ogMats[i][j];
+                }
+                renderers[i].materials = materials;
+                StartCoroutine(fadeUncloak(renderers[i], i));
             }
-            renderers[i].materials = materials;
         }
+    }
+
+    private IEnumerator fadeUncloak(Renderer renderer, int colourIndex)
+    {
+        float elapsed = 0.0f;
+        while (elapsed < uncloakDur)
+        {
+            if (renderer.material.HasProperty("_Color"))
+            { 
+                renderer.material.color = Color.Lerp(cloakedColor, uncloakedColours[colourIndex], elapsed / uncloakDur);
+            }
+            if (renderer.material.HasProperty("_Metallic"))
+            {
+                renderer.material.SetFloat("_Metallic", Mathf.Lerp(cloakedMetallic, uncloakedMetallic[colourIndex], elapsed / uncloakDur));
+            }
+            if (renderer.material.HasProperty("_Smoothness"))
+            {
+                renderer.material.SetFloat("_Glossiness", Mathf.Lerp(cloakedSmooth, uncloakedSmoothness[colourIndex], elapsed / uncloakDur));
+            }
+            
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        renderer.material.color = uncloakedColours[colourIndex];
     }
 }
