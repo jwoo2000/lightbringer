@@ -32,7 +32,7 @@ public class BossAltarController : MonoBehaviour
     {
         activated = false;
         activationRange = 5.0f;
-        levelCondition = 20;
+        levelCondition = 30;
         activationTime = 5.0f;
         failMessageShowing = false;
     }
@@ -43,6 +43,7 @@ public class BossAltarController : MonoBehaviour
         playerLightInitIntensity = playerLight.intensity;
         conditionText1.color = new Color(conditionTextColor.r, conditionTextColor.g, conditionTextColor.b, 0.0f);
         conditionText2.color = new Color(conditionTextColor.r, conditionTextColor.g, conditionTextColor.b, 0.0f);
+        conditionText2.text = $"(Lv.{levelCondition}+ required)";
         conditionTextPanel.SetActive(false);
     }
 

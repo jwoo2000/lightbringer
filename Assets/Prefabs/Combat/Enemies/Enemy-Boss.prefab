@@ -147,8 +147,8 @@ MonoBehaviour:
   speed: 8
   acceleration: 1
   knockback: 1
-  damageAmount: 20
-  startingHealth: 1000
+  damageAmount: 50
+  startingHealth: 10000
   behaviourType: 4
   enemyDmgReduc: 0
   detectionRange: 30

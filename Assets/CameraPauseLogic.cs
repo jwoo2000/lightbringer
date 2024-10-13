@@ -8,6 +8,10 @@ public class CameraPauseLogic : MonoBehaviour
     [SerializeField]
     CinemachineBrain brain;
 
+    private void Start()
+    {
+        GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
+    }
     void Update()
     {
         if (Time.timeScale != 0f)

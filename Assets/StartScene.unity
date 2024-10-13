@@ -1453,9 +1453,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1267814685}
-        m_TargetAssemblyTypeName: GameWinCanvasController, Assembly-CSharp
-        m_MethodName: restartButton
+      - m_Target: {fileID: 817419120}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
