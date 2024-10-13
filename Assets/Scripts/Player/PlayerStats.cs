@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float minLightRange;
     [SerializeField] private GameObject fogClearer;
     [SerializeField] private GameObject visibilityPainter;
+    [SerializeField] private GameObject levelUpParticle;
 
     [SerializeField] public float movespeed = 2.0f;
     [SerializeField] private float sprintMulti = 2.0f;
@@ -94,10 +95,16 @@ public class PlayerStats : MonoBehaviour
     private void checkLevelUp()
     {
         int pendingLevels = 0;
+        bool effectPlayed = false;
         while (exp >= maxExp)
         {
             exp -= maxExp;  // carry over extra exp to the next level
             level++;
+            if (!effectPlayed)
+            {
+                Instantiate(levelUpParticle, transform);
+                effectPlayed = true;
+            }
             maxExp = CalculateNextMaxExp(level);
             pendingLevels++;
         }

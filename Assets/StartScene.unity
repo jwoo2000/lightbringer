@@ -14210,13 +14210,14 @@ MonoBehaviour:
   minLightRange: 0
   fogClearer: {fileID: 1545632277}
   visibilityPainter: {fileID: 1135776894}
+  levelUpParticle: {fileID: 2738030279158973428, guid: c03ddcc65c2b50a4fb895fa478df8717, type: 3}
   movespeed: 2
   sprintMulti: 2
   lightRadius: 1
   maxLightRadius: 1
   lightRadiusRegen: 0
   dmgReduction: 0
-  initMaxHP: 703
+  initMaxHP: 100
   currHP: 0
   currMaxHP: 0
   exp: 0
