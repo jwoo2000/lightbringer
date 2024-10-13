@@ -95,6 +95,8 @@ MonoBehaviour:
   lungeSpeed: 7
   attackTriggerRange: 1
   minion: {fileID: 0}
+  onHitParticle: {fileID: 8461815559452178477, guid: b2c7111dfb48d984f8af9cc33660c228, type: 3}
+  onDeathParticle: {fileID: 8461815559452178477, guid: 445ff4a9716aff84fb1f4aaf1c564148, type: 3}
 --- !u!114 &1000728717448483959
 MonoBehaviour:
   m_ObjectHideFlags: 0

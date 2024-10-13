@@ -43,7 +43,7 @@ public class Gun : ProjWeapon
             float currAngle = startingProjAngle + i * angleBwProj;
             Vector3 fireDir = Quaternion.Euler(0.0f, currAngle, 0.0f) * playerTransform.forward;
 
-            GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
+            GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, playerTransform.rotation);
             GunProjectile gunProj = projInstance.GetComponent<GunProjectile>();
             gunProj.damage = getDamage();
             gunProj.dir = fireDir;

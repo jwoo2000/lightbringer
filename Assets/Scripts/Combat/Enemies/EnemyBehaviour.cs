@@ -54,6 +54,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     private PlayerStats playerStats;
 
+    [SerializeField]
+    private GameObject onHitParticle;
+    [SerializeField]
+    private GameObject onDeathParticle;
+
     void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -138,6 +143,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected virtual void OnDeath()
     {
+        Instantiate(onDeathParticle, transform.position, Quaternion.identity);
         playerStats.addExp(expOnDeath);
         Destroy(gameObject);
         // Spawn an effect to be played when enemy dies
@@ -151,6 +157,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage (float dmg) 
     {
+        Instantiate(onHitParticle, transform.position, Quaternion.identity);
         _enemyHealth.DmgUnit(dmg, enemyDmgReduc);
         animator.SetTrigger("Hit");
         //transform.position = transform.position - (transform.forward * knockback);

@@ -81,7 +81,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7375e83b5ad4d524191e9aff5c0cd899, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -175,6 +175,30 @@ PrefabInstance:
     - target: {fileID: 5405437184420408119, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.2235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.6208247
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.91658765
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

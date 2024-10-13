@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrenadeGrenadeMat
+  m_Name: ArrowMat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -67,7 +67,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.6
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -79,6 +79,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.82641506, g: 0.7749983, b: 0.3165325, a: 1}
-    - _EmissionColor: {r: 0.2754717, g: 0.218948, b: 0.049376972, a: 1}
+    - _Color: {r: 0.21568628, g: 0.48256657, b: 0.75686276, a: 1}
+    - _EmissionColor: {r: 0.24137412, g: 0.33188403, b: 0.6301887, a: 1}
   m_BuildTextureStacks: []

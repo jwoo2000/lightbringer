@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrenadeGrenadeMat
+  m_Name: NovaMat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -79,6 +79,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.82641506, g: 0.7749983, b: 0.3165325, a: 1}
-    - _EmissionColor: {r: 0.2754717, g: 0.218948, b: 0.049376972, a: 1}
+    - _Color: {r: 0.6235301, g: 0.12688503, b: 0.94716984, a: 1}
+    - _EmissionColor: {r: 0.1269852, g: 0.052652173, b: 0.3207547, a: 1}
   m_BuildTextureStacks: []

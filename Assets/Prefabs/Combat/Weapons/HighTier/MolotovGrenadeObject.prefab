@@ -170,6 +170,18 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.r
       value: 0.2235294
       objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.7306452
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.68490565
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

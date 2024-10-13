@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 172075436056124604}
-  - component: {fileID: 7631205140115133005}
   - component: {fileID: 1746285928791670504}
   - component: {fileID: 6176102100384763349}
-  - component: {fileID: 3021161504588066871}
+  - component: {fileID: 5127586919524251707}
+  - component: {fileID: 4364381978852589180}
   m_Layer: 0
   m_Name: GunProj
   m_TagString: Untagged
@@ -33,26 +33,9 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 3183981891258884977}
+  - {fileID: 4523771804365741623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7631205140115133005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9146211026119439065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054cfaf544f1ef841bde85b0bc90e530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dir: {x: 0, y: 0, z: 0}
-  speed: 1
-  lifetime: 5
-  damage: 0
-  trailRenderer: {fileID: 890635370325637634}
 --- !u!33 &1746285928791670504
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -81,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a352892d295828443acc9986ef400295, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3021161504588066871
+--- !u!135 &5127586919524251707
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +107,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &7434386165116160070
+--- !u!114 &4364381978852589180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146211026119439065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054cfaf544f1ef841bde85b0bc90e530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: {x: 0, y: 0, z: 0}
+  speed: 1
+  lifetime: 5
+  damage: 0
+  trailRenderer: {fileID: 2212464731033077572}
+--- !u!1001 &8485997783951947008
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -176,18 +176,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.745283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.97710407
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
---- !u!96 &890635370325637634 stripped
+--- !u!96 &2212464731033077572 stripped
 TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 7741708604913988164, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
-  m_PrefabInstance: {fileID: 7434386165116160070}
+  m_PrefabInstance: {fileID: 8485997783951947008}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3183981891258884977 stripped
+--- !u!4 &4523771804365741623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5405437184420408119, guid: 3b9f2652e3d0be945b223ac9633e1d65, type: 3}
-  m_PrefabInstance: {fileID: 7434386165116160070}
+  m_PrefabInstance: {fileID: 8485997783951947008}
   m_PrefabAsset: {fileID: 0}

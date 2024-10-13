@@ -20,13 +20,13 @@ public class Arrow : ProjWeapon
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
 
-        pierceCount = 1;
+        pierceCount = 2;
         projSpeed = 15.0f;
     }
 
     public override void Fire()
     {
-        GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.identity);
+        GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, playerTransform.rotation * Quaternion.Euler(90, 0, 0));
         ArrowProjectile arrowProj = projInstance.GetComponent<ArrowProjectile>();
         arrowProj.damage = getDamage();
         arrowProj.dir = playerTransform.forward;
