@@ -151,7 +151,7 @@ MonoBehaviour:
   startingHealth: 1000
   behaviourType: 4
   enemyDmgReduc: 0
-  detectionRange: 20
+  detectionRange: 30
   loseDetectionRange: 40
   expOnDeath: 1000
   attackCD: 1.5

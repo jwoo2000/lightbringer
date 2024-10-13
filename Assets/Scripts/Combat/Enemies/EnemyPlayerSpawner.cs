@@ -64,7 +64,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             // player has mid or high tier wep
             if (weaponController.MidWeapon != null || weaponController.HighWeapon != null)
             {
-                for (int i = 0; i < (playerLevel/2); i++)
+                for (int i = 0; i < (playerLevel/3); i++)
                 {
                     // add medium enemies
                     spawnWave.Add(EnemyBehaviour.EnemyType.Medium);
@@ -73,7 +73,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             // player has high tier wep
             if (weaponController.HighWeapon != null)
             {
-                for (int i = 0; i < (playerLevel/5); i++)
+                for (int i = 0; i < (playerLevel/10); i++)
                 {
                     // add large enemies
                     spawnWave.Add(EnemyBehaviour.EnemyType.Large);
