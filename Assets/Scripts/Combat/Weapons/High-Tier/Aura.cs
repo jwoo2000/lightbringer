@@ -25,7 +25,7 @@ public class Aura : AreaWeapon
         speedDesc = "Increases aura damage frequency";
         uniqueLabel = "AOE Size";
         uniqueDesc = "Increases aura size";
-        baseDamage = 20.0f;
+        baseDamage = 25.0f;
         baseCooldown = 999.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;

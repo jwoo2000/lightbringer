@@ -15,7 +15,7 @@ public class Arrow : ProjWeapon
         weaponName = "Lightlance";
         uniqueLabel = "Pierce Count";
         uniqueDesc = "Increases number of enemies pierced";
-        baseDamage = 40.0f;
+        baseDamage = 50.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;

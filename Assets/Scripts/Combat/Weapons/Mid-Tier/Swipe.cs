@@ -14,7 +14,7 @@ public class Swipe : AreaWeapon
         speedDesc = "Increases attack speed";
         uniqueLabel = "AOE Size";
         uniqueDesc = "Increases swipe area";
-        baseDamage = 60.0f;
+        baseDamage = 100.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
         dmgPerDmgLevel = 0.1f;
@@ -22,7 +22,7 @@ public class Swipe : AreaWeapon
         // swipe has short duration (like a melee swipe) and damageCD longer than its area duration => only deals one tick of damage
         areaDuration = 0.2f;
         damageCD = 1.0f;
-        aoeSize = 2.0f;
+        aoeSize = 3.0f;
         timeToAoe = 0.1f;
     }
 
@@ -44,6 +44,6 @@ public class Swipe : AreaWeapon
 
     protected override void upgradeUnique()
     {
-        aoeSize++;
+        aoeSize+=0.5f;
     }
 }
