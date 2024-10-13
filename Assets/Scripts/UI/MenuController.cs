@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class MenuController : MonoBehaviour
     public GameObject weaponUpCanvas;
     public GameObject helpCanvas;
     public GameObject optionsCanvas;
+    public GameObject loadingCanvas;
     [SerializeField] private GameManager gameManager;
 
     [SerializeField]
@@ -77,6 +79,7 @@ public class MenuController : MonoBehaviour
         weaponUpCanvas.SetActive(false);
         helpCanvas.SetActive(false);
         optionsCanvas.SetActive(false);
+        loadingCanvas.SetActive(false);
     }
 
     void Update()
@@ -290,12 +293,23 @@ public class MenuController : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        StartCoroutine(LoadAsyncScene("TitleScene"));
     }
-
     public void RestartGame()
     {
+        StartCoroutine(LoadAsyncScene("StartScene"));
+    }
+
+    IEnumerator LoadAsyncScene(string sceneName)
+    {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        loadingCanvas.SetActive(true);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        loadingCanvas.SetActive(false);
     }
 }
