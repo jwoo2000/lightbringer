@@ -46,7 +46,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     // Minion prefab for Large enemy
     public GameObject minion;
-    private float spawnCooldown = 5.0f;
+    private float minSpawnCD = 5.0f;
+    private float maxSpawnCD = 10.0f;
+    private float currSpawnCD;
 
     //wandering variables
     private Vector3 wanderTarget;
@@ -83,6 +85,10 @@ public class EnemyBehaviour : MonoBehaviour
         }
         rb = GetComponent<Rigidbody>();
         playerDetected = false;
+        if (behaviourType == EnemyType.Large)
+        {
+            currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
+        }
     }
 
     /*Different Enemy Behaviours
@@ -354,15 +360,15 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else 
         {
-            if (spawnCooldown <= 0)
+            if (currSpawnCD <= 0)
             {
                 animator.SetTrigger("Summon");
                 SpawnMinions();
-                spawnCooldown = 10.0f;
+                currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
             }
             else
             {
-                spawnCooldown -= Time.deltaTime;
+                currSpawnCD -= Time.deltaTime;
             }
             if (distanceToTarget < keepAwayDistance) 
             {
