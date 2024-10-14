@@ -58,10 +58,14 @@ MonoBehaviour:
   uniqueLevel: 0
   playerTransform: {fileID: 0}
   weaponOriginOffset: {x: 0, y: 0, z: 0}
-  weaponObject: {fileID: 9146211026119439065, guid: cccf8353f1538d4498112a17b87af782, type: 3}
+  weaponObject: {fileID: 7773750883136588900, guid: 170da8dc2fbba66419deb3161b1e2a18, type: 3}
   baseDamage: 20
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
   projSpeed: 1
   projCount: 1
+  spreadAngle: 0
+  homingRadius: 0
+  homingAccel: 0
+  maxProjSpeed: 0

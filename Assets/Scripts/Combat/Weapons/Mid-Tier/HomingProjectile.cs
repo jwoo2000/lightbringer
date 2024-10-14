@@ -38,6 +38,7 @@ public class HomingProjectile : Projectile
                     dirToTarget.y = 0;
                     dir = Vector3.Lerp(dir, dirToTarget, Time.deltaTime * homingAccel).normalized; // smooth dir change, dont snap to enemy
                     dir.y = 0;
+                    transform.rotation = Quaternion.LookRotation(dir);
                     speed = Mathf.Min(speed + homingAccel * Time.deltaTime, maxProjSpeed);
                 } else
                 {
