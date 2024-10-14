@@ -14,6 +14,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
 
     [SerializeField] private float baseSpawnDistance; // closest distance enemies are spawned (harder enemies spawn further out)
+    [SerializeField] private float spawnDistVari;
 
     [SerializeField] private float baseSpawnWaveCD; // slowest wave CD (low levels ~lv0)
     [SerializeField] private float minSpawnWaveCD; // fastest wave CD (high levels ~lv20)
@@ -28,7 +29,8 @@ public class EnemyPlayerSpawner : MonoBehaviour
     private void Awake()
     {
         isSpawning = true;
-        baseSpawnDistance = 15.0f;
+        baseSpawnDistance = 16.0f;
+        spawnDistVari = 0.1f;
         baseSpawnWaveCD = 40.0f;
         minSpawnWaveCD = 20.0f;
         spawnRateScaling = 0.1f;
@@ -112,6 +114,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
     private Vector3 SpawnPosition(float distance)
     {
         float rad = Random.Range(0, 360) * Mathf.Deg2Rad;
+        float variedDist = distance * (1.0f + Random.Range(-spawnDistVari, spawnDistVari));
 
         return (transform.position + new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad))*distance);
     }

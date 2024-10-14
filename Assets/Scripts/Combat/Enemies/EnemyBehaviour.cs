@@ -66,6 +66,19 @@ public class EnemyBehaviour : MonoBehaviour
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
+        switch (behaviourType)
+        {
+            case EnemyType.Small:
+                {
+                    speed = speed * Random.Range(0.9f, 1.1f);
+                    break;
+                }
+            case EnemyType.Medium:
+                {
+                    speed = speed * Random.Range(0.9f, 1.1f);
+                    break;
+                }
+        }
     }
 
     // Start is called before the first frame update
