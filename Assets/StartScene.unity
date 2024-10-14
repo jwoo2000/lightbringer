@@ -14217,7 +14217,7 @@ MonoBehaviour:
   maxLightRadius: 1
   lightRadiusRegen: 0
   dmgReduction: 0
-  initMaxHP: 1000
+  initMaxHP: 100
   currHP: 0
   currMaxHP: 0
   exp: 0
@@ -14337,6 +14337,7 @@ MonoBehaviour:
   weaponController: {fileID: 1024315748}
   playerStats: {fileID: 1024315744}
   baseSpawnDistance: 0
+  spawnDistVari: 0
   baseSpawnWaveCD: 0
   minSpawnWaveCD: 0
   spawnWaveCD: 0
