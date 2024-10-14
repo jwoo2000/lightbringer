@@ -32,7 +32,7 @@ public class BossAltarController : MonoBehaviour
     {
         activated = false;
         activationRange = 5.0f;
-        levelCondition = 30;
+        levelCondition = 25;
         activationTime = 5.0f;
         failMessageShowing = false;
     }
