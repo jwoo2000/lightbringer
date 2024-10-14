@@ -31,6 +31,7 @@ public class Molotov : GrenadeWeapon
         if (enemyInRange())
         {
             targetPosition = nearestEnemyPos;
+            targetPosition.y = 0.0f;
         }
         else
         {
