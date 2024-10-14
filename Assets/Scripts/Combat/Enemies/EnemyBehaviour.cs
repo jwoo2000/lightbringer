@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
@@ -143,7 +144,19 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        Instantiate(onDeathParticle, transform.position, Quaternion.identity);
+        GameObject deathParticle = Instantiate(onDeathParticle, transform.position, Quaternion.identity);
+        switch (behaviourType)
+        {
+            case EnemyType.Medium:
+                deathParticle.transform.localScale = Vector3.one * 1.2f;
+                break;
+            case EnemyType.Large:
+                deathParticle.transform.localScale = Vector3.one * 2f;
+                break;
+            case EnemyType.Boss:
+                deathParticle.transform.localScale = Vector3.one * 3f;
+                break;
+        }
         playerStats.addExp(expOnDeath);
         Destroy(gameObject);
         // Spawn an effect to be played when enemy dies
@@ -157,7 +170,19 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage (float dmg) 
     {
-        Instantiate(onHitParticle, transform.position, Quaternion.identity);
+        GameObject hitParticle = Instantiate(onHitParticle, transform.position, Quaternion.identity);
+        switch (behaviourType)
+        {
+            case EnemyType.Medium:
+                hitParticle.transform.localScale = Vector3.one * 1.2f;
+                break;
+            case EnemyType.Large:
+                hitParticle.transform.localScale = Vector3.one * 2f;
+                break;
+            case EnemyType.Boss:
+                hitParticle.transform.localScale = Vector3.one * 3f;
+                break;
+        }
         _enemyHealth.DmgUnit(dmg, enemyDmgReduc);
         animator.SetTrigger("Hit");
         //transform.position = transform.position - (transform.forward * knockback);
