@@ -14217,7 +14217,7 @@ MonoBehaviour:
   maxLightRadius: 1
   lightRadiusRegen: 0
   dmgReduction: 0
-  initMaxHP: 100
+  initMaxHP: 2177.8
   currHP: 0
   currMaxHP: 0
   exp: 0

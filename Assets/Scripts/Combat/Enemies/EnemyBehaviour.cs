@@ -376,7 +376,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (currSpawnCD <= 0)
             {
                 animator.SetTrigger("Summon");
-                SpawnMinions();
+                SpawnMinions(playerStats.level/10);
                 currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
             }
             else
@@ -401,14 +401,20 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private void SpawnMinions()
+    private void SpawnMinions(int spawnCount)
     {
-        Vector3 spawnPos1 = transform.position + transform.forward - (2 * transform.right);
-        spawnPos1.y = .25f;
-        Vector3 spawnPos2 = transform.position + transform.forward + (2 * transform.right);
-        spawnPos2.y = .25f;
-        Instantiate(minion, spawnPos1, Quaternion.identity);
-        Instantiate(minion, spawnPos2, Quaternion.identity);
+        float spawnOffset = 1.5f;
+        float yPos = 0.25f;
+        float xOffset = 0.0f;
+        Vector3 spawnPos;
+
+        for (int i = 0; i < spawnCount; i++)
+        {
+            xOffset = (i - ((spawnCount - 1) / 2.0f)) * spawnOffset;
+            spawnPos = transform.position + (transform.forward*1.2f) + (xOffset * transform.right);
+            spawnPos.y = yPos;
+            Instantiate(minion, spawnPos, Quaternion.identity);
+        }
     }
 
     private void MinionEnemyBehaviour()

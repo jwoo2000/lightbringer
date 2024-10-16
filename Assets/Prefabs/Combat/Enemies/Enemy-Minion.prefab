@@ -99,7 +99,7 @@ MonoBehaviour:
   acceleration: 1
   knockback: 0.5
   damageAmount: 20
-  startingHealth: 50
+  startingHealth: 100
   behaviourType: 3
   enemyDmgReduc: 0
   detectionRange: 30
