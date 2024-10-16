@@ -32,7 +32,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
         baseSpawnDistance = 8.0f;
         spawnDistVari = 0.1f;
         baseSpawnWaveCD = 40.0f; // default: 40s
-        minSpawnWaveCD = 20.0f; // default: 20s
+        minSpawnWaveCD = 15.0f; // default: 15s
         spawnRateScaling = 0.1f; // default: 0.1
         spawnWaveCD = baseSpawnWaveCD;
     }
@@ -68,7 +68,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             // player has mid or high tier wep
             if (weaponController.MidWeapon != null || weaponController.HighWeapon != null || playerLevel > 20)
             {
-                spawnCount = (int) ((15f * playerLevel) / (30f + playerLevel));
+                spawnCount = (int) ((40f * playerLevel) / (60f + playerLevel));
                 for (int i = 0; i < spawnCount; i++)
                 {
                     // add medium enemies
@@ -78,7 +78,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
             // player has high tier wep
             if (weaponController.HighWeapon != null || playerLevel > 30)
             {
-                spawnCount = playerLevel / 15;
+                spawnCount = playerLevel / 10;
                 for (int i = 0; i < spawnCount; i++)
                 {
                     // add large enemies

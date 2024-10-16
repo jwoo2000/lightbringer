@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AbsorbFireflies : MonoBehaviour
@@ -98,6 +99,18 @@ public class AbsorbFireflies : MonoBehaviour
                 }
                 particleSystem.SetParticles(particles, numParticlesAlive);
             }
+            StartCoroutine(DestroyAfterDelay(3.0f));
         }
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        float timeElapsed = 0.0f;
+        while (timeElapsed < delay)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }
