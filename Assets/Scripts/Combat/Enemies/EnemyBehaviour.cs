@@ -49,7 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float minSpawnCD = 5.0f;
     private float maxSpawnCD = 10.0f;
     private float currSpawnCD;
-    private float wepUpgradeDropChance = 0.15f;
+    private float wepUpgradeDropChance = 0.2f;
     public float keepAwayDistance = 8.0f;
     public float closeInDistance = 10.0f;
 
@@ -58,7 +58,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float wanderValue = 0.0f;
     private bool wandering = false;
 
-    private PlayerStats playerStats;
+    protected PlayerStats playerStats;
     private DropWepManager dropWepManager;
 
     [SerializeField]
@@ -68,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject onDeathDropParticle;
 
-    void Awake()
+    protected virtual void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
@@ -391,7 +391,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (currSpawnCD <= 0)
             {
                 animator.SetTrigger("Summon");
-                SpawnMinions(Mathf.Min(Mathf.Max(1, playerStats.level/10), 3));
+                SpawnMinions(Mathf.Min(Mathf.Max(1, playerStats.level/10), 10));
                 currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
             }
             else

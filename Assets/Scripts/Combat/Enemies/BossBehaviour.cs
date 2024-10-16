@@ -7,6 +7,12 @@ public class BossBehaviour : EnemyBehaviour
     [SerializeField]
     public GameManager gameManager;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        startingHealth = playerStats.level * 500;
+    }
+
     protected override void OnDeath()
     {
         base.OnDeath();
