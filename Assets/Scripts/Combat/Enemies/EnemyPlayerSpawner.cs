@@ -55,27 +55,31 @@ public class EnemyPlayerSpawner : MonoBehaviour
             spawnWave.Clear();
 
             // player has any wep
+            int spawnCount;
             if (weaponController.LowWeapon != null || weaponController.MidWeapon != null || weaponController.HighWeapon != null)
             {
-                for (int i = 0; i < playerLevel; i++)
+                spawnCount = (int) (-(1f / 15f) * ((playerLevel - 15f) * (playerLevel - 15f)) + 15f);
+                for (int i = 0; i < spawnCount; i++)
                 {
                     // add small enemies
                     spawnWave.Add(EnemyBehaviour.EnemyType.Small);
                 }
             }
             // player has mid or high tier wep
-            if (weaponController.MidWeapon != null || weaponController.HighWeapon != null)
+            if (weaponController.MidWeapon != null || weaponController.HighWeapon != null || playerLevel > 20)
             {
-                for (int i = 0; i < (playerLevel/3); i++)
+                spawnCount = (int) ((15f * playerLevel) / (30f + playerLevel));
+                for (int i = 0; i < spawnCount; i++)
                 {
                     // add medium enemies
                     spawnWave.Add(EnemyBehaviour.EnemyType.Medium);
                 }
             }
             // player has high tier wep
-            if (weaponController.HighWeapon != null)
+            if (weaponController.HighWeapon != null || playerLevel > 30)
             {
-                for (int i = 0; i < (playerLevel/10); i++)
+                spawnCount = playerLevel / 15;
+                for (int i = 0; i < spawnCount; i++)
                 {
                     // add large enemies
                     spawnWave.Add(EnemyBehaviour.EnemyType.Large);
