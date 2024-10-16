@@ -49,6 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float minSpawnCD = 5.0f;
     private float maxSpawnCD = 10.0f;
     private float currSpawnCD;
+    private float wepUpgradeDropChance = 0.1f;
 
     //wandering variables
     private Vector3 wanderTarget;
@@ -56,11 +57,14 @@ public class EnemyBehaviour : MonoBehaviour
     private bool wandering = false;
 
     private PlayerStats playerStats;
+    private DropWepManager dropWepManager;
 
     [SerializeField]
     private GameObject onHitParticle;
     [SerializeField]
     private GameObject onDeathParticle;
+    [SerializeField]
+    private GameObject onDeathDropParticle;
 
     void Awake()
     {
@@ -76,6 +80,11 @@ public class EnemyBehaviour : MonoBehaviour
             case EnemyType.Medium:
                 {
                     speed = speed * Random.Range(0.9f, 1.1f);
+                    break;
+                }
+            case EnemyType.Large:
+                {
+                    dropWepManager = GameObject.FindGameObjectWithTag("DropWepManager").GetComponent<DropWepManager>();
                     break;
                 }
         }
@@ -171,6 +180,13 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
             case EnemyType.Large:
                 deathParticle.transform.localScale = Vector3.one * 2f;
+                if (Random.Range(0.0f, 1.0f) <= wepUpgradeDropChance)
+                {
+                    GameObject dropDeathParticle = Instantiate(onDeathDropParticle, transform.position, Quaternion.identity);
+                    dropDeathParticle.transform.localScale = Vector3.one * 2f;
+                    dropDeathParticle.transform.GetChild(0).localScale = Vector3.one * 2f;
+                    dropWepManager.triggerDrop(transform.position);
+                }
                 break;
             case EnemyType.Boss:
                 deathParticle.transform.localScale = Vector3.one * 3f;
@@ -376,7 +392,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (currSpawnCD <= 0)
             {
                 animator.SetTrigger("Summon");
-                SpawnMinions(playerStats.level/10);
+                SpawnMinions(Mathf.Max(1, playerStats.level/10));
                 currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
             }
             else
