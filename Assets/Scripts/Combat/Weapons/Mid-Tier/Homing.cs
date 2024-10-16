@@ -53,7 +53,7 @@ public class Homing : ProjWeapon
             float currAngle = startingProjAngle + i * angleBwProj;
             Vector3 fireDir = Quaternion.Euler(0.0f, currAngle, 0.0f) * playerTransform.forward;
 
-            GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, playerTransform.rotation);
+            GameObject projInstance = Instantiate(weaponObject, playerTransform.position + weaponOriginOffset, Quaternion.LookRotation(fireDir));
             HomingProjectile homingProj = projInstance.GetComponent<HomingProjectile>();
             homingProj.damage = getDamage();
             homingProj.dir = fireDir;
