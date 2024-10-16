@@ -29,11 +29,11 @@ public class EnemyPlayerSpawner : MonoBehaviour
     private void Awake()
     {
         isSpawning = true;
-        baseSpawnDistance = 16.0f;
+        baseSpawnDistance = 8.0f;
         spawnDistVari = 0.1f;
-        baseSpawnWaveCD = 40.0f;
-        minSpawnWaveCD = 20.0f;
-        spawnRateScaling = 0.1f;
+        baseSpawnWaveCD = 40.0f; // default: 40s
+        minSpawnWaveCD = 20.0f; // default: 20s
+        spawnRateScaling = 0.1f; // default: 0.1
         spawnWaveCD = baseSpawnWaveCD;
     }
 
@@ -94,10 +94,13 @@ public class EnemyPlayerSpawner : MonoBehaviour
 
     private void SpawnWave()
     {
+        // update spawn radius based on curr light radius
+        float scaledSpawnDist = baseSpawnDistance * playerStats.lightRadius;
+        //Debug.Log("scaled spawn dist:" + scaledSpawnDist);
         float spawnDist;
         foreach (EnemyBehaviour.EnemyType mobType in spawnWave)
         {
-            spawnDist = baseSpawnDistance;
+            spawnDist = scaledSpawnDist;
             switch (mobType)
             {
                 case EnemyBehaviour.EnemyType.Medium:
@@ -107,7 +110,11 @@ public class EnemyPlayerSpawner : MonoBehaviour
                     spawnDist += 2.0f;
                     break;
             }
-            Instantiate(getMobFromType(mobType), SpawnPosition(spawnDist), Quaternion.identity);
+            GameObject mob = Instantiate(getMobFromType(mobType), SpawnPosition(spawnDist), Quaternion.identity);
+            EnemyBehaviour mobBehav = mob.GetComponent<EnemyBehaviour>();
+            mobBehav.detectionRange = mobBehav.detectionRange * playerStats.lightRadius;
+            mobBehav.loseDetectionRange = mobBehav.loseDetectionRange * playerStats.lightRadius;
+            //Debug.Log($"detec {mobBehav.detectionRange} lose {mobBehav.loseDetectionRange}");
         }
     }
 
@@ -116,7 +123,7 @@ public class EnemyPlayerSpawner : MonoBehaviour
         float rad = Random.Range(0, 360) * Mathf.Deg2Rad;
         float variedDist = distance * (1.0f + Random.Range(-spawnDistVari, spawnDistVari));
 
-        return (transform.position + new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad))*distance);
+        return (transform.position + (new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad)) * variedDist));
     }
 
     private GameObject getMobFromType(EnemyBehaviour.EnemyType type)

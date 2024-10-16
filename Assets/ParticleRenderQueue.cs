@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathParticleRenderQueue : MonoBehaviour
+public class ParticleRenderQueue : MonoBehaviour
 {
     void Start()
     {

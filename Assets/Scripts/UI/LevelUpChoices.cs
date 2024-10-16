@@ -57,7 +57,7 @@ public class LevelUpChoices : MonoBehaviour
             {
                 leftInstance = Instantiate(leftChoice, leftAnchor);
                 leftInstance.GetComponent<Button>().onClick.AddListener(() => {
-                    Debug.Log(menuController.choiceTypes[leftChoiceType]);
+                    //Debug.Log(menuController.choiceTypes[leftChoiceType]);
                     playerLevelUp.upgradeStat(leftChoiceType);
                     choiceSelected(); 
                 });
@@ -68,7 +68,7 @@ public class LevelUpChoices : MonoBehaviour
             {
                 middleInstance = Instantiate(middleChoice, middleAnchor);
                 middleInstance.GetComponent<Button>().onClick.AddListener(() => {
-                    Debug.Log(menuController.choiceTypes[middleChoiceType]);
+                    //Debug.Log(menuController.choiceTypes[middleChoiceType]);
                     playerLevelUp.upgradeStat(middleChoiceType);
                     choiceSelected(); 
                 });
@@ -80,7 +80,7 @@ public class LevelUpChoices : MonoBehaviour
             {
                 rightInstance = Instantiate(rightChoice, rightAnchor);
                 rightInstance.GetComponent<Button>().onClick.AddListener(() => {
-                    Debug.Log(menuController.choiceTypes[rightChoiceType]);
+                    //Debug.Log(menuController.choiceTypes[rightChoiceType]);
                     playerLevelUp.upgradeStat(rightChoiceType);
                     choiceSelected(); 
                 });

@@ -49,7 +49,9 @@ public class EnemyBehaviour : MonoBehaviour
     private float minSpawnCD = 5.0f;
     private float maxSpawnCD = 10.0f;
     private float currSpawnCD;
-    private float wepUpgradeDropChance = 0.1f;
+    private float wepUpgradeDropChance = 0.15f;
+    public float keepAwayDistance = 8.0f;
+    public float closeInDistance = 10.0f;
 
     //wandering variables
     private Vector3 wanderTarget;
@@ -378,9 +380,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void LargeEnemyBehaviour()
     {
-        int keepAwayDistance = 10;
-        int closeInDistance = 15;
-        // Stay between 15 - 30 units away from the player
         DetectPlayer();
 
         if (!playerDetected) 
@@ -392,7 +391,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (currSpawnCD <= 0)
             {
                 animator.SetTrigger("Summon");
-                SpawnMinions(Mathf.Max(1, playerStats.level/10));
+                SpawnMinions(Mathf.Min(Mathf.Max(1, playerStats.level/10), 3));
                 currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
             }
             else

@@ -40,7 +40,7 @@ public class WeaponController : MonoBehaviour
         switch (tier)
         {
             case Weapon.Tier.Low:
-                Debug.Log("Absorbed Low Wep FF");
+                //Debug.Log("Absorbed Low Wep FF");
                 if (LowWeapon == null)
                 {
                     // first wep ff of tier, open get weapon
@@ -52,7 +52,7 @@ public class WeaponController : MonoBehaviour
                 }
                 break;
             case Weapon.Tier.Mid:
-                Debug.Log("Absorbed Mid Wep FF");
+                //Debug.Log("Absorbed Mid Wep FF");
                 if (MidWeapon == null)
                 {
                     // first wep ff of tier, open get weapon
@@ -65,7 +65,7 @@ public class WeaponController : MonoBehaviour
                 }
                 break;
             case Weapon.Tier.High:
-                Debug.Log("Absorbed High Wep FF");
+                //Debug.Log("Absorbed High Wep FF");
                 if (HighWeapon == null)
                 {
                     // first wep ff of tier, open get weapon
@@ -192,7 +192,7 @@ public class WeaponController : MonoBehaviour
                         Debug.LogWarning("unknown weapon tier, cannot assign weapon to ui info");
                         return;
                 }
-                Debug.Log($"{weaponInstance.name} equipped.");
+                //Debug.Log($"{weaponInstance.name} equipped.");
             }
             else
             {

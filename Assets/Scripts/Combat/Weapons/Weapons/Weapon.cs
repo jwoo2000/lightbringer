@@ -78,17 +78,17 @@ public abstract class Weapon : MonoBehaviour
         {
             case Stat.Damage:
                 damageLevel++;
-                Debug.Log($"{this.name}: Damage upgraded to level {damageLevel}");
+                //Debug.Log($"{this.name}: Damage upgraded to level {damageLevel}");
                 break;
             case Stat.Speed:
                 speedLevel++;
                 upgradeSpeed();
-                Debug.Log($"{this.name}: Speed upgraded to level {speedLevel}");
+                //Debug.Log($"{this.name}: Speed upgraded to level {speedLevel}");
                 break;
             case Stat.Unique:
                 uniqueLevel++;
                 upgradeUnique();
-                Debug.Log($"{this.name}: Unique stat upgraded to level {uniqueLevel}");
+                //Debug.Log($"{this.name}: Unique stat upgraded to level {uniqueLevel}");
                 break;
             default:
                 Debug.LogWarning("Invalid stat choice for upgrade");
