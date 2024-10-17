@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerWeps = player.GetComponent<WeaponController>();
+        discoveredPOIcount = 0;
     }
 
     private void Update()
@@ -77,10 +78,21 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private Vector3 SpawnPosition() {
-        int deg = Random.Range(0, 360);
-        float rad = deg * Mathf.Deg2Rad;
+        Vector3 spawnPos;
+        int attempts = 0;
+        int maxAttempts = 10;
+        float enemyRad = 1.5f;
 
-        return (new Vector3(spawnDistance * Mathf.Sin(rad), 1, spawnDistance * Mathf.Cos(rad)) + transform.position);
+        do
+        {
+            int deg = Random.Range(0, 360);
+            float rad = deg * Mathf.Deg2Rad;
+            spawnPos = new Vector3(spawnDistance * Mathf.Sin(rad), 0, spawnDistance * Mathf.Cos(rad)) + transform.position;
+
+            attempts++;
+        } while ((Physics.OverlapSphere(spawnPos, enemyRad).Length > 0) && (attempts < maxAttempts));
+
+        return spawnPos;
     }
 
 }
