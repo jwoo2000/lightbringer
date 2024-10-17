@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
+    [SerializeField] Transform mainCameraTransform;
+
     public GameObject helpCanvas;
     public GameObject optionsCanvas;
     public GameObject loadingCanvas;
