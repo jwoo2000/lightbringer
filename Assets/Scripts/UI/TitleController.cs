@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TitleController : MonoBehaviour
 {
     [SerializeField] Transform mainCameraTransform;
+    [SerializeField] UISounds uiSounds;
 
     public GameObject helpCanvas;
     public GameObject optionsCanvas;
@@ -35,10 +36,12 @@ public class TitleController : MonoBehaviour
             if (helpOpen)
             {
                 closeHelp();
+                uiSounds.playSelectSFX();
             }
             else if (optionsOpen)
             {
                 closeOptions();
+                uiSounds.playSelectSFX();
             }
         }
     }
