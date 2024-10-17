@@ -11,22 +11,36 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int maxEnemies = 0;
     [SerializeField] private int startSpawningDistance = 50;
     GameObject player;
+    private WeaponController playerWeps;
     private int numEnemies;
+    public static int discoveredPOIcount = 0;
+    private bool spawnerEnabled = false;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(transform.position, startSpawningDistance);
+    }
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerWeps = player.GetComponent<WeaponController>();
     }
 
-
-    void Start() {
-        StartCoroutine(Spawner());
-        numEnemies = 0;
-    }
-
-    void Update()
+    private void Update()
     {
-        
+        if ((discoveredPOIcount > 1) && !spawnerEnabled)
+        {
+            spawnerEnabled = true;
+            StartSpawner();
+        }
+    }
+
+    private void StartSpawner()
+    {
+        numEnemies = 0;
+        StartCoroutine(Spawner());
     }
 
     private IEnumerator Spawner () {

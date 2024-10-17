@@ -20,7 +20,7 @@ public class CloakPOI : MonoBehaviour
     private Renderer[] renderers;
 
     [SerializeField]
-    private bool discovered = false;
+    public bool discovered = false;
 
     [SerializeField]
     public Transform playerTransform;
@@ -87,6 +87,7 @@ public class CloakPOI : MonoBehaviour
         {
             uncloak();
             discovered = true;
+            EnemySpawner.discoveredPOIcount++;
         }
     }
 
