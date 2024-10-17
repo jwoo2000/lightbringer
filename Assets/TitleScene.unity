@@ -6138,6 +6138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCameraTransform: {fileID: 767159816}
+  uiSounds: {fileID: 1367863551}
   helpCanvas: {fileID: 213599391}
   optionsCanvas: {fileID: 1854072574}
   loadingCanvas: {fileID: 371257455}
