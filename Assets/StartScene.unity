@@ -1739,6 +1739,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &130395906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,6 +2988,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817419120}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: closeLevelUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4896,6 +4920,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &334717142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6346,6 +6382,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817419120}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: closeHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11026,6 +11074,7 @@ MonoBehaviour:
   weaponController: {fileID: 1024315748}
   weaponGetUIController: {fileID: 1427550209}
   weaponUpUIController: {fileID: 882958781}
+  uiSounds: {fileID: 1094931793}
   levelUpChoicePool:
   - {fileID: 281668882846750227, guid: 6452bd776b3f010408e5232ffde9a608, type: 3}
   - {fileID: 281668882846750227, guid: 9f373f19b11263e4fbc607c6bd383bf0, type: 3}
@@ -20559,6 +20608,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1161958299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20948,6 +21009,18 @@ MonoBehaviour:
       - m_Target: {fileID: 576554300}
         m_TargetAssemblyTypeName: GameOverMenu, Assembly-CSharp
         m_MethodName: restartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22510,6 +22583,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817419120}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25884,6 +25969,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817419120}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: openOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30143,6 +30240,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817419120}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094931793}
+        m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
+        m_MethodName: playSelectSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

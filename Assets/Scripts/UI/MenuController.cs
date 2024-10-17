@@ -28,6 +28,8 @@ public class MenuController : MonoBehaviour
     private WeaponGetUIController weaponGetUIController;
     [SerializeField]
     private WeaponUpUIController weaponUpUIController;
+    [SerializeField]
+    private UISounds uiSounds;
 
     private bool isPaused = false;
 
@@ -92,19 +94,23 @@ public class MenuController : MonoBehaviour
                 if (helpOpen)
                 {
                     closeHelp();
+                    uiSounds.playSelectSFX();
                 } else if (optionsOpen)
                 {
                     closeOptions();
+                    uiSounds.playSelectSFX();
                 }
                 else
                 {
                     if (isPaused)
                     {
                         ResumeGame();
+                        uiSounds.playSelectSFX();
                     }
                     else
                     {
                         PauseGame();
+                        uiSounds.playSelectSFX();
                     }
                 }
             }
@@ -118,12 +124,14 @@ public class MenuController : MonoBehaviour
                 } else
                 {
                     openLevelUI();
+                    uiSounds.playSelectSFX();
                 }
             } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
             {
                 // if level ui is open, close and dont reroll new choices
                 levelUpChoices.newChoices = false;
                 closeLevelUI();
+                uiSounds.playSelectSFX();
             }
         }
     }
