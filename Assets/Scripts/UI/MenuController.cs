@@ -28,8 +28,11 @@ public class MenuController : MonoBehaviour
     private WeaponGetUIController weaponGetUIController;
     [SerializeField]
     private WeaponUpUIController weaponUpUIController;
+
     [SerializeField]
     private UISounds uiSounds;
+    [SerializeField]
+    private AudioSource musicSource;
 
     private bool isPaused = false;
 
@@ -124,7 +127,6 @@ public class MenuController : MonoBehaviour
                 } else
                 {
                     openLevelUI();
-                    uiSounds.playSelectSFX();
                 }
             } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
             {
@@ -172,6 +174,7 @@ public class MenuController : MonoBehaviour
         levelUpCanvas.SetActive(true);
         stopTimeShowCursor();
         levelUIOpen = true;
+        uiSounds.playSelectSFX();
     }
 
     public void QueueLevelUps(int pendingLevels)
@@ -200,6 +203,7 @@ public class MenuController : MonoBehaviour
         pendingLevelUps--;
         levelUpChoices.newChoices = true;
         levelUpCanvas.SetActive(false);
+        uiSounds.selectUpgradeSFX();
         if (pendingLevelUps > 0)
         {
             processNextLevelUp();
@@ -241,6 +245,7 @@ public class MenuController : MonoBehaviour
         (GameObject left, GameObject leftPanel, GameObject mid, GameObject midPanel, GameObject right, GameObject rightPanel) choices = weaponController.random3SelectWeapon(tier);
         weaponGetUIController.SetChoices(choices);
         weaponGetCanvas.SetActive(true);
+        uiSounds.playWeaponUpgradeSFX();
     }
 
     public void newWeaponChosen()
@@ -248,6 +253,7 @@ public class MenuController : MonoBehaviour
         weaponGetCanvas.SetActive(false);
         weaponGetUIOpen = false;
         startTimeHideCursor();
+        uiSounds.selectUpgradeSFX();
     }
 
     public void upgradeWeapon(Weapon weapon)
@@ -256,6 +262,7 @@ public class MenuController : MonoBehaviour
         weaponUpUIOpen = true;
         weaponUpUIController.SetWeapon(weapon);
         weaponUpCanvas.SetActive(true);
+        uiSounds.playWeaponUpgradeSFX();
     }
 
     public void wepUpgradeChosen()
@@ -263,6 +270,7 @@ public class MenuController : MonoBehaviour
         weaponUpCanvas.SetActive(false);
         weaponUpUIOpen = false;
         startTimeHideCursor();
+        uiSounds.selectUpgradeSFX();
     }
 
     private void stopTimeShowCursor()
@@ -272,6 +280,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;  // Unlock cursor
         Cursor.visible = true;  // Show cursor
         isPaused = true;
+        musicSource.Pause();
     }
 
     private void startTimeHideCursor()
@@ -281,6 +290,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;  // Lock cursor back for game mode
         Cursor.visible = false;  // Hide cursor
         isPaused = false;
+        musicSource.UnPause();
     }
 
     public void ResumeGame()

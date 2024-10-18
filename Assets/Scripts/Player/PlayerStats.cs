@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private MenuController menuController;
     [SerializeField] private MovementController movementController;
     [SerializeField] public WeaponController weaponController;
+    [SerializeField] private PlayerSounds playerSounds;
 
 
     [SerializeField] private FogBlend unexploredFogBlend;
@@ -103,6 +104,7 @@ public class PlayerStats : MonoBehaviour
             if (!effectPlayed)
             {
                 Instantiate(levelUpParticle, transform);
+                playerSounds.playLevelUp();
                 effectPlayed = true;
             }
             maxExp = CalculateNextMaxExp(level);

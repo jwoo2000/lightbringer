@@ -1739,7 +1739,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1846325865}
         m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
         m_MethodName: playSelectSFX
         m_Mode: 1
@@ -2997,7 +2997,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1846325865}
         m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
         m_MethodName: playSelectSFX
         m_Mode: 1
@@ -10910,6 +10910,7 @@ MonoBehaviour:
   weaponGetUIController: {fileID: 1427550209}
   weaponUpUIController: {fileID: 882958781}
   uiSounds: {fileID: 1846325865}
+  musicSource: {fileID: 1860352888}
   levelUpChoicePool:
   - {fileID: 281668882846750227, guid: 6452bd776b3f010408e5232ffde9a608, type: 3}
   - {fileID: 281668882846750227, guid: 9f373f19b11263e4fbc607c6bd383bf0, type: 3}
@@ -15727,6 +15728,7 @@ MonoBehaviour:
   menuController: {fileID: 817419120}
   movementController: {fileID: 1024315739}
   weaponController: {fileID: 1024315748}
+  playerSounds: {fileID: 1024315750}
   unexploredFogBlend: {fileID: 17433195}
   exploredFogBlend: {fileID: 2013744118}
   playerLight: {fileID: 192922453}
@@ -15900,6 +15902,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc1f39540cab4da49b825e38575d8872, type: 3}
   - {fileID: 8300000, guid: 75bcec2c6851e6b408619b2ba6e45b8e, type: 3}
   - {fileID: 8300000, guid: d3c0343b7e6540a4eb7460b794dd29e9, type: 3}
+  levelUpSound: {fileID: 8300000, guid: 7733380e931d39e45880c258635d6486, type: 3}
 --- !u!82 &1024315751
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20918,7 +20921,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1846325865}
         m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
         m_MethodName: playSelectSFX
         m_Mode: 1
@@ -29649,6 +29652,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6075961921806070191, guid: 0639b2637419a5e4f813c2911e0f1648, type: 3}
     - target: {fileID: 5327613400132432754, guid: 415043ed93901044084141e841683015, type: 3}
+      propertyPath: selectUpgradeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c0ea0b0449619cc4197bc9eb12b1bf9c, type: 3}
+    - target: {fileID: 5327613400132432754, guid: 415043ed93901044084141e841683015, type: 3}
+      propertyPath: weaponUpgradeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e8dccb4f0db43c42ae8ef6d15408cc5, type: 3}
+    - target: {fileID: 5327613400132432754, guid: 415043ed93901044084141e841683015, type: 3}
       propertyPath: mainCameraTransform
       value: 
       objectReference: {fileID: 1773207376}
@@ -29812,6 +29823,11 @@ PrefabInstance:
 --- !u!4 &1860352887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8428697249161871694, guid: 587e0892386bd7b46944ef7cbac3834f, type: 3}
+  m_PrefabInstance: {fileID: 1860352886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1860352888 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8749862029318213778, guid: 587e0892386bd7b46944ef7cbac3834f, type: 3}
   m_PrefabInstance: {fileID: 1860352886}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865659914

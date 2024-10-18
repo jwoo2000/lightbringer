@@ -16,6 +16,8 @@ public class PlayerSounds : MonoBehaviour
 
     [SerializeField] private List<AudioClip> absorbSounds = new List<AudioClip>();
 
+    [SerializeField] private AudioClip levelUpSound;
+
     private void Awake()
     {
         baseSpeed = playerStats.movespeed;
@@ -24,11 +26,11 @@ public class PlayerSounds : MonoBehaviour
 
     private void Update()
     {
+        float speedRatio = playerMovement.currSpeed / baseSpeed;
+        float adjustedSpeedEffect = Mathf.Pow(speedRatio, sprintDelayMulti);
+        float currFootstepDelay = baseFootstepDelay / adjustedSpeedEffect;
         if (playerMovement.isMoving)
         {
-            float speedRatio = playerMovement.currSpeed / baseSpeed;
-            float adjustedSpeedEffect = Mathf.Pow(speedRatio, sprintDelayMulti);
-            float currFootstepDelay = baseFootstepDelay / adjustedSpeedEffect;
 
             footstepTimer -= Time.deltaTime;
 
@@ -37,6 +39,9 @@ public class PlayerSounds : MonoBehaviour
                 playFootstep();
                 footstepTimer = Mathf.Clamp(currFootstepDelay, 0.1f, 1.0f);
             }
+        } else
+        {
+            footstepTimer = Mathf.Clamp(currFootstepDelay, 0.1f, 1.0f);
         }
     }
 
@@ -47,7 +52,7 @@ public class PlayerSounds : MonoBehaviour
             Debug.LogWarning("no footstep sounds");
             return;
         }
-        SoundManager.instance.playOneShot(playerAudioSource, footstepSounds[Random.Range(0, footstepSounds.Count)], 0.5f);
+        SoundManager.instance.playOneShot(playerAudioSource, footstepSounds[Random.Range(0, footstepSounds.Count)], 0.2f);
     }
 
     public void playAbsorb()
@@ -58,5 +63,10 @@ public class PlayerSounds : MonoBehaviour
             return;
         }
         SoundManager.instance.playOneShot(playerAudioSource, absorbSounds[Random.Range(0, absorbSounds.Count)], 0.2f);
+    }
+
+    public void playLevelUp()
+    {
+        SoundManager.instance.playOneShot(playerAudioSource, levelUpSound, 0.2f);
     }
 }
