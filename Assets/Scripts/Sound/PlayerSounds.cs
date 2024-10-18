@@ -9,14 +9,15 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioSource playerAudioSource;
 
     [SerializeField] private List<AudioClip> footstepSounds = new List<AudioClip>();
-    [SerializeField] private float baseFootstepDelay = 0.3f;
+    [SerializeField] private float baseFootstepDelay = 0.4f;
     [SerializeField] private float baseSpeed;
-    [SerializeField] private float sprintDelayMulti = 0.7f;
-    private float footstepTimer = 0.0f;
+    [SerializeField] private float sprintDelayMulti = 0.2f;
+    private float footstepTimer;
 
     private void Awake()
     {
         baseSpeed = playerStats.movespeed;
+        footstepTimer = baseFootstepDelay;
     }
 
     private void Update()
@@ -44,6 +45,6 @@ public class PlayerSounds : MonoBehaviour
             Debug.LogWarning("no footstep sounds");
             return;
         }
-        SoundManager.instance.playOneShot(playerAudioSource, footstepSounds[Random.Range(0, footstepSounds.Count)], 1.0f);
+        SoundManager.instance.playOneShot(playerAudioSource, footstepSounds[Random.Range(0, footstepSounds.Count)], 0.5f);
     }
 }

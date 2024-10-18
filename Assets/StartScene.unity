@@ -15941,13 +15941,18 @@ MonoBehaviour:
   footstepSounds:
   - {fileID: 8300000, guid: 0609acde86b59a2458aaf135531f8756, type: 3}
   - {fileID: 8300000, guid: fdfa07727ba18e146b0d737f16110ba5, type: 3}
+  - {fileID: 8300000, guid: fdfa07727ba18e146b0d737f16110ba5, type: 3}
+  - {fileID: 8300000, guid: fdfa07727ba18e146b0d737f16110ba5, type: 3}
+  - {fileID: 8300000, guid: e988fcf175fd1874db4f82c3b2d75db3, type: 3}
+  - {fileID: 8300000, guid: e988fcf175fd1874db4f82c3b2d75db3, type: 3}
   - {fileID: 8300000, guid: e988fcf175fd1874db4f82c3b2d75db3, type: 3}
   - {fileID: 8300000, guid: 98e005e2d5100484b88927d0803cb395, type: 3}
   - {fileID: 8300000, guid: b3e9cdac26b78934197456d8199e30bc, type: 3}
   - {fileID: 8300000, guid: ddc4973571f36404d95c23401b7d2f12, type: 3}
   - {fileID: 8300000, guid: 8c9f76b14113ab640ab4b94535ad82e3, type: 3}
-  baseFootstepDelay: 0.5
+  baseFootstepDelay: 0.4
   baseSpeed: 0
+  sprintDelayMulti: 0.2
 --- !u!82 &1024315751
 AudioSource:
   m_ObjectHideFlags: 0
