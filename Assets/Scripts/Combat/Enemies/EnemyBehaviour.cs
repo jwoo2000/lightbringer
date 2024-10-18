@@ -68,6 +68,9 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject onDeathDropParticle;
 
+    [SerializeField] private AudioClip takeDamageSound;
+    [SerializeField] private AudioClip deathSound;
+
     protected virtual void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -175,6 +178,7 @@ public class EnemyBehaviour : MonoBehaviour
     protected virtual void OnDeath()
     {
         GameObject deathParticle = Instantiate(onDeathParticle, transform.position, Quaternion.identity);
+        SoundManager.instance.playSound(SoundManager.AudioType.SFX, deathSound, transform.position, 1.0f);
         switch (behaviourType)
         {
             case EnemyType.Medium:
@@ -208,6 +212,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void TakeDamage (float dmg) 
     {
         GameObject hitParticle = Instantiate(onHitParticle, transform.position, Quaternion.identity);
+        SoundManager.instance.playSound(SoundManager.AudioType.SFX, takeDamageSound, transform.position, 0.9f);
         switch (behaviourType)
         {
             case EnemyType.Medium:
@@ -313,7 +318,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (col.CompareTag(tagToDamage)) 
         {
-            
+            if (GameManager.playerAlive)
+            {
+                // only play hit sound if player is alive
+                col.gameObject.GetComponent<PlayerSounds>().takeDamage();
+            }
             if (behaviourType == EnemyType.Minion) 
             {
                 GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);

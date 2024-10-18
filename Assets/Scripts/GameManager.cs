@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerSounds playerSounds;
     [SerializeField] private WeaponController playerWeaponController;
 
-    [SerializeField] private bool playerAlive;
+    [SerializeField] public static bool playerAlive;
 
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject gameWinCanvas;

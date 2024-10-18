@@ -10865,7 +10865,6 @@ MonoBehaviour:
   _playerStats: {fileID: 1024315744}
   playerSounds: {fileID: 1024315750}
   playerWeaponController: {fileID: 1024315748}
-  playerAlive: 0
   gameOverCanvas: {fileID: 576554295}
   gameWinCanvas: {fileID: 1267814680}
   gameWin: 0
@@ -15749,6 +15748,7 @@ MonoBehaviour:
   currMaxHP: 0
   exp: 0
   maxExp: 30
+  expGettable: 1
   level: 0
 --- !u!95 &1024315745 stripped
 Animator:
@@ -15905,6 +15905,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 75bcec2c6851e6b408619b2ba6e45b8e, type: 3}
   - {fileID: 8300000, guid: d3c0343b7e6540a4eb7460b794dd29e9, type: 3}
   levelUpSound: {fileID: 8300000, guid: 7733380e931d39e45880c258635d6486, type: 3}
+  takeDamageSound: {fileID: 8300000, guid: c07388413723f35459957ba53810544c, type: 3}
   deathSound: {fileID: 8300000, guid: f7ae8455aeb4fbc43b671768b8356c85, type: 3}
 --- !u!82 &1024315751
 AudioSource:
@@ -15925,7 +15926,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0

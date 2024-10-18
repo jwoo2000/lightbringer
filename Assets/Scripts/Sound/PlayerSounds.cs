@@ -17,7 +17,7 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private List<AudioClip> absorbSounds = new List<AudioClip>();
 
     [SerializeField] private AudioClip levelUpSound;
-
+    [SerializeField] private AudioClip takeDamageSound;
     [SerializeField] private AudioClip deathSound;
 
     private void Awake()
@@ -70,6 +70,11 @@ public class PlayerSounds : MonoBehaviour
     public void playLevelUp()
     {
         SoundManager.instance.playOneShot(playerAudioSource, levelUpSound, 0.2f);
+    }
+
+    public void takeDamage()
+    {
+        SoundManager.instance.playOneShot(playerAudioSource, takeDamageSound, 0.3f);
     }
 
     public void playDeath()
