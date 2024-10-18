@@ -28,6 +28,10 @@ public class BossAltarController : MonoBehaviour
     [SerializeField] private TMP_Text conditionText2;
     [SerializeField] private bool failMessageShowing;
 
+    [SerializeField] private AudioSource altarSoundSource;
+    [SerializeField] private AudioClip bossSpawnSound;
+    [SerializeField] private AudioSource playerSoundSource;
+
     private void Awake()
     {
         activated = false;
@@ -81,6 +85,7 @@ public class BossAltarController : MonoBehaviour
     private IEnumerator activationSequence()
     {
         altarPS.Stop();
+        SoundManager.instance.playBossMusic();
 
         float timeLeft = activationTime;
         float progress = 0.0f;
@@ -89,6 +94,7 @@ public class BossAltarController : MonoBehaviour
         {
             progress = timeLeft / activationTime;
             altarLight.range = altarLightInitRange * progress;
+            altarSoundSource.volume = progress;
             playerLight.intensity = playerLightInitIntensity * progress;
             timeLeft -= Time.deltaTime;
             yield return null;
@@ -96,8 +102,11 @@ public class BossAltarController : MonoBehaviour
 
         altarLight.range = 0.0f;
         playerLight.intensity = 0.0f;
+        altarSoundSource.volume = 0.0f;
+        altarSoundSource.Stop();
 
         Instantiate(spawnParticle, transform.position, Quaternion.identity);
+        SoundManager.instance.playOneShot(playerSoundSource, bossSpawnSound, 1.0f);
         GameObject bossInstance = Instantiate(bossPrefab, transform.position, Quaternion.identity);
         bossInstance.GetComponent<BossBehaviour>().gameManager = gameManager;
 

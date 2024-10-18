@@ -7561,6 +7561,10 @@ PrefabInstance:
       propertyPath: mainCameraTransform
       value: 
       objectReference: {fileID: 767159816}
+    - target: {fileID: 5327613400132432754, guid: 415043ed93901044084141e841683015, type: 3}
+      propertyPath: audioListenerTransform
+      value: 
+      objectReference: {fileID: 767159816}
     - target: {fileID: 5889203395640374581, guid: 415043ed93901044084141e841683015, type: 3}
       propertyPath: m_Name
       value: SoundManager

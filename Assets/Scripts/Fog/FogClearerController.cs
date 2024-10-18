@@ -14,6 +14,9 @@ public class FogClearerController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = player.position + new Vector3(0, 1.0f, 0);
+        if (player != null)
+        {
+            transform.position = player.position + new Vector3(0, 1.0f, 0);
+        }
     }
 }

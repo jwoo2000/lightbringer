@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private UISounds uiSounds;
     [SerializeField]
-    private AudioSource musicSource;
+    private List<AudioSource> musicSources = new List<AudioSource>();
 
     private bool isPaused = false;
 
@@ -280,7 +280,10 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;  // Unlock cursor
         Cursor.visible = true;  // Show cursor
         isPaused = true;
-        musicSource.Pause();
+        foreach (AudioSource source in musicSources)
+        {
+            source.Pause();
+        }
     }
 
     private void startTimeHideCursor()
@@ -290,7 +293,10 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;  // Lock cursor back for game mode
         Cursor.visible = false;  // Hide cursor
         isPaused = false;
-        musicSource.UnPause();
+        foreach (AudioSource source in musicSources)
+        {
+            source.UnPause();
+        }
     }
 
     public void ResumeGame()
