@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer playerMesh;
     [SerializeField] public MovementController playerMovementController;
     [SerializeField] public PlayerStats _playerStats;
+    [SerializeField] private PlayerSounds playerSounds;
+    [SerializeField] private WeaponController playerWeaponController;
 
     [SerializeField] private bool playerAlive;
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void playerWin()
     {
-        Debug.Log("Player win!");
+        //Debug.Log("Player win!");
         gameWin = true;
         gameWinCanvas.SetActive(true);
         UnitHealth.calcDamage = false;
@@ -41,9 +43,15 @@ public class GameManager : MonoBehaviour
     private void playerDeath()
     {
         playerAlive = false;
+        _playerStats.expGettable = false;
         Instantiate(playerDeathParticle, player.transform.position, Quaternion.identity);
+        playerSounds.playDeath();
         playerRB.isKinematic = true;
         playerMesh.enabled = false;
+        foreach (Weapon weapon in playerWeaponController.activeWeapons)
+        {
+            Destroy(weapon.gameObject);
+        }
         playerMovementController.controlsActive = false;
         gameOverCanvas.SetActive(true);
     }

@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private int exp = 0;
     [SerializeField] private int maxExp = 30;
+    [SerializeField] public bool expGettable = true;
     [SerializeField] public int level = 0;
 
     public int Exp
@@ -64,6 +65,7 @@ public class PlayerStats : MonoBehaviour
         initBlendSpeed = exploredFogBlend.blendSpeed;
         initLightRange = playerLight.range;
         minLightRange = 15.0f;
+        expGettable = true;
     }
 
     private void Update()
@@ -89,8 +91,11 @@ public class PlayerStats : MonoBehaviour
 
     public void addExp(int expToAdd)
     {
-        exp += expToAdd;
-        checkLevelUp();
+        if (expGettable)
+        {
+            exp += expToAdd;
+            checkLevelUp();
+        }
     }
 
     private void checkLevelUp()

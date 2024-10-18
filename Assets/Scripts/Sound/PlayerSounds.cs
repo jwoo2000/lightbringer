@@ -18,6 +18,8 @@ public class PlayerSounds : MonoBehaviour
 
     [SerializeField] private AudioClip levelUpSound;
 
+    [SerializeField] private AudioClip deathSound;
+
     private void Awake()
     {
         baseSpeed = playerStats.movespeed;
@@ -68,5 +70,10 @@ public class PlayerSounds : MonoBehaviour
     public void playLevelUp()
     {
         SoundManager.instance.playOneShot(playerAudioSource, levelUpSound, 0.2f);
+    }
+
+    public void playDeath()
+    {
+        SoundManager.instance.playOneShot(playerAudioSource, deathSound, 1.0f);
     }
 }
