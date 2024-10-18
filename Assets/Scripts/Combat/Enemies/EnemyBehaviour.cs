@@ -212,7 +212,10 @@ public class EnemyBehaviour : MonoBehaviour
     public void TakeDamage (float dmg) 
     {
         GameObject hitParticle = Instantiate(onHitParticle, transform.position, Quaternion.identity);
-        SoundManager.instance.playSound(SoundManager.AudioType.SFX, takeDamageSound, transform.position, 0.9f);
+        if (!GameManager.gameWin)
+        {
+            SoundManager.instance.playSound(SoundManager.AudioType.SFX, takeDamageSound, transform.position, 0.9f);
+        }
         switch (behaviourType)
         {
             case EnemyType.Medium:
@@ -318,7 +321,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (col.CompareTag(tagToDamage)) 
         {
-            if (GameManager.playerAlive)
+            if (GameManager.playerAlive && !GameManager.gameWin)
             {
                 // only play hit sound if player is alive
                 col.gameObject.GetComponent<PlayerSounds>().takeDamage();

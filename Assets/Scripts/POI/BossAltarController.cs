@@ -106,9 +106,11 @@ public class BossAltarController : MonoBehaviour
         altarSoundSource.Stop();
 
         Instantiate(spawnParticle, transform.position, Quaternion.identity);
-        SoundManager.instance.playOneShot(playerSoundSource, bossSpawnSound, 1.0f);
+        SoundManager.instance.playOneShot(playerSoundSource, bossSpawnSound, 0.5f);
         GameObject bossInstance = Instantiate(bossPrefab, transform.position, Quaternion.identity);
-        bossInstance.GetComponent<BossBehaviour>().gameManager = gameManager;
+        BossBehaviour bossBehav = bossInstance.GetComponent<BossBehaviour>();
+        bossBehav.gameManager = gameManager;
+        bossBehav.playerSoundSource = playerSoundSource;
 
         timeLeft = 0.0f;
         while (timeLeft < 0.3f)

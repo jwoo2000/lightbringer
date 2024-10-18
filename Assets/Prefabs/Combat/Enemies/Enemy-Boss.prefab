@@ -169,6 +169,8 @@ MonoBehaviour:
   takeDamageSound: {fileID: 8300000, guid: c288c0aef6a28724fb30bba4bb007e09, type: 3}
   deathSound: {fileID: 8300000, guid: 9b17b3c37dabc864f98819b9951f8b34, type: 3}
   gameManager: {fileID: 0}
+  playerSoundSource: {fileID: 0}
+  bossDefeatSound: {fileID: 8300000, guid: 1ce2e0d3b2a83cb40bf002b331c0e8c4, type: 3}
 --- !u!1001 &777248155932606734
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,7 +16,9 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource bossMusicSource;
+    [SerializeField] private AudioSource menuMusicSource;
     [SerializeField] private float fadeToBossMusicTime = 5.0f;
+    [SerializeField] private float fadeToMenuMusicTime = 5.0f;
 
     private void Awake()
     {
@@ -32,6 +34,11 @@ public class SoundManager : MonoBehaviour
         {
             bossMusicSource.Stop();
             bossMusicSource.volume = 0.0f;
+        }
+        if (menuMusicSource != null)
+        {
+            menuMusicSource.Stop();
+            menuMusicSource.volume = 0.0f;
         }
     }
 
@@ -55,6 +62,28 @@ public class SoundManager : MonoBehaviour
         ambienceSource.volume = 0.0f;
         bossMusicSource.volume = 1.0f;
         ambienceSource.Stop();
+    }
+
+    public void playMenuMusic()
+    {
+        StartCoroutine(fadeToMenuMusic());
+    }
+
+    private IEnumerator fadeToMenuMusic()
+    {
+        menuMusicSource.Play();
+        float timeElapsed = 0.0f;
+        while (timeElapsed < fadeToMenuMusicTime)
+        {
+            float progress = timeElapsed / fadeToMenuMusicTime;
+            bossMusicSource.volume = 1.0f - progress;
+            menuMusicSource.volume = progress;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        bossMusicSource.volume = 0.0f;
+        menuMusicSource.volume = 1.0f;
+        bossMusicSource.Stop();
     }
 
     public void playSound(AudioType type, AudioClip audioClip, Vector3 location, float volume)

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject gameWinCanvas;
-    [SerializeField] public bool gameWin;
+    [SerializeField] public static bool gameWin;
 
     public UnitHealth _playerHealth;
 
