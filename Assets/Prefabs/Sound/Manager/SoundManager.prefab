@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8428697249161871694}
   - component: {fileID: 3107337627124330960}
+  - component: {fileID: 5327613400132432754}
   m_Layer: 0
-  m_Name: SFXManager
+  m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2d3d7ddc69c544185d66db6efd9040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXObject: {fileID: 6075961921806070191, guid: 0639b2637419a5e4f813c2911e0f1648, type: 3}
+  SFXObject: {fileID: 6075961921806070191, guid: 94988031fb41c5946ad011b8f0982720, type: 3}
+--- !u!114 &5327613400132432754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889203395640374581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b92b21c608b34e4c9f74a5dd38120f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCameraTransform: {fileID: 0}
+  selectSound: {fileID: 8300000, guid: 28e9b4a6c3d32174983bf47e70dcb41b, type: 3}

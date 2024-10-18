@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public enum AudioType
+    {
+        SFX,
+        UI
+    }
     public static SoundManager instance;
 
     [SerializeField] private AudioSource SFXObject;
+    [SerializeField] private AudioSource UIObject;
 
     private void Awake()
     {
@@ -16,9 +22,22 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void playSound(AudioClip audioClip, Vector3 location, float volume)
+    public void playSound(AudioType type, AudioClip audioClip, Vector3 location, float volume)
     {
-        AudioSource audioSource = Instantiate(SFXObject, location, Quaternion.identity);
+        AudioSource sourceObject;
+        switch (type)
+        {
+            case AudioType.SFX:
+                sourceObject = SFXObject;
+                break;
+            case AudioType.UI:
+                sourceObject = UIObject;
+                break;
+            default:
+                sourceObject = SFXObject;
+                break;
+        }
+        AudioSource audioSource = Instantiate(sourceObject, location, Quaternion.identity);
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.Play();

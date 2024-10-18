@@ -9,6 +9,6 @@ public class UISounds : MonoBehaviour
 
     public void playSelectSFX()
     {
-        SoundManager.instance.playSound(selectSound, mainCameraTransform.position, 1.0f);
+        SoundManager.instance.playSound(SoundManager.AudioType.UI, selectSound, mainCameraTransform.position, 0.8f);
     }
 }
