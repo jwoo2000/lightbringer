@@ -64,7 +64,7 @@ public class PlayerSounds : MonoBehaviour
             Debug.LogWarning("no absorb sounds");
             return;
         }
-        SoundManager.instance.playOneShot(playerAudioSource, absorbSounds[Random.Range(0, absorbSounds.Count)], 0.2f);
+        SoundManager.instance.playOneShot(playerAudioSource, absorbSounds[Random.Range(0, absorbSounds.Count)], 0.1f);
     }
 
     public void playLevelUp()

@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         _playerStats.expGettable = false;
         Instantiate(playerDeathParticle, player.transform.position, Quaternion.identity);
         playerSounds.playDeath();
+        SoundManager.instance.playMenuMusic();
         playerRB.isKinematic = true;
         playerMesh.enabled = false;
         foreach (Weapon weapon in playerWeaponController.activeWeapons)

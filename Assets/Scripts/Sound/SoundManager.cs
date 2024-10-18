@@ -17,8 +17,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource bossMusicSource;
     [SerializeField] private AudioSource menuMusicSource;
-    [SerializeField] private float fadeToBossMusicTime = 5.0f;
-    [SerializeField] private float fadeToMenuMusicTime = 5.0f;
 
     private void Awake()
     {
@@ -44,46 +42,44 @@ public class SoundManager : MonoBehaviour
 
     public void playBossMusic()
     {
-        StartCoroutine(fadeToBossMusic());
-    }
-
-    private IEnumerator fadeToBossMusic()
-    {
-        bossMusicSource.Play();
-        float timeElapsed = 0.0f;
-        while (timeElapsed < fadeToBossMusicTime)
-        {
-            float progress = timeElapsed / fadeToBossMusicTime;
-            ambienceSource.volume = 1.0f-progress;
-            bossMusicSource.volume = progress;
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        ambienceSource.volume = 0.0f;
-        bossMusicSource.volume = 1.0f;
-        ambienceSource.Stop();
+        StartCoroutine(fadeOutSource(ambienceSource, 5.0f));
+        StartCoroutine(fadeOutSource(menuMusicSource, 5.0f));
+        StartCoroutine(fadeInSource(bossMusicSource, 5.0f));
     }
 
     public void playMenuMusic()
     {
-        StartCoroutine(fadeToMenuMusic());
+        StartCoroutine(fadeOutSource(ambienceSource, 5.0f));
+        StartCoroutine(fadeOutSource(bossMusicSource, 5.0f));
+        StartCoroutine(fadeInSource(menuMusicSource, 5.0f));
     }
 
-    private IEnumerator fadeToMenuMusic()
+    private IEnumerator fadeInSource(AudioSource source, float fadeTime)
     {
-        menuMusicSource.Play();
+        source.Play();
         float timeElapsed = 0.0f;
-        while (timeElapsed < fadeToMenuMusicTime)
+        while (timeElapsed < fadeTime)
         {
-            float progress = timeElapsed / fadeToMenuMusicTime;
-            bossMusicSource.volume = 1.0f - progress;
-            menuMusicSource.volume = progress;
+            float progress = timeElapsed / fadeTime;
+            source.volume = progress;
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        bossMusicSource.volume = 0.0f;
-        menuMusicSource.volume = 1.0f;
-        bossMusicSource.Stop();
+        source.volume = 1.0f;
+    }
+
+    private IEnumerator fadeOutSource(AudioSource source, float fadeTime)
+    {
+        float timeElapsed = 0.0f;
+        while (timeElapsed < fadeTime)
+        {
+            float progress = 1.0f - timeElapsed / fadeTime;
+            source.volume = progress;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        source.volume = 0.0f;
+        source.Stop();
     }
 
     public void playSound(AudioType type, AudioClip audioClip, Vector3 location, float volume)
