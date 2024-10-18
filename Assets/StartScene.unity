@@ -15953,6 +15953,10 @@ MonoBehaviour:
   baseFootstepDelay: 0.4
   baseSpeed: 0
   sprintDelayMulti: 0.2
+  absorbSounds:
+  - {fileID: 8300000, guid: fc1f39540cab4da49b825e38575d8872, type: 3}
+  - {fileID: 8300000, guid: 75bcec2c6851e6b408619b2ba6e45b8e, type: 3}
+  - {fileID: 8300000, guid: d3c0343b7e6540a4eb7460b794dd29e9, type: 3}
 --- !u!82 &1024315751
 AudioSource:
   m_ObjectHideFlags: 0

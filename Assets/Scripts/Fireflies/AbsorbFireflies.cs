@@ -85,6 +85,8 @@ public class AbsorbFireflies : MonoBehaviour
             Destroy(GetComponent<Collider>());
             PlayerStats playerStats = other.gameObject.GetComponent<PlayerStats>();
             playerStats.addExp(exp);
+            PlayerSounds playerSounds = other.gameObject.GetComponent<PlayerSounds>();
+            playerSounds.playAbsorb();
             if (isWep)
             {
                 playerStats.weaponController.absorbedWepFF(tier);

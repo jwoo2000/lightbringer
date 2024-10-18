@@ -14,6 +14,8 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private float sprintDelayMulti = 0.2f;
     private float footstepTimer;
 
+    [SerializeField] private List<AudioClip> absorbSounds = new List<AudioClip>();
+
     private void Awake()
     {
         baseSpeed = playerStats.movespeed;
@@ -46,5 +48,15 @@ public class PlayerSounds : MonoBehaviour
             return;
         }
         SoundManager.instance.playOneShot(playerAudioSource, footstepSounds[Random.Range(0, footstepSounds.Count)], 0.5f);
+    }
+
+    public void playAbsorb()
+    {
+        if (absorbSounds.Count == 0)
+        {
+            Debug.LogWarning("no absorb sounds");
+            return;
+        }
+        SoundManager.instance.playOneShot(playerAudioSource, absorbSounds[Random.Range(0, absorbSounds.Count)], 0.2f);
     }
 }
