@@ -63,5 +63,14 @@ MonoBehaviour:
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
+  fireSounds:
+  - {fileID: 8300000, guid: c7865fd595be8a046a018f3e24771dd6, type: 3}
+  playerAudioSource: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   flightTime: 1
+  targetRadius: 0
+  aoeSize: 0
+  timeToAoe: 0
+  damageCD: 0
+  areaLifetime: 0
+  nearestEnemyPos: {x: 0, y: 0, z: 0}

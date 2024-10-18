@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -12,6 +11,8 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private AudioSource playerAudioSource;
     [SerializeField]
     private Vector3 weaponOriginOffset = new Vector3(0.0f, 1.0f, 0.0f);
 
@@ -156,6 +157,7 @@ public class WeaponController : MonoBehaviour
                 activeWeapons.Add(weapon);
                 weapon.playerTransform = player.transform;
                 weapon.weaponOriginOffset = weaponOriginOffset;
+                weapon.playerAudioSource = playerAudioSource;
                 switch (weapon.weaponTier)
                 {
                     case Weapon.Tier.Low:

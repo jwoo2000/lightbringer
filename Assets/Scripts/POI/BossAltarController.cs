@@ -78,7 +78,7 @@ public class BossAltarController : MonoBehaviour
 
     private void activateAltar()
     {
-        Debug.Log("Activating altar...");
+        //Debug.Log("Activating altar...");
         StartCoroutine(activationSequence());
     }
 

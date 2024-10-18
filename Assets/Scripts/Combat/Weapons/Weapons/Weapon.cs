@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -41,6 +42,9 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected float dmgPerDmgLevel = 0.1f; // dmg scaling per damage upgrade, default: increase damage by 10% per level (additive)
 
+    [SerializeField]
+    protected List<AudioClip> fireSounds = new List<AudioClip>();
+    public AudioSource playerAudioSource;
 
     protected virtual void Update()
     {
@@ -55,7 +59,16 @@ public abstract class Weapon : MonoBehaviour
         } else
         {
             Fire();
+            playFireSound();
             timeToNextFire = GetCooldownTime();
+        }
+    }
+
+    private void playFireSound()
+    {
+        if (!GameManager.gameWin)
+        {
+            SoundManager.instance.playOneShot(playerAudioSource, fireSounds[Random.Range(0, fireSounds.Count)], 0.1f);
         }
     }
 

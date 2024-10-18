@@ -63,6 +63,11 @@ MonoBehaviour:
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
+  fireSounds:
+  - {fileID: 8300000, guid: f4cf045b4fa1ff14fbf3b75dc5994055, type: 3}
+  - {fileID: 8300000, guid: 4c0c174f528f5764b9ac7440782b1793, type: 3}
+  - {fileID: 8300000, guid: edfddac2793bf5d4d83a1a253d64ca61, type: 3}
+  playerAudioSource: {fileID: 0}
   projSpeed: 1
   projCount: 1
   spreadAngle: 0

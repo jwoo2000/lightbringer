@@ -16110,6 +16110,7 @@ MonoBehaviour:
   infoController: {fileID: 1105381292}
   menuController: {fileID: 817419120}
   player: {fileID: 1024315729}
+  playerAudioSource: {fileID: 1024315751}
   weaponOriginOffset: {x: 0, y: 0.5, z: 0}
   LowWeapon: {fileID: 0}
   MidWeapon: {fileID: 0}

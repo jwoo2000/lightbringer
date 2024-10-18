@@ -63,5 +63,10 @@ MonoBehaviour:
   baseCooldown: 1
   cdReducPerSpeedLevel: 0.2
   dmgPerDmgLevel: 0.1
+  fireSounds:
+  - {fileID: 8300000, guid: fa0283bb7bf8bf54c8ec8b7514e88cad, type: 3}
+  playerAudioSource: {fileID: 0}
   areaDuration: 0.2
   damageCD: 1
+  aoeSize: 0
+  timeToAoe: 0

@@ -403,7 +403,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (currSpawnCD <= 0)
             {
                 animator.SetTrigger("Summon");
-                SpawnMinions(Mathf.Min(Mathf.Max(1, playerStats.level/10), 10));
+                SpawnMinions(Mathf.Min(Mathf.Max(1, playerStats.level/10), 4));
                 currSpawnCD = Random.Range(minSpawnCD, maxSpawnCD);
             }
             else
