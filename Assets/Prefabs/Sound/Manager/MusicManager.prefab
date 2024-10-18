@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8428697249161871694}
   - component: {fileID: 8749862029318213778}
   m_Layer: 0
-  m_Name: MenuMusicManager
+  m_Name: MusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

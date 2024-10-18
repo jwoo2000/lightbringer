@@ -21,6 +21,7 @@ public class MovementController : MonoBehaviour
     public CameraStyle currentStyle;
 
     public float currSpeed;
+    public bool isMoving;
 
     public void setMovespeed(float newSpeed)
     {
@@ -40,6 +41,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         controlsActive = true;
+        isMoving = false;
     }
 
     void Start()
@@ -57,6 +59,7 @@ public class MovementController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z); // lock player y so they dont fly around
         if (controlsActive)
         {
+            isMoving = IsMoving();
             Vector3 direction = player.position - new Vector3(camera.position.x, player.position.y, camera.position.z);
 
             float horizontal = Input.GetAxis("Horizontal") * speed;
@@ -103,7 +106,18 @@ public class MovementController : MonoBehaviour
                 currSpeed = speed;
                 player.position = player.position + (currSpeed * Time.deltaTime * dir);
             }
+        } else
+        {
+            isMoving = false;
         }
+    }
+
+    public bool IsMoving()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        return (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f);
     }
 
     private void SwitchCameraStyle(CameraStyle newStyle) 

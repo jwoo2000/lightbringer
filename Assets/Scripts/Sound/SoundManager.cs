@@ -24,4 +24,9 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
         Destroy(audioSource.gameObject, audioSource.clip.length);
     }
+
+    public void playOneShot(AudioSource audioSource, AudioClip audioClip, float volume)
+    {
+        audioSource.PlayOneShot(audioClip, volume);
+    }
 }
