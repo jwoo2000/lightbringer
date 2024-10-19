@@ -225,6 +225,7 @@ One procedurally generated level for player to navigate, no map or minimap
 
 
 ### Gameplay Loop
+Original gameplay loop design - final gameplay loop may differ from this
 
 <p align="center">
   <img src="Images/GameplayFlowchart.png">
