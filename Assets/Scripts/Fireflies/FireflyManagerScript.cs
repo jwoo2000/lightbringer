@@ -91,11 +91,11 @@ public class FireflyManagerScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(fireflyAttractor.position, pauseSystemOutsideRadius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.gray;
+    //    Gizmos.DrawWireSphere(fireflyAttractor.position, pauseSystemOutsideRadius);
+    //}
 
     private void GenerateTrails()
     {
@@ -108,18 +108,22 @@ public class FireflyManagerScript : MonoBehaviour
                        ? POIAnchorPositions[0]  // if last anchor, connect to first
                        : POIAnchorPositions[currAnchor + 1];  // else connect to next POI
 
-            // calculate direction and distance between anchors
-            Vector3 direction = (endPoint - startPoint).normalized;
-            float distance = Vector3.Distance(startPoint, endPoint);
+            // generate two random control points along trail for bezier cubic curve
+            Vector3 controlPoint1 = GetOffsetControlPoint(startPoint, endPoint, 0.2f, 0.4f, 30.0f);
+            Vector3 controlPoint2 = GetOffsetControlPoint(startPoint, endPoint, 0.6f, 0.8f, 30.0f);
 
             // calculate the number of fireflies to spawn based on the distance and trail density
+            float distance = Vector3.Distance(startPoint, endPoint);
             int numFireflies = Mathf.FloorToInt(distance * trailDensity / 10.0f);
 
             // instantiate fireflies along trail
             for (int i = 0; i <= numFireflies; i++)
             {
+                float t = (float) i / numFireflies;
+
                 // calculate position of curr firefly instance along the trail
-                Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
+                //Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);  // linear trail
+                Vector3 spawnPosition = GetPointOnCurve(t, startPoint, controlPoint1, controlPoint2, endPoint);
 
                 if ((Vector3.Distance(spawnPosition, startPoint) > POINoFireflyRadius) && (Vector3.Distance(spawnPosition, endPoint) > POINoFireflyRadius)) {
                     // instantiate and set firefly attractor
@@ -144,18 +148,23 @@ public class FireflyManagerScript : MonoBehaviour
                        ? POIAnchorPositions[numLowTierPOI]  // if last anchor, connect to first
                        : POIAnchorPositions[currAnchor + 1];  // else connect to next POI
 
-            // calculate direction and distance between anchors
-            Vector3 direction = (endPoint - startPoint).normalized;
-            float distance = Vector3.Distance(startPoint, endPoint);
+            // generate two random control points along trail for bezier cubic curve
+            Vector3 controlPoint1 = GetOffsetControlPoint(startPoint, endPoint, 0.2f, 0.4f, 30.0f);
+            Vector3 controlPoint2 = GetOffsetControlPoint(startPoint, endPoint, 0.6f, 0.8f, 30.0f);
+
 
             // calculate the number of fireflies to spawn based on the distance and trail density
+            float distance = Vector3.Distance(startPoint, endPoint);
             int numFireflies = Mathf.FloorToInt(distance * trailDensity / 10.0f);
 
             // instantiate fireflies along trail
             for (int i = 0; i <= numFireflies; i++)
             {
+                float t = (float)i / numFireflies;
+
                 // calculate position of curr firefly instance along the trail
-                Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
+                //Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies); // linear trail
+                Vector3 spawnPosition = GetPointOnCurve(t, startPoint, controlPoint1, controlPoint2, endPoint);
 
                 if ((Vector3.Distance(spawnPosition, startPoint) > POINoFireflyRadius) && (Vector3.Distance(spawnPosition, endPoint) > POINoFireflyRadius))
                 {
@@ -181,18 +190,22 @@ public class FireflyManagerScript : MonoBehaviour
                        ? POIAnchorPositions[numLowTierPOI + numMidTierPOI]  // if last anchor, connect to first
                        : POIAnchorPositions[currAnchor + 1];  // else connect to next POI
 
-            // calculate direction and distance between anchors
-            Vector3 direction = (endPoint - startPoint).normalized;
-            float distance = Vector3.Distance(startPoint, endPoint);
+            // generate two random control points along trail for bezier cubic curve
+            Vector3 controlPoint1 = GetOffsetControlPoint(startPoint, endPoint, 0.2f, 0.4f, 30.0f);
+            Vector3 controlPoint2 = GetOffsetControlPoint(startPoint, endPoint, 0.6f, 0.8f, 30.0f);
 
             // calculate the number of fireflies to spawn based on the distance and trail density
+            float distance = Vector3.Distance(startPoint, endPoint);
             int numFireflies = Mathf.FloorToInt(distance * trailDensity / 10.0f);
 
             // instantiate fireflies along trail
             for (int i = 0; i <= numFireflies; i++)
             {
+                float t = (float)i / numFireflies;
+
                 // calculate position of curr firefly instance along the trail
-                Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies);
+                //Vector3 spawnPosition = Vector3.Lerp(startPoint, endPoint, (float)i / (float)numFireflies); // linear trail
+                Vector3 spawnPosition = GetPointOnCurve(t, startPoint, controlPoint1, controlPoint2, endPoint);
 
                 if ((Vector3.Distance(spawnPosition, startPoint) > POINoFireflyRadius) && (Vector3.Distance(spawnPosition, endPoint) > POINoFireflyRadius))
                 {
@@ -209,6 +222,36 @@ public class FireflyManagerScript : MonoBehaviour
 
             }
         }
+    }
+
+    // returns a point somewhere between start and end [minT, maxT], offset by given value
+    private Vector3 GetOffsetControlPoint(Vector3 startPoint, Vector3 endPoint, float minT, float maxT, float offset)
+    {
+        float t = Random.Range(minT, maxT);
+        Vector3 dir = endPoint - startPoint; // vector from start to end
+        Vector3 pointOnLine = startPoint + dir * t; // point somewhere between start and end based on given minT and maxT
+        Vector3 perp = Vector3.Cross(dir, Vector3.up).normalized; // vector facing side to side of trail, cross of trail dir and up
+        float pointOffset = Random.Range(-offset, offset);
+
+        return pointOnLine + (perp * pointOffset);
+    }
+
+    // returns a point on cubic bezier curve
+    private Vector3 GetPointOnCurve(float t, Vector3 startPoint, Vector3 cp1, Vector3 cp2, Vector3 endPoint)
+    {
+        // cubic bezier formula: (1 - t)^3 * start    +    3(1 - t)^2 * t * cp1    +    3(1 - t) * t^2 * cp2    +    t^3 * end
+        float oneMinT = 1 - t;
+        float Tsq = t * t;
+        float oneMinTsq = oneMinT * oneMinT;
+        float oneMinTcb = oneMinTsq * oneMinT;
+        float Tcb = Tsq * t;
+
+        Vector3 point = oneMinTcb * startPoint;
+        point += 3.0f * oneMinTsq * t * cp1;
+        point += 3.0f * oneMinT * Tsq * cp2;
+        point += Tcb * endPoint;
+
+        return point;
     }
 
     private void GenerateConnectingTrails()
