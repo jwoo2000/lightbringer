@@ -38,6 +38,11 @@ _AI generated concept image of Lightbringer (Source: Bing Image Creator)_
 
 ### Introduction
 
+<p align="center">
+  <img src="Images/shortGameplay.gif">
+</p>
+Gameplay snippet from trailer
+
 _Lightbringer_ is a third-person roguelike set in an unknown world of darkness. It's like Vampire Survivors with LIMBO aesthetics but more focused on exploration than combat. The player must fight off the darkness enclosing on them with tools of light, survive as long as they can while uncovering the mysteries of the past.
 
 ## Game Overview
@@ -257,6 +262,9 @@ https://assetstore.unity.com/packages/3d/environments/historic/medieval-barrows-
 
 https://assetstore.unity.com/packages/3d/props/exterior/ancient-ruins-and-plants-201914
 
+Menu Music: Soul's Departure - Darren Curtis
+Boss Music: Great One's Nightmare - Dragon Clef
+
 ## User Interface (UI)
 
 -   Stamina bar up top
@@ -281,13 +289,16 @@ https://assetstore.unity.com/packages/3d/props/exterior/ancient-ruins-and-plants
 -   Discord meetings and Trello to delegate work
 -   Figma/Google docs for collaborative document work
 
-## Possible Challenges
+## Challenges
 
 -   Level design/asset finding
--   Weapon implementations
--   Enemy/darkness implementation
--   Character interactions
--   Procedural generation of terrain/trees/details
+-   Sound design
+-   Weapon implementation
+-   Enemy implementation
+-   Fog of war implementation
+-   Procedural generation of terrain/trees/details/trails
+-   WebGL limitations
+-   Performance optimisations
 
 
 ### References
