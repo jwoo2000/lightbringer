@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource bossMusicSource;
     [SerializeField] private AudioSource menuMusicSource;
+    [SerializeField] private AudioSource altarSource;
 
     private void Awake()
     {
@@ -51,6 +52,10 @@ public class SoundManager : MonoBehaviour
     {
         StartCoroutine(fadeOutSource(ambienceSource, 5.0f));
         StartCoroutine(fadeOutSource(bossMusicSource, 5.0f));
+        if (altarSource.isPlaying)
+        {
+            StartCoroutine(fadeOutSource(altarSource, 3.0f));
+        }
         StartCoroutine(fadeInSource(menuMusicSource, 5.0f));
     }
 

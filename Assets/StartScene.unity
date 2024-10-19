@@ -30020,6 +30020,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6075961921806070191, guid: 0639b2637419a5e4f813c2911e0f1648, type: 3}
     - target: {fileID: 3107337627124330960, guid: 415043ed93901044084141e841683015, type: 3}
+      propertyPath: altarSource
+      value: 
+      objectReference: {fileID: 2089812384}
+    - target: {fileID: 3107337627124330960, guid: 415043ed93901044084141e841683015, type: 3}
       propertyPath: ambienceSource
       value: 
       objectReference: {fileID: 611223887}
