@@ -156,7 +156,7 @@ public class BossAltarController : MonoBehaviour
 
     private IEnumerator activationFail()
     {
-        Debug.Log("Activation failed!");
+        //Debug.Log("Activation failed!");
         conditionTextPanel.SetActive(true);
         StartCoroutine(FadeInText(conditionText1, 2.0f));
         yield return StartCoroutine(FadeInText(conditionText2, 2.0f));
