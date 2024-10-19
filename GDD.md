@@ -33,15 +33,16 @@ _AI generated concept image of Lightbringer (Source: Bing Image Creator)_
 7. [User Interface (UI)](#user-interface-ui)
 8. [Technology and Tools](#technology-and-tools)
 9. [Team Communication, Timelines and Task Assignment](#team-communications-timelines-and-task-assignment)
-10. [Possible Challenges](#possible-challenges)
+10. [Challenges](#challenges)
 11. [References](#references)
 
 ### Introduction
 
 <p align="center">
   <img src="Images/shortGameplay.gif">
+  
+  <p align="center">Gameplay snippet from trailer</p>
 </p>
-Gameplay snippet from trailer
 
 _Lightbringer_ is a third-person roguelike set in an unknown world of darkness. It's like Vampire Survivors with LIMBO aesthetics but more focused on exploration than combat. The player must fight off the darkness enclosing on them with tools of light, survive as long as they can while uncovering the mysteries of the past.
 
@@ -80,7 +81,7 @@ Gameplay doesn't require any great deal of mechanical skill, targeting more casu
 
 An ancient forest, once teeming with life, has been enveloped by an unnatural darkness. No one knows how or why this occurred, but the light that once guided travellers is now just a faint wisp of its former glory. As time passes, the darkness has spread, warping the landscape and presumably its inhabitants. Legend speaks of an ancient, forgotten power buried deep within the forest, one that could hold the key to this curse—or its source.
 
-You, a **being of light**, awaken at the heart of this darkened land. Stripped of memory, you find yourself drawn toward the scattered remnants of the world, guided by an inner pull and aided by small, glowing companions. These little lights act as your guides, nudging you toward **Points of Interest (POIs)** and giving you clues about your past and the calamity that has overtaken the land.
+You, a **being of light**, awaken at the heart of this darkened land. Stripped of memory, you find yourself drawn toward the scattered remnants of the world, guided by an inner pull and aided by small, glowing companions. These little lights act as your guides, nudging you toward **Points of Interest (henceforth POIs)** and giving you clues about your past and the calamity that has overtaken the land.
 
 #### Premise
 
@@ -111,7 +112,7 @@ These strange abominations seem to have nothing in mind but to destroy you, the 
 
 Player spawns at the outskirts of a darkness enshrouded forest. They have the ability to unveil their immediate surroundings and walk around. 
 Not long after the player may find a trail of wisps/fireflies that they can absorb, granting them a resource and a direction to go.
-The trails lead to strange points of interest, incomprehensible at times, but they also seem to harbour these more powerful wisps. Picking these up grants something more special to the player - a way to defend themselves.
+The trails lead to strange POIs, incomprehensible at times, but they also seem to harbour these more powerful wisps. Picking these up grants something more special to the player - a way to defend themselves.
 
 When the player gathers enough of these wisps they have the ability to level up one of their stats by pressing “Tab”. Opening the pause menu “Esc” will also show the upgrades they have made to their stats.
 
@@ -155,6 +156,12 @@ Third-Person perspective with a camera that can move around a point above the pl
 
 -   Player can have up to 3 weapons
 -   Each has upgrades you can get for them with unique upgrades available for each weapon
+-   Upgrades are obtained from special fireflies the player can pick up at a POI
+-   A POI's difficulty tier determines the weapon that is obtained/upgraded
+-   e.g.
+-   A player's first visit to a low tier POI will grant them a low tier weapon
+-   A player's second visit to a low tier POI will upgrade the low tier weapon
+-   A player's first visit to a high tier POI will grant them a high tier weapon, etc.
 
 #### Detailed Weapon Information
 <p align="center">
@@ -165,12 +172,52 @@ Third-Person perspective with a camera that can move around a point above the pl
   <img src="Images/weaponClassStructure.png">
 </p>
 
+#### Enemy Spawning Mechanic
+
+-   Each POI has a certain number of enemies guarding them (type of enemy determined by POI difficulty tier, described in following section).
+-   Naturally spawning enemies are determined by the player's current level and acquired weapons.
+-   e.g.
+-   only a few small enemies spawn around a low level player with only a low tier weapon
+-   frequent waves of large, medium and small enemies spawn around a high level player with a low, mid and high tier weapon
+
+The detailed mechanics of how each enemy "wave" is generated is as follows:
+
+<p align="center">
+  <img src="Images/naturalSpawningCalcs.png">
+</p>
+
+### Level generation mechanic
+
+-   The generated level consists of a number of Low, Mid and High tier POIs with the tier of POIs increasing as the player closes in on the center of the level.
+ 
+<p align="center">
+  <img src="Images/POIgeneration.png">
+  <p align="center">Green - Low tier POI location, Yellow - Mid tier POI location, Red - High tier POI location</p>
+</p>
+
+-   Each generated POI location is then populated with a random variant of a premade POI design.
+
+<p align="center">
+  <img src="Images/poiVariants.png">
+  <p align="center">Some variants for various POIs</p>
+</p>
+
+-   Following POI location generation, trails of fireflies are placed between them
+-   The trail generation implementation was later modified to use cubic bezier curves for a more organic, natural feel.
+-   Each trail has two randomly placed control points along it to generate a curve.
+
+<p align="center">
+  <img src="Images/trailSpawningBezier.png">
+  <p align="center">Trails with cubic bezier curves</p>
+</p>
+
 ## Levels and World Design
 
 ### Game World
 
 2.5D (look around with camera, plane of movement is pretty much top down 2D)
-One (generated?) level for player to navigate, no map or minimap
+
+One procedurally generated level for player to navigate, no map or minimap
 
 <p align="center">
   <img src="Images/gameworld.png">
@@ -198,8 +245,22 @@ Certain weapons may interact with dynamic environmental objects.
 
 #### Aesthetic
 
+<p align="center">
+  <img src="Images/gameworldcolour.png">
+</p>
+
 -   Mostly greyscale
 -   Some colour highlights (eg. eyes different colour, enemy glowing outline different colour)
+-   Fantasy, magical, runic setting
+-   UI and weapon icons are designed around the 24 Elder Futhark runes and the weapon's mechanics:
+-   e.g.
+-   the three prong Y (ᛉ) rune, elk/protection/defense in elder futhark represents light integrity or the damage reduction stat
+-   the piercing weapon has a rune depicting an arrow piercing through a wall
+
+<p align="center">
+  <img src="Images/runeParticleSheet.png">
+  <p align="center">Rune design</p>
+</p>
 
 #### References
 
@@ -208,16 +269,15 @@ Certain weapons may interact with dynamic environmental objects.
 -   Don’t Starve
 
 
-
-<p align="center">
-  <img src="Images/gameworldcolour.png">
-</p>
-Game Scene
-
 ### Sound and Music
 
 Echoey - high reverb -> windy
+
 White noise-ish -> eerie vibes
+
+Bells, magical crystal sounds, ghostly whooshes
+
+Music is strings and cello for a dark, mysterious feel. Also conveys a melancholy feeling.
 
 1. SFX for game selection (eg. hover over menu, switch item in inventory)
 2. SFX for player character
@@ -263,6 +323,7 @@ https://assetstore.unity.com/packages/3d/environments/historic/medieval-barrows-
 https://assetstore.unity.com/packages/3d/props/exterior/ancient-ruins-and-plants-201914
 
 Menu Music: Soul's Departure - Darren Curtis
+
 Boss Music: Great One's Nightmare - Dragon Clef
 
 ## User Interface (UI)
@@ -297,7 +358,7 @@ Boss Music: Great One's Nightmare - Dragon Clef
 -   Enemy implementation
 -   Fog of war implementation
 -   Procedural generation of terrain/trees/details/trails
--   WebGL limitations
+-   WebGL limitations (unable to fully implement original fog logic)
 -   Performance optimisations
 
 
