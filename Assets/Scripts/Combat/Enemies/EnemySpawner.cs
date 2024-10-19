@@ -16,11 +16,11 @@ public class EnemySpawner : MonoBehaviour
     public static int discoveredPOIcount = 0;
     private bool spawnerEnabled = false;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(transform.position, startSpawningDistance);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.gray;
+    //    Gizmos.DrawWireSphere(transform.position, startSpawningDistance);
+    //}
 
     void Awake()
     {
