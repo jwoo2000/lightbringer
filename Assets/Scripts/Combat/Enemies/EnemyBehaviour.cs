@@ -53,6 +53,9 @@ public class EnemyBehaviour : MonoBehaviour
     public float keepAwayDistance = 8.0f;
     public float closeInDistance = 10.0f;
 
+    //Sword for large enemies
+    [SerializeField] private GameObject sword;
+
     //wandering variables
     private Vector3 wanderTarget;
     private float wanderValue = 0.0f;
@@ -92,6 +95,9 @@ public class EnemyBehaviour : MonoBehaviour
                     dropWepManager = GameObject.FindGameObjectWithTag("DropWepManager").GetComponent<DropWepManager>();
                     break;
                 }
+        }
+        if (sword != null) {
+            sword.SetActive(false);
         }
     }
 
@@ -424,6 +430,32 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 animator.SetBool("Backward", false);
                 animator.SetBool("Forward", false);
+            }
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Sword")) 
+        {
+            sword.SetActive(true);
+        }
+        else {
+            sword.SetActive(false);
+        }
+        if (distanceToTarget < attackTriggerRange ) 
+        {
+            animator.SetBool("Running", false);
+            if (attackCoolDown <= 0)
+            {
+                Attack();
+            } 
+            else
+            {
+                attackCoolDown -= Time.deltaTime;
+            }
+        } 
+        else 
+        {
+            attackCoolDown -= Time.deltaTime;
+            if (attackCoolDown <= 0) {
+                damageCoolDown = true;
             }
         }
     }
