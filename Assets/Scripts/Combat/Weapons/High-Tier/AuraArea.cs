@@ -16,8 +16,11 @@ public class AuraArea : AreaDamage
         base.Update();
         minScale = aoeSize;
         maxScale = minScale * 1.1f;
-        transform.position = auraWeapon.position;
-        transform.Rotate(0, 30.0f * Time.deltaTime, 0);
+        if (auraWeapon != null)
+        {
+            transform.position = auraWeapon.position;
+            transform.Rotate(0, 30.0f * Time.deltaTime, 0);
+        }
     }
 
     protected override IEnumerator onInstantiate()
