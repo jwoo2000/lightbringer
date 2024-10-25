@@ -4,10 +4,10 @@ Shader "Custom/PlayerPulseShader"
     {
         _MainTex ("Base (RGB)", 2D) = "white" {}
         _EmissionColor ("Emission Color", Color) = (1,1,1,1)
-        _BaseIntensity ("Base Intensity", Range(1.1,3)) = 1.5
+        _BaseIntensity ("Base Intensity", Float) = 2.0
         _PulseSpeed ("Pulse Speed", Float) = 2.0
-        _PulseAmount ("Pulse Amount", Float) = 0.1
-        _PulseIntensity ("Pulse Intensity", Float) = 0.5
+        _PulseAmount ("Pulse Amount", Float) = 0.01
+        _PulseIntensity ("Pulse Intensity", Float) = 0.3
     }
     SubShader
     {
