@@ -16,10 +16,10 @@ public class Gun : ProjWeapon
         weaponName = "Steadfast Bolt";
         uniqueLabel = "Projectile Count";
         uniqueDesc = "Increases number of projectiles fired";
-        baseDamage = 40.0f;
+        baseDamage = 20.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
-        dmgPerDmgLevel = 0.1f;
+        dmgPerDmgLevel = 0.50f;
 
         projCount = 1;
         projSpeed = 10.0f;
@@ -52,6 +52,11 @@ public class Gun : ProjWeapon
     }
 
     protected override void upgradeSpeed()
+    {
+        
+    }
+
+    protected override void upgradeDamage()
     {
         
     }

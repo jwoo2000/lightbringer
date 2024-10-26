@@ -50,6 +50,11 @@ public class Molotov : GrenadeWeapon
         grenadeObject.timeToAoe = timeToAoe;
     }
 
+    protected override void upgradeDamage()
+    {
+        
+    }
+
     protected override void upgradeSpeed()
     {
         

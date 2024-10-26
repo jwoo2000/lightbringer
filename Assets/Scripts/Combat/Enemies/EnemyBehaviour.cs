@@ -237,7 +237,7 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyHealth.DmgUnit(dmg, enemyDmgReduc);
         animator.SetTrigger("Hit");
         //transform.position = transform.position - (transform.forward * knockback);
-        rb.velocity = rb.velocity / 1.5f;
+        rb.velocity = rb.velocity * 0.8f;
     }
 
     private void Attack() {

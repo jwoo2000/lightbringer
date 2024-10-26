@@ -147,14 +147,14 @@ MonoBehaviour:
   speed: 8
   acceleration: 1
   knockback: 1
-  damageAmount: 50
+  damageAmount: 60
   startingHealth: 10000
   behaviourType: 4
   enemyDmgReduc: 0
   detectionRange: 30
   loseDetectionRange: 40
   expOnDeath: 1000
-  attackCD: 1.5
+  attackCD: 1.2
   despawnDistance: 40
   target: {fileID: 0}
   attackWaitTime: 0.5
@@ -163,6 +163,7 @@ MonoBehaviour:
   minion: {fileID: 0}
   keepAwayDistance: 8
   closeInDistance: 10
+  sword: {fileID: 0}
   onHitParticle: {fileID: 3353049477961073759, guid: dd224a6fe429e384c902b50286c323a7, type: 3}
   onDeathParticle: {fileID: 6220870740071569852, guid: 3c4fb96876330c14c8f01b25700accb4, type: 3}
   onDeathDropParticle: {fileID: 6220870740071569852, guid: 75d02175423ba5c489428fe54711f77e, type: 3}

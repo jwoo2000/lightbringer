@@ -347,7 +347,7 @@ MonoBehaviour:
   speed: 0.5
   acceleration: 1
   knockback: 0
-  damageAmount: 35
+  damageAmount: 40
   startingHealth: 2000
   behaviourType: 2
   enemyDmgReduc: 0
