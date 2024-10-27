@@ -20,10 +20,10 @@ public class AnimationController : MonoBehaviour
         
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            characterAnimator.SetTrigger("JumpTrigger");
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    characterAnimator.SetTrigger("JumpTrigger");
+        //}
         if (Input.GetKeyDown("w"))
         {
             characterAnimator.SetBool("Forward", true);

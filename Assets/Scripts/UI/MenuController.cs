@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
@@ -95,10 +96,12 @@ public class MenuController : MonoBehaviour
             {
                 if (helpOpen)
                 {
+                    //Debug.Log("close help");
                     closeHelp();
                     uiSounds.playSelectSFX();
                 } else if (optionsOpen)
                 {
+                    //Debug.Log("close options");
                     closeOptions();
                     uiSounds.playSelectSFX();
                 }
@@ -106,13 +109,16 @@ public class MenuController : MonoBehaviour
                 {
                     if (isPaused)
                     {
+                        //Debug.Log("close pause");
                         ResumeGame();
                         uiSounds.playSelectSFX();
+                        EventSystem.current.SetSelectedGameObject(null);
                     }
                     else
                     {
                         PauseGame();
                         uiSounds.playSelectSFX();
+                        EventSystem.current.SetSelectedGameObject(null);
                     }
                 }
             }
@@ -141,24 +147,28 @@ public class MenuController : MonoBehaviour
     {
         optionsOpen = true;
         optionsCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void closeOptions()
     {
         optionsOpen = false;
         optionsCanvas.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void openHelp()
     {
         helpOpen = true;
         helpCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void closeHelp()
     {
         helpOpen = false;
         helpCanvas.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void closeLevelUI()
@@ -166,6 +176,7 @@ public class MenuController : MonoBehaviour
         levelUpCanvas.SetActive(false);
         startTimeHideCursor();
         levelUIOpen = false;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void openLevelUI()
@@ -174,6 +185,7 @@ public class MenuController : MonoBehaviour
         stopTimeShowCursor();
         levelUIOpen = true;
         uiSounds.playSelectSFX();
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void QueueLevelUps(int pendingLevels)

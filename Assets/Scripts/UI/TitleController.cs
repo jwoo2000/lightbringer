@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
@@ -31,15 +32,17 @@ public class TitleController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.Space))
         {
             if (helpOpen)
             {
+                //Debug.Log("close help");
                 closeHelp();
                 uiSounds.playSelectSFX();
             }
             else if (optionsOpen)
             {
+                //Debug.Log("close options");
                 closeOptions();
                 uiSounds.playSelectSFX();
             }
@@ -50,24 +53,28 @@ public class TitleController : MonoBehaviour
     {
         optionsOpen = true;
         optionsCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void closeOptions()
     {
         optionsOpen = false;
         optionsCanvas.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void openHelp()
     {
         helpOpen = true;
         helpCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void closeHelp()
     {
         helpOpen = false;
         helpCanvas.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void StartGame()
