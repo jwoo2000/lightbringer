@@ -242,7 +242,7 @@ _(Assets/Prefabs/POI/BossAltar.prefab → Particle System)_
   <img src="Images/swordParticles.gif">
 </p>
 
-The boss altar particle system consists primarily of billboard “runes” from a sprite sheet made of hand-drawn runes (can be seen in the GDD). 
+The boss altar particle system consists primarily of billboard “runes” from a sprite sheet made of hand-drawn runes (can be seen in the [GDD](GDD.md#aesthetic)). 
 
 The texture sheet animation of the system is configured to select a random row (out of 4) on the sprite sheet and animates each particle to cycle through the runes in the selected row at 10 FPS. The particles are then emitted with a long lifetime (10s) and from a spherical emitter at a modest 15 particles per second. This forms the basis of the particle system; a bunch of random cycling runes giving a mysterious, ancient power feel.
 
