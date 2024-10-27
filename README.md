@@ -22,14 +22,13 @@ The observation should be a mostly uninterrupted playthrough with the player giv
 If the player gets stuck or does not understand the controls, the interviewer can help out but should note down how they helped out.
 
 Watch the player play the game for 2 - 5 minutes and take note on the following:
-
-Does the player have a good understanding of the controls, were they easy to understand?
-What upgrades did the player pick or tend to prefer? (Are they balanced or are the other upgrades not providing a meaningful impact on the gameplay).
-Did they easily understand how the level up system works and how to gain exp, and did they intuitively understand which fireflies gave more exp.
-Were the enemies' difficulties suited for their intended purpose? i.e are the small enemies easiest to deal with, etc.
-What did they struggle with?
-What did they understand well?
-Did anything unexpected happen?
+-   Does the player have a good understanding of the controls, were they easy to understand?
+-   What upgrades did the player pick or tend to prefer? (Are they balanced or are the other upgrades not providing a meaningful impact on the gameplay).
+-   Did they easily understand how the level up system works and how to gain exp, and did they intuitively understand which fireflies gave more exp.
+-   Were the enemies' difficulties suited for their intended purpose? i.e are the small enemies easiest to deal with, etc.
+-   What did they struggle with?
+-   What did they understand well?
+-   Did anything unexpected happen?
 
 The aim of the observation is to take note of unexpected player behaviour and play patterns. This could include, places players get stuck on, quality of life features that would help benefit the player or they expected to be included, any bugs they have found.
 
@@ -44,25 +43,23 @@ What is their age? Provide the age as a range and not an exact value for anonymi
 What is their gender?
 Do they play games on a regular basis?
 
-Please answer the next questions as a scale of 1 - 10 (1 - not true at all, and 10 being completely true)
+Please answer the next questions as a scale of 1 - 10 (1 - not true at all, and 10 being completely true):
+1.   I thoroughly enjoyed the game.
+2.   I found the player controls to be cumbersome.
+3.   I found the controls intuitive.
+4.   Adapting to the controls was difficult.
+5.   I felt comfortable using the controls.
+6.   I found the controls to be inconsistent.
+7.   I learned the controls quickly.
+8.   The controls felt unnecessarily complex.
+9.   The controls were similar to other games I have played.
+10.   I needed to learn the controls well before I could play.
 
-I thoroughly enjoyed the game.
-I found the controls intuitive.
-I found the player controls to be cumbersome.
-I felt comfortable using the controls.
-I learned the controls quickly.
-The controls were similar to other games I have played.
-I needed to learn the controls well before I could play.
-Adapting to the controls was difficult.
-The controls felt unnecessarily complex.
-I found the controls to be inconsistent.
-
-The following questions are open ended
-
-What did you like about the game?
-What didn’t you like about the game?
-What would you like to see added to the game?
-Is there anything that you would remove from the game and if so what would you remove and why?
+The following questions are open ended:
+-   What did you like about the game?
+-   What didn’t you like about the game?
+-   What would you like to see added to the game?
+-   Is there anything that you would remove from the game and if so what would you remove and why?
 
 ### Participants
 
@@ -105,7 +102,7 @@ Each team member will be responsible for collecting at least 5 participants each
 
 When conducting our observational technique, players were instructed to talk out loud and describe their thoughts as they were playing the game. The person conducting the interview was instructed to not help the player unless they were completely stuck or if they requested help. This was to help us understand the thought patterns of our players and discover any areas in the game that were difficult to understand. 
 
-A survey was conducted after playing the game as part of our querying evaluation. The survey was about the games control scheme and if the controls are conventional/easy to use. The survey followed the System Usability Scale (SUS) to evaluate the usability of the game’s controls. The survey also featured some questions about what the players liked, disliked and changes they like to see be made to the game.
+A survey was conducted after playing the game as part of our querying evaluation. The survey was about the game's control scheme and if the controls are conventional/easy to use. The survey followed the System Usability Scale (SUS) to evaluate the usability of the game’s controls. The survey also featured some questions about what the players liked, disliked and changes they like to see be made to the game.
 
 ### Summary of Findings
 **Results of the SUS survey**
@@ -139,6 +136,7 @@ Notable player suggestions for additions to the game:
 -   Having the current upgrades of the weapon displayed on the weapon upgrade screen
 -   Add another use for stamina (another action that uses stamina e.g. a dash or dodge)
 -   Adding a health bar to the boss enemy
+-   Microtransactions
 
 Notable player feedback:
 -   Improving the in-game text and item descriptions (fixing some grammar issues)
