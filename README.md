@@ -230,6 +230,8 @@ The output colour of the fragment shader is also controlled by an initial **_Emi
 
 These uniforms are also parameterised to be accessed in the **PlayerShaderController.cs**, which reads the player’s current HP ratio (curr HP to max HP) and increases the frequency of pulses and lowers the brightness of the player colour based on this ratio; the closer the player is to death, the faster the pulse speed and the lower the intensity.
 
+This script also handles the player "pulsing" upon taking damage, by temporarily using different intensity and pulse speed values to create a single pulse on taking damage, then reverting back to normal. The damage pulse phase begins at the peak by starting the sine wave at a quarter of a cycle.
+
 <p align="center">
   <img src="Images/damagedPulse.gif">
   <p align="center"><i>The pulsating effect quickens and the brightness of colour values is reduced at low HP</i></p>
