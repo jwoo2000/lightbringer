@@ -105,6 +105,10 @@ When conducting our observational technique, players were instructed to talk out
 A survey was conducted after playing the game as part of our querying evaluation. The survey was about the game's control scheme and if the controls are conventional/easy to use. The survey followed the System Usability Scale (SUS) to evaluate the usability of the game’s controls. The survey also featured some questions about what the players liked, disliked and changes they like to see be made to the game.
 
 ### Summary of Findings
+_[Link to raw observation data](Images/LightbringerUserObservationNotes.pdf)_
+
+_[Link to raw feedback data](Images/LightbringerFeedbackResponses.pdf)_
+
 **Results of the SUS survey**
 <p align="center">
   <img src="Images/evalSusScores.png">
