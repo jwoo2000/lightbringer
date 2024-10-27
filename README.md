@@ -156,6 +156,7 @@ Observations made during gameplay:
 -   Enemies no longer spawn at the first Point Of Interest (POI)
 -   Added a large, slow melee attack to the large enemy
 -   Changed the background colour of weapon upgrades to help distinguish them from player upgrades
+-   Current weapon upgrade levels are now shown on the upgrade selection screen
 
 **Balance Changes**
 
