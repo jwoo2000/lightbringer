@@ -86,8 +86,8 @@ public class PlayerShaderController : MonoBehaviour
         isPulsingFromDamage = true;
 
         float boostedIntensity = baseIntensity * pulseBoostFactor;
-        float boostedPulseSpeed = 2.0f*damagePulseDuration;
-        accumulatedPhase = damagePulseDuration;
+        float boostedPulseSpeed = Mathf.PI / damagePulseDuration;
+        accumulatedPhase = Mathf.PI / 2.0f;
 
         float timeElapsed = 0.0f;
         while (timeElapsed < damagePulseDuration)
