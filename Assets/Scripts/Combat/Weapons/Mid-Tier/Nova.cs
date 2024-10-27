@@ -51,6 +51,11 @@ public class Nova : ProjWeapon
         
     }
 
+    protected override void upgradeDamage()
+    {
+        
+    }
+
     protected override void upgradeUnique()
     {
         projCount += 4;

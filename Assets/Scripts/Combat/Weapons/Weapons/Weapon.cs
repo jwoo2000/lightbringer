@@ -40,7 +40,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected float cdReducPerSpeedLevel = 0.2f; // cooldown reduction per speed upgrade, default: reduce cooldown by 20% per level (additive)
     [SerializeField]
-    protected float dmgPerDmgLevel = 0.1f; // dmg scaling per damage upgrade, default: increase damage by 10% per level (additive)
+    protected float dmgPerDmgLevel = 0.25f; // dmg scaling per damage upgrade, default: increase damage by 10% per level (additive)
 
     [SerializeField]
     protected List<AudioClip> fireSounds = new List<AudioClip>();
@@ -91,6 +91,7 @@ public abstract class Weapon : MonoBehaviour
         {
             case Stat.Damage:
                 damageLevel++;
+                upgradeDamage();
                 //Debug.Log($"{this.name}: Damage upgraded to level {damageLevel}");
                 break;
             case Stat.Speed:
@@ -110,4 +111,5 @@ public abstract class Weapon : MonoBehaviour
     }
     protected abstract void upgradeSpeed();
     protected abstract void upgradeUnique();
+    protected abstract void upgradeDamage();
 }

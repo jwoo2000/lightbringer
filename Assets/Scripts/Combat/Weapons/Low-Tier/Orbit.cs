@@ -27,7 +27,7 @@ public class Orbit : ProjWeapon
         baseDamage = 20.0f;
         baseCooldown = 999.0f;
         cdReducPerSpeedLevel = 0.2f;
-        dmgPerDmgLevel = 0.1f;
+        dmgPerDmgLevel = 0.25f;
 
         projCount = 1;
         projSpeed = 180.0f;
@@ -62,6 +62,16 @@ public class Orbit : ProjWeapon
         // orbit speed upgrade affects projspeed not fire cd
         // disable base weapon speed upgrade
         return baseCooldown;
+    }
+
+    protected override void upgradeDamage()
+    {
+        foreach (OrbitProjectile proj in projList)
+        {
+            proj.DestroyProj();
+        }
+        projList.Clear();
+        Fire();
     }
 
     protected override void upgradeSpeed()

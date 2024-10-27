@@ -51,6 +51,11 @@ public class Aura : AreaWeapon
         activeAuraArea.timeToAoe = timeToAoe;
     }
 
+    protected override void upgradeDamage()
+    {
+        
+    }
+
     protected override void upgradeSpeed()
     {
         damageCD = (baseDmgCD * (1 - (speedLevel * 0.15f)));

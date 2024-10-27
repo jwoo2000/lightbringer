@@ -42,6 +42,11 @@ public class Swipe : AreaWeapon
         
     }
 
+    protected override void upgradeDamage()
+    {
+        
+    }
+
     protected override void upgradeUnique()
     {
         aoeSize+=0.5f;

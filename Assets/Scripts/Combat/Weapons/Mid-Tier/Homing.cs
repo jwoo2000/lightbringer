@@ -69,6 +69,11 @@ public class Homing : ProjWeapon
         
     }
 
+    protected override void upgradeDamage()
+    {
+        
+    }
+
     protected override void upgradeUnique()
     {
         projCount++;

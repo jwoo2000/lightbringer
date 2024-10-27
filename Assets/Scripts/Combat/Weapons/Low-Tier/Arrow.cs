@@ -15,12 +15,12 @@ public class Arrow : ProjWeapon
         weaponName = "Lightlance";
         uniqueLabel = "Pierce Count";
         uniqueDesc = "Increases number of enemies pierced";
-        baseDamage = 50.0f;
+        baseDamage = 25.0f;
         baseCooldown = 1.0f;
         cdReducPerSpeedLevel = 0.2f;
-        dmgPerDmgLevel = 0.1f;
+        dmgPerDmgLevel = 0.5f;
 
-        pierceCount = 2;
+        pierceCount = 3;
         projSpeed = 15.0f;
     }
 
@@ -35,6 +35,11 @@ public class Arrow : ProjWeapon
     }
 
     protected override void upgradeSpeed()
+    {
+        
+    }
+
+    protected override void upgradeDamage()
     {
         
     }
