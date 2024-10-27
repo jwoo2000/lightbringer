@@ -1,4 +1,7 @@
 # Project 2 Report
+**Momo Games**
+
+![Momo Games logo of Momo the cat](/Images/Logo/logoSmall.png)
 
 ## Table of Contents
 
@@ -106,8 +109,17 @@ A survey was conducted after playing the game as part of our querying evaluation
 
 ### Summary of Findings
 **Results of the SUS survey**
+<p align="center">
+  <img src="Images/evalSusScores.png">
+  <p align="center"><i>SUS evaluation results</i></p>
+</p>
 
 Overall usability of game controls assessed based on SUS score interpretations (Bangor et al., 2009). Most users didn’t have any qualms about the controls themselves with an average score of 79.25, translating to a “Good” user-friendliness rating. It is important to note this score is only complementary to the other qualitative findings below.
+
+<p align="center">
+  <img src="Images/susScoreScale.jpg">
+  <p align="center"><i>SUS score evaluation scale (Bangor et al., 2009)</i></p>
+</p>
 
 **Accounting for outliers**
 
@@ -179,7 +191,9 @@ Observations made during gameplay:
 
 _(Assets/Shaders/FogTest.shader)_
 
-(gif of current fog)
+<p align="center">
+  <img src="Images/fogNow.gif">
+</p>
 
 This shader is applied to the “fog of war” in the game. Its implementation is based on Andrew Hung’s (2018) fog of war implementation. Simply put, a special camera looks down on the entire scene that can only see a certain layer. On this layer are coloured circles (hidden from the main camera) that represent areas that should not have fog. The special camera writes what it sees to a render texture and does not clear its frame buffer. This results in the render texture being a transparent texture with coloured pixels representing areas that should be “holes” in the fog. This render texture is used in a shader that reads the alpha values of the texture and outputs a solid colour or a transparent pixel.
 
@@ -190,8 +204,10 @@ I also changed the render queue of this fog shader to be placed above all other 
 I also implemented Hung’s method of “smoothly” updating the fog’s visible areas, which essentially keeps a slightly older copy of the render texture and lerps the alpha values between the older and current textures based on a “**_Blend**” uniform. This blending is controlled by the **FogBlend.cs** script. The speed is also tied to the player’s current movement speed to avoid the fog revealing “lagging” behind the player when they have a very high speed.
 The shader also includes some basic vertex manipulation in the Vertex shader stage that intends to drop visible area vertexes down so the edges of the visible areas in the fog “droop” down a little, giving it a 3D effect (an early implementation of this can be seen in the following gif), however this required the original plane mesh to have extremely high vertice counts. 
 
-(gif of 3d)
-_The vertices of visible areas being dropped down to create a vertical “wall” of fog_
+<p align="center">
+  <img src="Images/3dFogEarly.gif">
+  <p align="center"><i>The vertices of visible areas being dropped down to create a vertical “wall” of fog. Note the high triangle count.</i></p>
+</p>
 
 This effect is not visible in the current state of the game due to this performance limitation but a future implementation could include utilising the Tessellation stage in the Direct3D 11 pipeline to increase the vertex density of nearby fog through the GPU, and then instead manipulating these vertices in the Domain-Shader stage post-tessellation. Nearby fog can be determined through another render texture (with another camera and layer) using slightly larger circles as a control map in the Hull-Shader stage.
 
@@ -199,7 +215,9 @@ This effect is not visible in the current state of the game due to this performa
 
 _(Assets/Shaders/PlayerPulseShader.shader)_
 
-(gif of pulsing)
+<p align="center">
+  <img src="Images/pulsingPlayer.gif">
+</p>
 
 This shader provides the player a “breathing” living effect. It manipulates the vertices of the model mesh using its normals to “inflate” the mesh and increases the brightness of the pixels based on a “Pulse Intensity” value.
 
@@ -209,14 +227,18 @@ The output colour of the fragment shader is also controlled by an initial **_Emi
 
 These uniforms are also parameterised to be accessed in the **PlayerShaderController.cs**, which reads the player’s current HP ratio (curr HP to max HP) and increases the frequency of pulses and lowers the brightness of the player colour based on this ratio; the closer the player is to death, the faster the pulse speed and the lower the intensity.
 
-(gif of damaged player)
-_The pulsating effect quickens and the brightness of colour values is reduced at low HP_
+<p align="center">
+  <img src="Images/damagedPulse.gif">
+  <p align="center"><i>The pulsating effect quickens and the brightness of colour values is reduced at low HP</i></p>
+</p>
 
 **Boss Altar Particle System**
 
 _(Assets/Prefabs/POI/BossAltar.prefab → Particle System)_
 
-(gif of sword particle effect)
+<p align="center">
+  <img src="Images/swordParticles.gif">
+</p>
 
 The boss altar particle system consists primarily of billboard “runes” from a sprite sheet made of hand-drawn runes (can be seen in the GDD). 
 
@@ -230,9 +252,10 @@ The colour and size of the particles are modified towards the end of their lifet
 
 Finally the particles have noise added to their X and Z axis movement (excluding Y as we want the particles to float consistently upwards) adding an “uncontrollable, corrupted” feel to them.
 
-(gif of in game particle)
-_The particle system as seen in-game_
-
+<p align="center">
+  <img src="Images/runeParticleIngame.gif">
+  <p align="center"><i>The particle system as seen in-game</i></p>
+</p>
 
 ## Summary of Contributions
 
@@ -268,6 +291,7 @@ _The particle system as seen in-game_
 -   Player shader (design and linking to player stats)
 -   Milestone 2 video
 -   Maintaining GDD
+-   Team logo design
 
 **Kate:**
 -   Unit health interactions (player and enemy HP)
@@ -279,6 +303,7 @@ _The particle system as seen in-game_
 -   Worked on the Camera system initially
 -   Player animations, movement and stamina system
 -   Direction for evaluation plan
+-   Momo the cat
 
 **Deyulin:**
 -   Player shader implementation
