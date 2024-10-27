@@ -28,7 +28,7 @@ public class PlayerShaderController : MonoBehaviour
         playerHPratio = playerStats.currHP / playerStats.currMaxHP;
         adjustPulse(
             Mathf.Lerp(0.8f, initBaseIntensity, playerHPratio),
-            Mathf.Lerp(10.0f, initPulseSpeed, playerHPratio)
+            Mathf.Lerp(6.0f, initPulseSpeed, playerHPratio)
             );
     }
 
