@@ -5,7 +5,7 @@ Shader "_Shaders/FogTest"
         _OldTex ("Blend From Texture", 2D) = "black" {}
         _CurrTex ("Blend To Texture", 2D) = "black" {}
         _Color ("Fog Colour", Color) = (0,0,0,1)
-        _FogWallHeight ("Fog Wall Height", Float) = 20.0
+        _FogWallHeight ("Fog Wall Height", Float) = 0.0
     }
     SubShader
     {

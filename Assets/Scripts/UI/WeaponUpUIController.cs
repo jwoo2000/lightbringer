@@ -13,12 +13,15 @@ public class WeaponUpUIController : MonoBehaviour
     [SerializeField] private GameObject dmgChoicePanel;
     [SerializeField] private TextMeshProUGUI dmgLabel;
     [SerializeField] private TextMeshProUGUI dmgDesc;
+    [SerializeField] private TextMeshProUGUI dmgLevel;
     [SerializeField] private GameObject speedChoicePanel;
     [SerializeField] private TextMeshProUGUI speedLabel;
     [SerializeField] private TextMeshProUGUI speedDesc;
+    [SerializeField] private TextMeshProUGUI speedLevel;
     [SerializeField] private GameObject uniqueChoicePanel;
     [SerializeField] private TextMeshProUGUI uniqueLabel;
     [SerializeField] private TextMeshProUGUI uniqueDesc;
+    [SerializeField] private TextMeshProUGUI uniqueLevel;
 
     [SerializeField] private Weapon weaponToUpgrade;
     [SerializeField] private TextMeshProUGUI weaponName;
@@ -45,6 +48,7 @@ public class WeaponUpUIController : MonoBehaviour
             });
             dmgLabel.text = weaponToUpgrade.damageLabel;
             dmgDesc.text = weaponToUpgrade.damageDesc;
+            dmgLevel.text = $"Current Level: {weaponToUpgrade.damageLevel}";
 
             speedChoicePanel.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -53,6 +57,7 @@ public class WeaponUpUIController : MonoBehaviour
             });
             speedLabel.text = weaponToUpgrade.speedLabel;
             speedDesc.text = weaponToUpgrade.speedDesc;
+            speedLevel.text = $"Current Level: {weaponToUpgrade.speedLevel}";
 
             uniqueChoicePanel.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -61,6 +66,7 @@ public class WeaponUpUIController : MonoBehaviour
             });
             uniqueLabel.text = weaponToUpgrade.uniqueLabel;
             uniqueDesc.text = weaponToUpgrade.uniqueDesc;
+            uniqueLevel.text = $"Current Level: {weaponToUpgrade.uniqueLevel}";
         }
         else
         {
