@@ -36,12 +36,13 @@ Shader "Custom/PlayerPulseShader"
             float _PulseAmount;
             float _PulseIntensity;
             float _BaseIntensity;
+            float _Phase;
 
             // 顶点着色器：扩展顶点
             v2f vert (appdata v)
             {
                 v2f o;
-                float pulse = (sin(_Time.y * _PulseSpeed) * _PulseAmount) + _PulseAmount;  // 使用Unity的时间变量 _Time
+                float pulse = (sin(_Phase) * _PulseAmount) + _PulseAmount;  // 使用Unity的时间变量 _Time
                 o.pos = UnityObjectToClipPos(v.vertex + v.normal * pulse);
                 o.norm = v.normal;
                 return o;
@@ -54,7 +55,7 @@ Shader "Custom/PlayerPulseShader"
             {
                 // maintain >1.0 of base color to have a constant bloom effect, controlled by _BaseIntensity
                 // add a color that pulses to it based on _PulseIntensity
-                return fixed4((_EmissionColor.rgb*_BaseIntensity) + (_EmissionColor.rgb * (_PulseIntensity * sin(_Time.y * _PulseSpeed))), 1.0);  // 动态改变发光
+                return fixed4((_EmissionColor.rgb*_BaseIntensity) + (_EmissionColor.rgb * (_PulseIntensity * sin(_Phase))), 1.0);  // 动态改变发光
             }
             ENDCG
         }

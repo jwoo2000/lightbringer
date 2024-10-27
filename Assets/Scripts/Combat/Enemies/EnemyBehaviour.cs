@@ -327,18 +327,27 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (col.CompareTag(tagToDamage)) 
         {
-            if (GameManager.playerAlive && !GameManager.gameWin)
-            {
-                // only play hit sound if player is alive
-                col.gameObject.GetComponent<PlayerSounds>().takeDamage();
-            }
             if (behaviourType == EnemyType.Minion) 
             {
+                if (GameManager.playerAlive && !GameManager.gameWin)
+                {
+                    // only play hit sound if player is alive
+                    col.gameObject.GetComponent<PlayerSounds>().takeDamage();
+                    col.gameObject.GetComponent<PlayerShaderController>().TriggerDamagePulse();
+                }
+
                 GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
                 Destroy(gameObject);
             }
             else if (damageCoolDown == false)
             {
+                if (GameManager.playerAlive && !GameManager.gameWin)
+                {
+                    // only play hit sound if player is alive
+                    col.gameObject.GetComponent<PlayerSounds>().takeDamage();
+                    col.gameObject.GetComponent<PlayerShaderController>().TriggerDamagePulse();
+                }
+
                 GameManager.gameManager._playerHealth.DmgUnit(damageAmount, GameManager.gameManager._playerStats.dmgReduction);
                 //Debug.Log("Health: " + GameManager.gameManager._playerHealth.Health);
                 damageCoolDown = true;
