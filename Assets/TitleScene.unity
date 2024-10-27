@@ -3016,7 +3016,7 @@ MonoBehaviour:
 
     Tab - Open Level up choices
 
-    Esc - Pause/Close menu'
+    Esc/Space - Pause/Close menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}
   m_sharedMaterial: {fileID: 2017709875280462930, guid: 8c73a70bdff156e48a368c1104e8d7bf, type: 2}

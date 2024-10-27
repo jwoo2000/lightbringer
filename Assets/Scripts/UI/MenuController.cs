@@ -91,7 +91,7 @@ public class MenuController : MonoBehaviour
         if (movementController.controlsActive && !GameManager.gameWin)
         {
             // pause game if level ui and weapon up ui is not open
-            if (Input.GetKeyDown(KeyCode.Escape) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
+            if ((Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.Escape)) && !levelUIOpen && !weaponGetUIOpen && !weaponUpUIOpen)
             {
                 if (helpOpen)
                 {
@@ -127,7 +127,7 @@ public class MenuController : MonoBehaviour
                 {
                     openLevelUI();
                 }
-            } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || (Input.GetKeyDown(KeyCode.Escape) && levelUIOpen))
+            } else if ((Input.GetKeyDown(KeyCode.Tab) && levelUIOpen) || ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape)) && levelUIOpen))
             {
                 // if level ui is open, close and dont reroll new choices
                 levelUpChoices.newChoices = false;
