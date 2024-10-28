@@ -74,6 +74,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private AudioClip takeDamageSound;
     [SerializeField] private AudioClip deathSound;
 
+    private bool isAttacking = false;
+
     protected virtual void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -173,7 +175,16 @@ public class EnemyBehaviour : MonoBehaviour
             }
             default: break;
         }
-        if (playerDetected) 
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Summon") || animator.GetCurrentAnimatorStateInfo(0).IsName("Sword"))
+        {
+            isAttacking = true;
+        } else
+        {
+            isAttacking = false;
+        }
+
+        if (playerDetected && !isAttacking) 
         {
             //transform.LookAt(target, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget(target.position), rotationSpeed * Time.deltaTime);
