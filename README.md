@@ -1,7 +1,11 @@
-# Project 2 Report
+# Lightbringer (Project 2 Report)
 **Momo Games**
 
 ![Momo Games logo of Momo the cat](/Images/Logo/logoSmall.png)
+
+[Game Design Document (GDD)](GDD.md)
+
+[Play online at itch.io!](https://jwoo2000.itch.io/lightbringer)
 
 ## Table of Contents
 
